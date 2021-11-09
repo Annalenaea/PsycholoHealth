@@ -6,7 +6,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.Gravity;
 import android.view.View;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -19,8 +18,6 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EmotionSelectionPopup emotionSelectionPopup= new EmotionSelectionPopup();
-                CoordinatorLayout mainActivityLayout = (CoordinatorLayout) findViewById(R.id.mainactivitylayout);
                 emotionSelectionPopup.showPopupWindow(findViewById(R.id.mainactivitylayout));
             }
         });
