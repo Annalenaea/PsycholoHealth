@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmotionSelectionPopup">
+
+    <!--       These are the buttons used for emotion selection. -->
+    <LinearLayout
+        android:id="@+id/emotionChoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/roundstyle"
+        android:gravity="center_horizontal">
+
+        <ImageButton
+            android:id="@+id/btnHappy"
+            android:layout_width="@dimen/icon_button_size"
+            android:layout_height="@dimen/icon_button_size"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_happy_svgrepo_com" />
+
+
+        <ImageButton
+            android:id="@+id/btn2"
+            android:layout_width="@dimen/icon_button_size"
+            android:layout_height="@dimen/icon_button_size"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_sleep_svgrepo_com" />
+
+        <ImageButton
+            android:id="@+id/btn3"
+            android:layout_width="@dimen/icon_button_size"
+            android:layout_height="@dimen/icon_button_size"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_angry_svgrepo_com" />
+
+        <ImageButton
+            android:id="@+id/btn4"
+            android:layout_width="@dimen/icon_button_size"
+            android:layout_height="@dimen/icon_button_size"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_worried_svgrepo_com" />
+
+        <ImageButton
+            android:id="@+id/btn5"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="@dimen/icon_button_size"
+            android:layout_height="@dimen/icon_button_size"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_calm_emoji_svgrepo_com" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

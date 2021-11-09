@@ -6,8 +6,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.Gravity;
 import android.view.View;
 
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -17,6 +19,8 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        binding.addEmotion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EmotionSelectionPopup emotionSelectionPopup= new EmotionSelectionPopup();
+                CoordinatorLayout mainActivityLayout = (CoordinatorLayout) findViewById(R.id.mainactivitylayout);
+                emotionSelectionPopup.showPopupWindow(findViewById(R.id.mainactivitylayout));
             }
         });
     }
