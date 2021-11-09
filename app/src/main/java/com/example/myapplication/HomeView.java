@@ -32,12 +32,16 @@ public class HomeView extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.btn0.setOnClickListener(new View.OnClickListener() {
+        binding.btnHappy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"first button clicked");
-                NavHostFragment.findNavController(HomeView.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+//                NavHostFragment.findNavController(HomeView.this)
+//                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                // how can the data saved on a good way, backup- >write data in Json File (matrix which maps data on day)
+                // for each week one Json file?
+                // @todo: open pop up: "Do you want to answer some questions regarding your current emotion?"
+                // @todo: if yes: open new page with questions
             }
         });
     }
