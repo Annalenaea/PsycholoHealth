@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EmotionSelectionPopup emotionSelectionPopup= new EmotionSelectionPopup();
-                emotionSelectionPopup.showPopupWindow(findViewById(R.id.mainactivitylayout));
+                emotionSelectionPopup.showPopupWindow(findViewById(R.id.mainactivitylayout),binding.addEmotion.getLeft(),binding.addEmotion.getTop());
             }
         });
     }
