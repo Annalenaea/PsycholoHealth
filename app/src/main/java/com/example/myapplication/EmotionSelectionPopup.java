@@ -9,11 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONException;
+import org.w3c.dom.Text;
+
+import java.io.IOException;
 
 public class EmotionSelectionPopup extends AppCompatActivity {
     private static String TAG = "Emotion Selection Popup Activity";
@@ -35,7 +41,25 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         ImageButton btnHappy = emotionPopup.findViewById(R.id.btnHappy);
         btnHappy.setOnClickListener(view1 -> {
             Log.d(TAG,"happy button clicked");
+
+            //adjust bar chart for happiness
+            //@todo: add only once a day
+            MainActivity.setAmountOfHappy(MainActivity.getAmountOfHappy()+1);
+            TextView happyBar = view.findViewById(R.id.happyBar);
+            ViewGroup.LayoutParams params = happyBar.getLayoutParams();
+            params.height = MainActivity.getAmountOfHappy() * params.height/31;
+            Log.d(TAG, String.valueOf(params.height));
+            happyBar.setLayoutParams(params);
+
             // @todo: save emotion in Json File
+            try {
+                MainActivity.saveData(this.getFilesDir());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             // wait some secs until close popup
             Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds

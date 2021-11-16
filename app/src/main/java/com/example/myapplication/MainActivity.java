@@ -6,6 +6,8 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -19,10 +21,42 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static int m_amountOfHappy = 0;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private static String TAG = "MainActivity";
+
+
+    public static void setAmountOfHappy(int amountOfHappy) {
+        m_amountOfHappy=amountOfHappy;
+        Log.d(TAG, String.valueOf(amountOfHappy));
+    }
+    public static int getAmountOfHappy(){
+        return m_amountOfHappy;
+    }
+
+    public static void saveData(File dir) throws JSONException, IOException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Mood Today", "happy");
+        // Convert JsonObject to String Format
+        String userString = jsonObject.toString();
+        // Define the File Path and its Name
+        File file = new File(dir,"backup");
+        FileWriter fileWriter = new FileWriter(file);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write(userString);
+        bufferedWriter.close();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
