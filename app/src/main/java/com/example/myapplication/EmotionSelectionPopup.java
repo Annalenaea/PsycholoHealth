@@ -53,16 +53,26 @@ public class EmotionSelectionPopup extends AppCompatActivity {
 
             // @todo: save emotion in Json File
             try {
-                MainActivity.saveData(this.getFilesDir());
+                MainActivity.saveData();
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+
+
             // wait some secs until close popup
             Handler handler = new Handler();
-            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
+            handler.postDelayed(() -> {
+                try {
+                    MainActivity.loadData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }, 1000);   //5 seconds
         });
 
         btnHappy.setOnLongClickListener(view1 -> {

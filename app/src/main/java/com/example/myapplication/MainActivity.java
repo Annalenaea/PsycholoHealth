@@ -24,8 +24,10 @@ import android.view.MenuItem;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private static String TAG = "MainActivity";
+    private static File filesDir;
 
 
     public static void setAmountOfHappy(int amountOfHappy) {
@@ -45,17 +48,36 @@ public class MainActivity extends AppCompatActivity {
         return m_amountOfHappy;
     }
 
-    public static void saveData(File dir) throws JSONException, IOException {
+    public static void saveData() throws JSONException, IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("Mood Today", "happy");
         // Convert JsonObject to String Format
         String userString = jsonObject.toString();
         // Define the File Path and its Name
-        File file = new File(dir,"backup");
+        File file = new File(filesDir,"backup");
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.write(userString);
         bufferedWriter.close();
+    }
+
+    public static void loadData() throws IOException, JSONException {
+        File file = new File(filesDir,"backup");
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = bufferedReader.readLine();
+        while (line != null){
+            stringBuilder.append(line).append("\n");
+            line = bufferedReader.readLine();
+        }
+        bufferedReader.close();
+        // This response will have Json Format String
+        String responce = stringBuilder.toString();
+
+        JSONObject jsonObject  = new JSONObject(responce);
+        String mood = jsonObject.get("Mood Today").toString();
+        Log.d(TAG,mood);
     }
 
     @Override
@@ -70,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        filesDir = getFilesDir();
     }
 
     @Override
