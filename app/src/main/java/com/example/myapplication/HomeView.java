@@ -25,6 +25,10 @@ public class HomeView extends Fragment {
     ) {
 
         binding = HomeViewBinding.inflate(inflater, container, false);
+        binding.addEmotion.setOnClickListener(view -> {
+            EmotionSelectionPopup emotionSelectionPopup= new EmotionSelectionPopup();
+            emotionSelectionPopup.showPopupWindow(getView().findViewById(R.id.homeView),binding.addEmotion.getLeft(),binding.addEmotion.getTop());
+        });
         return binding.getRoot();
 
     }

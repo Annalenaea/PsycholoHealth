@@ -30,49 +30,50 @@ public class EmotionSelectionPopup extends AppCompatActivity {
 
         //display the popup window
         // @todo: add animation
-        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, (int) (xPos*0.27), (int) (yPos*0.93));
+        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos, yPos);
 
         ImageButton btnHappy = emotionPopup.findViewById(R.id.btnHappy);
         btnHappy.setOnClickListener(view1 -> {
             Log.d(TAG,"happy button clicked");
-//            btnHappy.setImageResource(R.drawable.ic_happy_selected);
-
+            // @todo: save emotion in Json File
             // wait some secs until close popup
             Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    popupWindow.dismiss();
-                }
-            }, 1000);   //5 seconds
-
-            // for each week one Json file?
-            // @todo: open pop up: "Do you want to answer some questions regarding your current emotion?"
-            // @todo: if yes: open new page with questions
-//                NavHostFragment.findNavController(EmotionSelectionPopup.this)
-//                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
-        ImageButton btnTired = emotionPopup.findViewById(R.id.btnTired);
-        btnTired.setOnClickListener(view1 -> {
-            Log.d(TAG,"tired button clicked");
-            popupWindow.dismiss();
-        });
-
-        ImageButton btnAngry = emotionPopup.findViewById(R.id.btnAngry);
-        btnAngry.setOnClickListener(view1 -> {
-            Log.d(TAG,"angry button clicked");
-            popupWindow.dismiss();
-        });
-        ImageButton btnWorried = emotionPopup.findViewById(R.id.btnWorried);
-        btnWorried.setOnClickListener(view1 -> {
-            Log.d(TAG,"worried button clicked");
-            popupWindow.dismiss();
+        btnHappy.setOnLongClickListener(view1 -> {
+            Log.d(TAG,"happy button long clicked");
+            // @todo: save emotion in Json File
+            // @todo: open happy emotion questionnaire page
+            return true;
         });
 
         ImageButton btnNeutral = emotionPopup.findViewById(R.id.btnNeutral);
         btnNeutral.setOnClickListener(view1 -> {
             Log.d(TAG,"neutral button clicked");
-            popupWindow.dismiss();
+            Handler handler = new Handler();
+            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
+        });
+
+        btnNeutral.setOnLongClickListener(view1 -> {
+            Log.d(TAG,"neutral button long clicked");
+            // @todo: save emotion in Json File
+            // @todo: open neutral emotion questionnaire page
+            return true;
+        });
+
+        ImageButton btnWorried = emotionPopup.findViewById(R.id.btnWorried);
+        btnWorried.setOnClickListener(view1 -> {
+            Log.d(TAG,"worried button clicked");
+            Handler handler = new Handler();
+            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
+        });
+
+        btnWorried.setOnLongClickListener(view1 -> {
+            Log.d(TAG,"worried button long clicked");
+            // @todo: save emotion in Json File
+            // @todo: open worried emotion questionnaire page
+            return true;
         });
     }
 
