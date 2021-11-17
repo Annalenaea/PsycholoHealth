@@ -38,46 +38,28 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         // @todo: add animation
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos, yPos);
 
+        // y Axis (to get later maximum height of diagram / 31 days)
+        TextView yAxis = view.findViewById(R.id.yAxis);
+
         ImageButton btnHappy = emotionPopup.findViewById(R.id.btnHappy);
         btnHappy.setOnClickListener(view1 -> {
             Log.d(TAG,"happy button clicked");
 
             //adjust bar chart for happiness
             //@todo: add only once a day
-            MainActivity.setAmountOfHappy(MainActivity.getAmountOfHappy()+1);
-            TextView happyBar = view.findViewById(R.id.happyBar);
-            ViewGroup.LayoutParams params = happyBar.getLayoutParams();
-            params.height = MainActivity.getAmountOfHappy() * params.height/31;
-            Log.d(TAG, String.valueOf(params.height));
-            happyBar.setLayoutParams(params);
-
-            // @todo: save emotion in Json File
-            try {
-                MainActivity.saveData();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
+            MainActivity.setEmotionAmount(0, MainActivity.getEmotionAmount(0)+1);
 
             // wait some secs until close popup
             Handler handler = new Handler();
-            handler.postDelayed(() -> {
-                try {
-                    MainActivity.loadData();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }, 1000);   //5 seconds
+            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
         btnHappy.setOnLongClickListener(view1 -> {
             Log.d(TAG,"happy button long clicked");
-            // @todo: save emotion in Json File
+            //adjust bar chart for happiness
+            //@todo: add only once a day
+            MainActivity.setEmotionAmount(0,MainActivity.getEmotionAmount(0)+1);
+
             // @todo: open happy emotion questionnaire page
             return true;
         });
@@ -85,13 +67,23 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         ImageButton btnNeutral = emotionPopup.findViewById(R.id.btnNeutral);
         btnNeutral.setOnClickListener(view1 -> {
             Log.d(TAG,"neutral button clicked");
+
+            //adjust bar chart for neutral
+            //@todo: add only once a day
+            MainActivity.setEmotionAmount(1,MainActivity.getEmotionAmount(1)+1);
+
+
+            // wait short time until popup window closes
             Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
         btnNeutral.setOnLongClickListener(view1 -> {
             Log.d(TAG,"neutral button long clicked");
-            // @todo: save emotion in Json File
+            //adjust bar chart for neutral
+            //@todo: add only once a day
+            MainActivity.setEmotionAmount(1,MainActivity.getEmotionAmount(1)+1);
+
             // @todo: open neutral emotion questionnaire page
             return true;
         });
@@ -99,13 +91,22 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         ImageButton btnWorried = emotionPopup.findViewById(R.id.btnWorried);
         btnWorried.setOnClickListener(view1 -> {
             Log.d(TAG,"worried button clicked");
+
+            //adjust bar chart for sad
+            //@todo: add only once a day
+            MainActivity.setEmotionAmount(2,MainActivity.getEmotionAmount(2)+1);
+
+
             Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
         btnWorried.setOnLongClickListener(view1 -> {
             Log.d(TAG,"worried button long clicked");
-            // @todo: save emotion in Json File
+            //adjust bar chart for sad
+            //@todo: add only once a day
+            MainActivity.setEmotionAmount(2,MainActivity.getEmotionAmount(2)+1);
+
             // @todo: open worried emotion questionnaire page
             return true;
         });
