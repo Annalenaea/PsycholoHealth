@@ -8,15 +8,44 @@
     tools:context=".HomeView">
 
     <!--       This is the calendar which shows the mental health on each tracked day. -->
-    <android.widget.CalendarView
+<!--    <android.widget.CalendarView-->
+<!--        android:id="@+id/calendar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/white"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        app:layout_constraintBaseline_toTopOf="parent" />-->
+
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:gravity="center_horizontal"
-        app:layout_constraintBaseline_toTopOf="parent" />
+        android:layout_width="382dp"
+        android:layout_height="216dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="16dp"
+        android:importantForAccessibility="auto"
+        android:isScrollContainer="false"
+        android:keepScreenOn="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:compactCalendarCurrentDayBackgroundColor="#E17070"
+        app:compactCalendarCurrentDayIndicatorStyle="no_fill_large_indicator"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+        app:compactCalendarCurrentSelectedDayIndicatorStyle="no_fill_large_indicator"
+        app:compactCalendarDisplayOtherMonthDays="true"
+        app:compactCalendarEventIndicatorStyle="fill_large_indicator"
+        app:compactCalendarOtherMonthDaysTextColor="#171616"
+        app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
+        app:compactCalendarTargetHeight="250dp"
+        app:compactCalendarTextColor="#171616"
+        app:compactCalendarTextSize="12sp"
+        app:layout_constraintBaseline_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <!--       Activity Button -->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addActivity"
         android:layout_width="wrap_content"
@@ -49,9 +78,9 @@
         layout="@layout/bar_chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />
 

@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
         return Objects.requireNonNull(m_emotionData.get(date)).get(Globals.emotion);
     }
 
+    public static HashMap<String,Map<String,String>> getEmotionData(){
+        return m_emotionData;
+    }
+
     // save data in a json file
     public static void saveData() throws IOException {
         Gson gson = new Gson();
@@ -102,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        filesDir = getFilesDir();
+        // load data from backup
+        try {
+            MainActivity.loadData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -111,18 +123,9 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        filesDir = getFilesDir();
-
         happyBar = findViewById(R.id.happyBar);
         neutralBar = findViewById(R.id.neutralBar);
         sadBar = findViewById(R.id.sadBar);
-
-        // load data from backup
-        try {
-            MainActivity.loadData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         // update the analysis view
         updateAnalysis();
