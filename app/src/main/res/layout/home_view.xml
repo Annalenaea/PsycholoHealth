@@ -8,21 +8,13 @@
     tools:context=".HomeView">
 
     <!--       This is the calendar which shows the mental health on each tracked day. -->
-<!--    <android.widget.CalendarView-->
-<!--        android:id="@+id/calendar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/white"-->
-<!--        android:gravity="center_horizontal"-->
-<!--        app:layout_constraintBaseline_toTopOf="parent" />-->
-
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/calendar"
         android:layout_width="382dp"
         android:layout_height="216dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="92dp"
         android:importantForAccessibility="auto"
         android:isScrollContainer="false"
         android:keepScreenOn="true"
@@ -43,9 +35,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!--       Activity Button -->
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addActivity"
         android:layout_width="wrap_content"
@@ -59,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-    <!--       Emotion Button -->
+    <!--       Emotion Button, @todo: find good icon -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addEmotion"
         android:layout_width="wrap_content"
@@ -83,5 +72,14 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="119dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="15dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/calendar"
+        app:layout_constraintStart_toStartOf="@+id/calendar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

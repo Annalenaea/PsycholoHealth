@@ -12,11 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.databinding.HomeViewBinding;
+import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,11 +42,29 @@ public class HomeView extends Fragment {
         });
 
         binding.calendar.setUseThreeLetterAbbreviation(true);
+        binding.calendar.shouldDrawIndicatorsBelowSelectedDays(true);
 
 
-        //        binding.calendar.setOnDateChangeListener((view, year, month, dayOfMonth) ->  {
-//            Log.d(TAG,"Hi");
-//        });
+        // display current month at the top of the calendar
+        DateFormat formatter = new SimpleDateFormat(Globals.monthFormat);
+        Calendar calendar = Calendar.getInstance();
+        binding.month.setText(formatter.format(calendar.getTime()));
+
+        binding.calendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+            @Override
+            public void onDayClick(Date dateClicked) {
+                Log.d(TAG, "Day was clicked: " + dateClicked);
+                // @todo: open summary of this day
+            }
+
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
+                Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
+                // update month above calendar
+                DateFormat formatter = new SimpleDateFormat(Globals.monthFormat);
+                binding.month.setText(formatter.format(firstDayOfNewMonth));
+            }
+        });
 
         setCalenderData();
 

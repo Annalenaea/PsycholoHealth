@@ -8,6 +8,7 @@ public class Globals {
     public static final String emotion = "Emotion";
 
     public static final String dateFormat = "MM/dd/yyyy";
+    public static final String monthFormat = "MMM";
 
     public static final String backup ="backup";
 }
