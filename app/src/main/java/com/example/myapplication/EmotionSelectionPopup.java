@@ -5,19 +5,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -38,28 +33,33 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         // @todo: add animation
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos, yPos);
 
-        // y Axis (to get later maximum height of diagram / 31 days)
-        TextView yAxis = view.findViewById(R.id.yAxis);
-
+        // onClickListener for all 3 buttons:
         ImageButton btnHappy = emotionPopup.findViewById(R.id.btnHappy);
         btnHappy.setOnClickListener(view1 -> {
             Log.d(TAG,"happy button clicked");
-
-            //adjust bar chart for happiness
-            //@todo: add only once a day
-            MainActivity.setEmotionAmount(0, MainActivity.getEmotionAmount(0)+1);
+            try {
+                MainActivity.setDateEmotion(Globals.happy);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             // wait some secs until close popup
             Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
+        // onLongClickListener for opening questionaire page
         btnHappy.setOnLongClickListener(view1 -> {
             Log.d(TAG,"happy button long clicked");
-            //adjust bar chart for happiness
-            //@todo: add only once a day
-            MainActivity.setEmotionAmount(0,MainActivity.getEmotionAmount(0)+1);
-
+            try {
+                MainActivity.setDateEmotion(Globals.happy);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             // @todo: open happy emotion questionnaire page
             return true;
         });
@@ -67,12 +67,13 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         ImageButton btnNeutral = emotionPopup.findViewById(R.id.btnNeutral);
         btnNeutral.setOnClickListener(view1 -> {
             Log.d(TAG,"neutral button clicked");
-
-            //adjust bar chart for neutral
-            //@todo: add only once a day
-            MainActivity.setEmotionAmount(1,MainActivity.getEmotionAmount(1)+1);
-
-
+            try {
+                MainActivity.setDateEmotion(Globals.neutral);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             // wait short time until popup window closes
             Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
@@ -80,10 +81,13 @@ public class EmotionSelectionPopup extends AppCompatActivity {
 
         btnNeutral.setOnLongClickListener(view1 -> {
             Log.d(TAG,"neutral button long clicked");
-            //adjust bar chart for neutral
-            //@todo: add only once a day
-            MainActivity.setEmotionAmount(1,MainActivity.getEmotionAmount(1)+1);
-
+            try {
+                MainActivity.setDateEmotion(Globals.neutral);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             // @todo: open neutral emotion questionnaire page
             return true;
         });
@@ -91,22 +95,26 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         ImageButton btnWorried = emotionPopup.findViewById(R.id.btnWorried);
         btnWorried.setOnClickListener(view1 -> {
             Log.d(TAG,"worried button clicked");
-
-            //adjust bar chart for sad
-            //@todo: add only once a day
-            MainActivity.setEmotionAmount(2,MainActivity.getEmotionAmount(2)+1);
-
-
+            try {
+                MainActivity.setDateEmotion(Globals.sad);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
         btnWorried.setOnLongClickListener(view1 -> {
             Log.d(TAG,"worried button long clicked");
-            //adjust bar chart for sad
-            //@todo: add only once a day
-            MainActivity.setEmotionAmount(2,MainActivity.getEmotionAmount(2)+1);
-
+            try {
+                MainActivity.setDateEmotion(Globals.sad);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             // @todo: open worried emotion questionnaire page
             return true;
         });

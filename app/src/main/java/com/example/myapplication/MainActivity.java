@@ -2,31 +2,23 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.provider.ContactsContract;
-import android.util.JsonReader;
-import android.util.Log;
-import android.view.View;
-
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
+import com.google.gson.Gson;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -34,72 +26,60 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    private static String TAG = "MainActivity";
+    private static final String TAG = "MainActivity";
     private static File filesDir;
-    private static List<Integer> m_emotionAmount = new ArrayList<>();
     private static TextView happyBar;
     private static TextView neutralBar;
     private static TextView sadBar;
+    private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
 
-    // setter and getter
+    // set the emotion of today
+    public static void setDateEmotion(String emotion) throws IOException, JSONException {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat(Globals.dateFormat);
+        String date = dateFormat.format(calendar.getTime());
 
-    public static void setEmotionAmount(int index, int value) {
-        m_emotionAmount.set(index, value);
+        HashMap<String,String> dayEmotion = new HashMap<>();
+        dayEmotion.put(Globals.emotion,emotion);
+        m_emotionData.put(date, dayEmotion);
+        saveData();
         updateAnalysis();
-        try {
-            saveData();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
-    public static int getEmotionAmount(int index) {
-        return (Integer) m_emotionAmount.get(index);
+    // get the emotion of the corresponding date
+    public static String getDateEmotion(String date) throws IOException, JSONException {
+        return Objects.requireNonNull(m_emotionData.get(date)).get(Globals.emotion);
     }
-    // save and load data
 
-    public static void saveData() throws JSONException, IOException {
-//        // get today's date
-//        Calendar calendar = Calendar.getInstance();
-//        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-//        String date = dateFormat.format(calendar.getTime());
-
-        JSONObject jsonObject = new JSONObject();
-        JSONObject emotionJson = new JSONObject();
-
-        emotionJson.put("Happy", m_emotionAmount.get(0));
-        emotionJson.put("Neutral", m_emotionAmount.get(1));
-        emotionJson.put("Sad", m_emotionAmount.get(2));
-
-        jsonObject.put("emotionAmount", emotionJson);
-
-        // Convert JsonObject to String Format
-        String userString = jsonObject.toString();
+    // save data in a json file
+    public static void saveData() throws IOException {
+        Gson gson = new Gson();
+        String userString = gson.toJson(m_emotionData);
 
         // Define the File Path and its Name
-        File file = new File(filesDir,"backup");
+        File file = new File(filesDir,Globals.backup);
         FileWriter fileWriter = new FileWriter(file);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         bufferedWriter.write(userString);
         bufferedWriter.close();
     }
 
-    public static void loadData() throws IOException, JSONException {
+    // load data from json file
+    public static void loadData() throws IOException {
         // get and read file
-        File file = new File(filesDir,"backup");
+        File file = new File(filesDir,Globals.backup);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         StringBuilder stringBuilder = new StringBuilder();
@@ -111,28 +91,16 @@ public class MainActivity extends AppCompatActivity {
         bufferedReader.close();
         // This response will have Json Format String
         String response = stringBuilder.toString();
+        Gson gson = new Gson();
+        m_emotionData = gson.fromJson(response, m_emotionData.getClass());
 
-        // read JsonObject
-        JSONObject jsonObject  = new JSONObject(response);
-//        JSONObject today = (JSONObject) jsonObject.get(date);
-        JSONObject emotionJson = (JSONObject) jsonObject.get("emotionAmount");
-        setEmotionAmount(0, (Integer) emotionJson.get("Happy"));
-        setEmotionAmount(1, (Integer) emotionJson.get("Neutral"));
-        setEmotionAmount(2, (Integer) emotionJson.get("Sad"));
-
+        Log.d(TAG, String.valueOf(m_emotionData));
     }
 
     // override functions
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // initialize each amount of emotion with 0
-        m_emotionAmount.add(0);
-        m_emotionAmount.add(0);
-        m_emotionAmount.add(0);
-
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -154,26 +122,46 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.loadData();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
+
+        // update the analysis view
+        updateAnalysis();
 
     }
 
     public static void updateAnalysis(){
+        int numberOfHappy=0;
+        int numberOfNeutral=0;
+        int numberOfSad=0;
+        for(int i=0;i<m_emotionData.keySet().size();i++){
+            switch (Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(m_emotionData.keySet().toArray()[i])).get(Globals.emotion))) {
+                case Globals.happy:
+                    numberOfHappy++;
+                    break;
+                case Globals.neutral:
+                    numberOfNeutral++;
+                    break;
+                case Globals.sad:
+                    numberOfSad++;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         // happy bar
         ViewGroup.LayoutParams paramsHappy = happyBar.getLayoutParams();
-        paramsHappy.height = getEmotionAmount(0) * 7;
+        paramsHappy.height = (numberOfHappy+1) * 7;
         happyBar.setLayoutParams(paramsHappy);
 
         // neutral bar
         ViewGroup.LayoutParams paramsNeutral = neutralBar.getLayoutParams();
-        paramsNeutral.height = getEmotionAmount(1) * 7;
+        paramsNeutral.height = (numberOfNeutral+1) * 7;
         neutralBar.setLayoutParams(paramsNeutral);
 
         // sad bar
         ViewGroup.LayoutParams paramsSad = sadBar.getLayoutParams();
-        paramsSad.height = getEmotionAmount(2) * 7;
+        paramsSad.height = (numberOfSad+1) * 7;
         sadBar.setLayoutParams(paramsSad);
 
     }
