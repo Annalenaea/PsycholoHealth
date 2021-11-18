@@ -60,7 +60,7 @@ public class HomeView extends Fragment {
 
         DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
         for(int i=0;i<emotionData.keySet().size();i++){
-            dateString = "11/17/2021";//(String) emotionData.keySet().toArray()[i];
+            dateString = (String) emotionData.keySet().toArray()[i];
             Log.d(TAG,dateString);
             try {
                 date = (Date)formatter.parse(dateString);
