@@ -5,8 +5,17 @@
     android:id="@+id/barchart"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<!--    tools:context=".BarChart">-->
-<!--    @todo: display numbers on y axis -->
+    <!--    tools:context=".BarChart">-->
+    <!--    @todo: display numbers on y axis -->
+
+    <TextView
+        android:id="@+id/axis30"
+        android:layout_width="32dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="15dp"
+        android:text="30"
+        app:layout_constraintBottom_toTopOf="@+id/axis20"
+        app:layout_constraintEnd_toStartOf="@+id/yAxis" />
 
     <TextView
         android:id="@+id/analysis"
@@ -14,6 +23,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:text="Analysis"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,8 +32,8 @@
         android:id="@+id/yAxis"
         android:layout_width="3dp"
         android:layout_height="114dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:layout_marginTop="4dp"
         android:background="#050505"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,68 +41,83 @@
 
     <TextView
         android:id="@+id/happyBar"
-        android:layout_width="55dp"
+        android:layout_width="60dp"
         android:layout_height="2dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:background="#0E0E0E"
-        app:layout_constraintStart_toEndOf="@+id/yAxis"
-        app:layout_constraintBottom_toBottomOf="@id/yAxis" />
+        app:layout_constraintBottom_toBottomOf="@id/yAxis"
+        app:layout_constraintStart_toEndOf="@+id/yAxis" />
 
     <TextView
         android:id="@+id/neutralBar"
-        android:layout_width="48dp"
+        android:layout_width="60dp"
         android:layout_height="2dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
         android:background="#0C0C0C"
-        app:layout_constraintStart_toEndOf="@+id/happyBar"
-        app:layout_constraintBottom_toBottomOf="@id/yAxis" />
+        app:layout_constraintBottom_toBottomOf="@id/yAxis"
+        app:layout_constraintStart_toEndOf="@+id/happyBar" />
 
     <TextView
         android:id="@+id/sadBar"
-        android:layout_width="52dp"
+        android:layout_width="60dp"
         android:layout_height="2dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
         android:background="#0C0C0C"
-        app:layout_constraintStart_toEndOf="@+id/neutralBar"
-        app:layout_constraintBottom_toBottomOf="@id/yAxis" />
+        app:layout_constraintBottom_toBottomOf="@id/yAxis"
+        app:layout_constraintStart_toEndOf="@+id/neutralBar" />
 
     <TextView
         android:id="@+id/happyBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:text="Happy"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/happyBar"
         app:layout_constraintTop_toBottomOf="@+id/happyBar" />
 
     <TextView
         android:id="@+id/neutralBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
         android:text="Neutral"
-        app:layout_constraintStart_toEndOf="@+id/happyBarText"
+        app:layout_constraintStart_toStartOf="@+id/neutralBar"
         app:layout_constraintTop_toBottomOf="@+id/neutralBar" />
 
     <TextView
         android:id="@+id/sadBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:text="Sad"
-        app:layout_constraintStart_toEndOf="@+id/neutralBarText"
+        app:layout_constraintStart_toStartOf="@+id/sadBar"
         app:layout_constraintTop_toBottomOf="@+id/sadBar" />
+
+    <TextView
+        android:id="@+id/axis10"
+        android:layout_width="32dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="15dp"
+        android:text="10"
+        app:layout_constraintBottom_toBottomOf="@+id/yAxis"
+        app:layout_constraintEnd_toStartOf="@+id/yAxis" />
+
+    <TextView
+        android:id="@+id/axis20"
+        android:layout_width="32dp"
+        android:layout_height="23dp"
+        android:layout_marginBottom="15dp"
+        android:text="20"
+        app:layout_constraintBottom_toTopOf="@+id/axis10"
+        app:layout_constraintEnd_toStartOf="@+id/yAxis" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

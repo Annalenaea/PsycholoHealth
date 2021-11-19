@@ -8,13 +8,14 @@
     tools:context=".HomeView">
 
     <!--       This is the calendar which shows the mental health on each tracked day. -->
+
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/calendar"
         android:layout_width="382dp"
         android:layout_height="216dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="50dp"
         android:importantForAccessibility="auto"
         android:isScrollContainer="false"
         android:keepScreenOn="true"
@@ -63,21 +64,24 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <!--       Analysis view -->
+
     <include
         layout="@layout/bar_chart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="363dp"
+        android:layout_height="196dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+<!--    display month -->
 
     <TextView
         android:id="@+id/month"
         android:layout_width="119dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="15dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/calendar"
         app:layout_constraintStart_toStartOf="@+id/calendar" />

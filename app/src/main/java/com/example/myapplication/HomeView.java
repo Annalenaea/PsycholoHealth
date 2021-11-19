@@ -72,6 +72,7 @@ public class HomeView extends Fragment {
 
     }
 
+    // set the data of the calendar
     private void setCalenderData(){
         HashMap<String, Map<String,String>> emotionData = MainActivity.getEmotionData();
         String dateString = null;
@@ -91,6 +92,7 @@ public class HomeView extends Fragment {
         }
     }
 
+    // set the color of the corresponding day in the calendar
     public static void setCalendarColor(String emotion, long date) {
         int color = 0;
         switch(emotion){

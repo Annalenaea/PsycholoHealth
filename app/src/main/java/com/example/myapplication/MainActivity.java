@@ -149,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // update the analysis view
     public static void updateAnalysis() throws ParseException {
         int numberOfHappy=0;
         int numberOfNeutral=0;
