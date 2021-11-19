@@ -95,21 +95,23 @@ public class MainActivity extends AppCompatActivity {
     public static void loadData() throws IOException {
         // get and read file
         File file = new File(filesDir,Globals.backup);
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        StringBuilder stringBuilder = new StringBuilder();
-        String line = bufferedReader.readLine();
-        while (line != null){
-            stringBuilder.append(line).append("\n");
-            line = bufferedReader.readLine();
-        }
-        bufferedReader.close();
-        // This response will have Json Format String
-        String response = stringBuilder.toString();
-        Gson gson = new Gson();
-        m_emotionData = gson.fromJson(response, m_emotionData.getClass());
+        if(file.exists()) {
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                stringBuilder.append(line).append("\n");
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            // This response will have Json Format String
+            String response = stringBuilder.toString();
+            Gson gson = new Gson();
+            m_emotionData = gson.fromJson(response, m_emotionData.getClass());
 
-        Log.d(TAG, String.valueOf(m_emotionData));
+            Log.d(TAG, String.valueOf(m_emotionData));
+        }
     }
 
     // override functions
@@ -139,27 +141,44 @@ public class MainActivity extends AppCompatActivity {
         sadBar = findViewById(R.id.sadBar);
 
         // update the analysis view
-        updateAnalysis();
+        try {
+            updateAnalysis();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public static void updateAnalysis(){
+    public static void updateAnalysis() throws ParseException {
         int numberOfHappy=0;
         int numberOfNeutral=0;
         int numberOfSad=0;
         for(int i=0;i<m_emotionData.keySet().size();i++){
-            switch (Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(m_emotionData.keySet().toArray()[i])).get(Globals.emotion))) {
-                case Globals.happy:
-                    numberOfHappy++;
-                    break;
-                case Globals.neutral:
-                    numberOfNeutral++;
-                    break;
-                case Globals.sad:
-                    numberOfSad++;
-                    break;
-                default:
-                    break;
+            String dateString = (String) m_emotionData.keySet().toArray()[i];
+            DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
+            DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat);
+
+            Date date = formatter.parse(dateString);
+            int monthNumber  =   Integer.parseInt(monthFormatter.format(date));
+
+            Calendar calendar = Calendar.getInstance();
+            int currentMonth = Integer.parseInt(monthFormatter.format(calendar.getTime()));
+
+            if(monthNumber == currentMonth) {
+                String emotion = m_emotionData.get(dateString).get(Globals.emotion);
+                switch (emotion) {
+                    case Globals.happy:
+                        numberOfHappy++;
+                        break;
+                    case Globals.neutral:
+                        numberOfNeutral++;
+                        break;
+                    case Globals.sad:
+                        numberOfSad++;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
