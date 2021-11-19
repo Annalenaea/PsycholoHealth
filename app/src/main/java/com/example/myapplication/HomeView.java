@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.databinding.HomeViewBinding;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -26,7 +25,7 @@ import java.util.Map;
 public class HomeView extends Fragment {
 
     private static String TAG = "Home View Activity";
-
+    private static CompactCalendarView m_calendarView = null;
     private HomeViewBinding binding;
 
     @Override
@@ -41,6 +40,7 @@ public class HomeView extends Fragment {
             emotionSelectionPopup.showPopupWindow(getView().findViewById(R.id.homeView),binding.addEmotion.getLeft(),binding.addEmotion.getTop());
         });
 
+        m_calendarView = binding.calendar;
         binding.calendar.setUseThreeLetterAbbreviation(true);
         binding.calendar.shouldDrawIndicatorsBelowSelectedDays(true);
 
@@ -76,7 +76,6 @@ public class HomeView extends Fragment {
         HashMap<String, Map<String,String>> emotionData = MainActivity.getEmotionData();
         String dateString = null;
         Date date = null;
-        int color = 0;
 
         DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
         for(int i=0;i<emotionData.keySet().size();i++){
@@ -88,23 +87,30 @@ public class HomeView extends Fragment {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            switch(emotionData.get(dateString).get(Globals.emotion)){
-                case Globals.happy:
-                    color = Color.GREEN;
-                    break;
-                case Globals.neutral:
-                    color = Color.YELLOW;
-                    break;
-                case Globals.sad:
-                    color = Color.RED;
-                    break;
-                default :
-                    color= Color.WHITE;
-                    break;
-            }
-            Event ev2 = new Event(color, date.getTime());
-            binding.calendar.addEvent(ev2);
+            setCalendarColor(emotionData.get(dateString).get(Globals.emotion),date.getTime());
         }
+    }
+
+    public static void setCalendarColor(String emotion, long date) {
+        int color = 0;
+        switch(emotion){
+            case Globals.happy:
+                color = Color.GREEN;
+                break;
+            case Globals.neutral:
+                color = Color.YELLOW;
+                break;
+            case Globals.sad:
+                color = Color.RED;
+                break;
+            default :
+                color= Color.WHITE;
+                break;
+        }
+        Log.d(TAG, String.valueOf(date));
+        Event ev2 = new Event(color, date);
+        m_calendarView.removeEvents(date);
+        m_calendarView.addEvent(ev2);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

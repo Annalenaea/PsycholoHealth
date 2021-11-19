@@ -27,9 +27,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
 
     // set the emotion of today
-    public static void setDateEmotion(String emotion) throws IOException, JSONException {
+    public static void setDateEmotion(String emotion) throws IOException, JSONException, ParseException {
         Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat(Globals.dateFormat);
         String date = dateFormat.format(calendar.getTime());
@@ -56,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
         m_emotionData.put(date, dayEmotion);
         saveData();
         updateAnalysis();
+
+        Date currentDate = null;
+        try {
+            currentDate = (Date)dateFormat.parse(date);
+            Log.d(TAG, String.valueOf(currentDate.getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        HomeView.setCalendarColor(emotion,currentDate.getTime());
     }
 
     // get the emotion of the corresponding date
