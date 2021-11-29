@@ -68,6 +68,7 @@
 
     <!--       Analysis view -->
     <include
+        android:id="@+id/barchart"
         layout="@layout/bar_chart"
         android:layout_width="363dp"
         android:layout_height="196dp"

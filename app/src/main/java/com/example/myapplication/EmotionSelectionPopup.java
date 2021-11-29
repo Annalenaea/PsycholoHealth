@@ -45,7 +45,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 MainActivity.setDateEmotion(Globals.happy);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException | ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
 
@@ -60,7 +60,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 MainActivity.setDateEmotion(Globals.happy);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException | ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
             // emotion questionnaire page
@@ -76,7 +76,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 MainActivity.setDateEmotion(Globals.neutral);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException | ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
             // wait short time until popup window closes
@@ -89,7 +89,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 MainActivity.setDateEmotion(Globals.neutral);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException | ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
             // emotion questionnaire page
@@ -105,7 +105,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 MainActivity.setDateEmotion(Globals.sad);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException | ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
@@ -117,7 +117,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 MainActivity.setDateEmotion(Globals.sad);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException | ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
             // emotion questionnaire page

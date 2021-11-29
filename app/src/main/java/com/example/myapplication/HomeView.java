@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,10 @@ public class HomeView extends Fragment {
     private static CompactCalendarView m_calendarView = null;
     private HomeViewBinding binding;
     private static NavController homeNavi;
+    private static TextView happyBar;
+    private static TextView neutralBar;
+    private static TextView sadBar;
+    private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
 
     @Override
     public View onCreateView(
@@ -82,9 +87,73 @@ public class HomeView extends Fragment {
 
         setCalenderData();
 
+        happyBar = binding.barchart.happyBar;
+        neutralBar = binding.barchart.neutralBar;
+        sadBar = binding.barchart.sadBar;
+
+        m_emotionData = MainActivity.getEmotionData();
+
+        try {
+            updateAnalysis();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         return binding.getRoot();
 
     }
+
+    // update the analysis view
+    public static void updateAnalysis() throws ParseException {
+        int numberOfHappy=0;
+        int numberOfNeutral=0;
+        int numberOfSad=0;
+        for(int i=0;i<m_emotionData.keySet().size();i++){
+            String dateString = (String) m_emotionData.keySet().toArray()[i];
+            DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
+            DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat);
+
+            Date date = formatter.parse(dateString);
+            int monthNumber  =   Integer.parseInt(monthFormatter.format(date));
+
+            Calendar calendar = Calendar.getInstance();
+            int currentMonth = Integer.parseInt(monthFormatter.format(calendar.getTime()));
+
+            if(monthNumber == currentMonth) {
+                String emotion = m_emotionData.get(dateString).get(Globals.emotion);
+                switch (emotion) {
+                    case Globals.happy:
+                        numberOfHappy++;
+                        break;
+                    case Globals.neutral:
+                        numberOfNeutral++;
+                        break;
+                    case Globals.sad:
+                        numberOfSad++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        // happy bar
+        ViewGroup.LayoutParams paramsHappy = happyBar.getLayoutParams();
+        paramsHappy.height = (numberOfHappy+1) * 7;
+        happyBar.setLayoutParams(paramsHappy);
+
+        // neutral bar
+        ViewGroup.LayoutParams paramsNeutral = neutralBar.getLayoutParams();
+        paramsNeutral.height = (numberOfNeutral+1) * 7;
+        neutralBar.setLayoutParams(paramsNeutral);
+
+        // sad bar
+        ViewGroup.LayoutParams paramsSad = sadBar.getLayoutParams();
+        paramsSad.height = (numberOfSad+1) * 7;
+        sadBar.setLayoutParams(paramsSad);
+
+    }
+
 
     // set the data of the calendar
     private void setCalenderData(){

@@ -42,13 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private static final String TAG = "MainActivity";
     private static File filesDir;
-    private static TextView happyBar;
-    private static TextView neutralBar;
-    private static TextView sadBar;
     private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
 
     // set the emotion of today
-    public static void setDateEmotion(String emotion) throws IOException, JSONException, ParseException {
+    public static void setDateEmotion(String emotion) throws IOException, ParseException {
         Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat(Globals.dateFormat);
         String date = dateFormat.format(calendar.getTime());
@@ -57,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         dayEmotion.put(Globals.emotion,emotion);
         m_emotionData.put(date, dayEmotion);
         saveData();
-        updateAnalysis();
+        HomeView.updateAnalysis();
 
         Date currentDate = null;
         try {
@@ -135,71 +132,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        happyBar = findViewById(R.id.happyBar);
-        neutralBar = findViewById(R.id.neutralBar);
-        sadBar = findViewById(R.id.sadBar);
-
-        // update the analysis view
-        try {
-            updateAnalysis();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
     }
 
-    // update the analysis view
-    public static void updateAnalysis() throws ParseException {
-        int numberOfHappy=0;
-        int numberOfNeutral=0;
-        int numberOfSad=0;
-        for(int i=0;i<m_emotionData.keySet().size();i++){
-            String dateString = (String) m_emotionData.keySet().toArray()[i];
-            DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
-            DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat);
-
-            Date date = formatter.parse(dateString);
-            int monthNumber  =   Integer.parseInt(monthFormatter.format(date));
-
-            Calendar calendar = Calendar.getInstance();
-            int currentMonth = Integer.parseInt(monthFormatter.format(calendar.getTime()));
-
-            if(monthNumber == currentMonth) {
-                String emotion = m_emotionData.get(dateString).get(Globals.emotion);
-                switch (emotion) {
-                    case Globals.happy:
-                        numberOfHappy++;
-                        break;
-                    case Globals.neutral:
-                        numberOfNeutral++;
-                        break;
-                    case Globals.sad:
-                        numberOfSad++;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        // happy bar
-        ViewGroup.LayoutParams paramsHappy = happyBar.getLayoutParams();
-        paramsHappy.height = (numberOfHappy+1) * 7;
-        happyBar.setLayoutParams(paramsHappy);
-        Log.d("test", String.valueOf(paramsHappy.height));
-
-        // neutral bar
-        ViewGroup.LayoutParams paramsNeutral = neutralBar.getLayoutParams();
-        paramsNeutral.height = (numberOfNeutral+1) * 7;
-        neutralBar.setLayoutParams(paramsNeutral);
-
-        // sad bar
-        ViewGroup.LayoutParams paramsSad = sadBar.getLayoutParams();
-        paramsSad.height = (numberOfSad+1) * 7;
-        sadBar.setLayoutParams(paramsSad);
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
