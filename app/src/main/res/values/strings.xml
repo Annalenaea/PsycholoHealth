@@ -2,8 +2,10 @@
     <string name="app_name">My Application</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">PsycholoHealth</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="home_fragment_label">PsycholoHealth</string>
+    <string name="activity_fragment_label">Activities</string>
+    <string name="emotion_fragment_label">Emotions</string>
+    <string name="summary_fragment_label">Summary</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

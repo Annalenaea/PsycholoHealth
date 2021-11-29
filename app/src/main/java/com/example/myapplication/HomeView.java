@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.databinding.HomeViewBinding;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
@@ -27,14 +29,25 @@ public class HomeView extends Fragment {
     private static String TAG = "Home View Activity";
     private static CompactCalendarView m_calendarView = null;
     private HomeViewBinding binding;
+    private static NavController homeNavi;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        homeNavi = NavHostFragment.findNavController(HomeView.this);
 
         binding = HomeViewBinding.inflate(inflater, container, false);
+        // open activity questionnaire if addActivityButton is clicked
+        binding.addActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeNavi.navigate(R.id.action_HomeFragment_to_ActivityFragment);
+            }
+        });
+
+        // open add emotion popup
         binding.addEmotion.setOnClickListener(view -> {
             EmotionSelectionPopup emotionSelectionPopup= new EmotionSelectionPopup();
             emotionSelectionPopup.showPopupWindow(getView().findViewById(R.id.homeView),binding.addEmotion.getLeft(),binding.addEmotion.getTop());
@@ -54,7 +67,8 @@ public class HomeView extends Fragment {
             @Override
             public void onDayClick(Date dateClicked) {
                 Log.d(TAG, "Day was clicked: " + dateClicked);
-                // @todo: open summary of this day
+                // open summary of this day
+                homeNavi.navigate(R.id.action_HomeFragment_to_SummaryFragment);
             }
 
             @Override
@@ -113,6 +127,11 @@ public class HomeView extends Fragment {
         Event ev2 = new Event(color, date);
         m_calendarView.removeEvents(date);
         m_calendarView.addEvent(ev2);
+    }
+
+    // opens the emotion questionnaire page
+    public static void openEmotionQuestionnaire(){
+        homeNavi.navigate(R.id.action_HomeFragment_to_EmotionFragment);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

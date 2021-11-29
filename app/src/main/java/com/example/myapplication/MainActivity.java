@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup.LayoutParams paramsHappy = happyBar.getLayoutParams();
         paramsHappy.height = (numberOfHappy+1) * 7;
         happyBar.setLayoutParams(paramsHappy);
+        Log.d("test", String.valueOf(paramsHappy.height));
 
         // neutral bar
         ViewGroup.LayoutParams paramsNeutral = neutralBar.getLayoutParams();

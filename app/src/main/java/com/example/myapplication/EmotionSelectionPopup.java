@@ -34,6 +34,9 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         // @todo: add animation
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos, yPos);
 
+        Handler handler = new Handler();
+        handler.postDelayed(() -> popupWindow.dismiss(), 5000);   //5 seconds
+
         // onClickListener for all 3 buttons:
         ImageButton btnHappy = emotionPopup.findViewById(R.id.btnHappy);
         btnHappy.setOnClickListener(view1 -> {
@@ -47,7 +50,6 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             }
 
             // wait some secs until close popup
-            Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
@@ -61,7 +63,9 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
-            // @todo: open happy emotion questionnaire page
+            // emotion questionnaire page
+            HomeView.openEmotionQuestionnaire();
+            popupWindow.dismiss();
             return true;
         });
 
@@ -76,7 +80,6 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 e.printStackTrace();
             }
             // wait short time until popup window closes
-            Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
@@ -89,7 +92,9 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
-            // @todo: open neutral emotion questionnaire page
+            // emotion questionnaire page
+            HomeView.openEmotionQuestionnaire();
+            popupWindow.dismiss();
             return true;
         });
 
@@ -103,7 +108,6 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
-            Handler handler = new Handler();
             handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
         });
 
@@ -116,7 +120,9 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             } catch (JSONException | ParseException e) {
                 e.printStackTrace();
             }
-            // @todo: open worried emotion questionnaire page
+            // emotion questionnaire page
+            HomeView.openEmotionQuestionnaire();
+            popupWindow.dismiss();
             return true;
         });
     }
