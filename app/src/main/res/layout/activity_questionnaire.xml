@@ -1,6 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+# University Work
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="University Work"
+        android:textColor="#009688"
+        android:textSize="20sp" />
+
+# Eingabe Dauer
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView0"
+        android:text="Duration:"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/EditTextHours1"
+            android:layout_width="13mm"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView1"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:hint="Hours"
+            android:textSize="14sp"
+            android:inputType="number" />
+        <EditText
+            android:id="@+id/EditTextMinutes1"
+            android:inputType="number"
+            android:hint="Minutes"
+            android:layout_width="13mm"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView1"
+            android:layout_toRightOf="@id/EditTextHours1"
+            android:textSize="14sp"
+            android:layout_margin="8dp" />
+
+# Intensität
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/EditTextMinutes1"
+            android:text="Intensity:"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView2"
+        android:layout_marginTop="0dp" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekBar2"
+        android:layout_marginTop="25dp"
+        android:text="Sport"
+        android:textColor="#009688"
+        android:textSize="20sp" />
+
+    # Eingabe Dauer Sport
+
+    <TextView
+        android:id="@+id/textViewDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView3"
+        android:text="Duration:"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/EditTextHours2"
+            android:inputType="number"
+            android:hint="Hours"
+            android:layout_width="13mm"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDuration"
+            android:textSize="14sp"
+            android:layout_margin="8dp" />
+
+        <EditText
+            android:id="@+id/EditTextMinutes2"
+            android:inputType="number"
+            android:hint="Minutes"
+            android:layout_width="13mm"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDuration"
+            android:layout_toRightOf="@id/EditTextHours2"
+            android:textSize="14sp"
+            android:layout_margin="8dp" />
+
+    # Intensität Sport
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/EditTextMinutes2"
+        android:text="Intensity:"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+    <SeekBar
+        android:id="@+id/seekBar5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView5"
+        android:layout_marginTop="0dp" />
+
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seekBar5"
+        android:layout_marginTop="25dp"
+        android:text="Sozial Contacts"
+        android:textColor="#009688"
+        android:textSize="20sp" />
+    <RadioGroup
+        android:id="@+id/radiogroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView6"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family" />
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friends" />
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partner" />
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Children" />
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rommates" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/addActivity"
+        android:layout_width="20mm"
+        android:layout_height="15mm"
+        android:layout_below="@id/radiogroup1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Finish" />
+
+    </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
