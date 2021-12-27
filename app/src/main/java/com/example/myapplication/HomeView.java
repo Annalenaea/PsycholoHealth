@@ -29,12 +29,17 @@ public class HomeView extends Fragment {
 
     private static String TAG = "Home View Activity";
     private static CompactCalendarView m_calendarView = null;
+    private static int m_currentMonth = Integer.parseInt(new SimpleDateFormat(Globals.monthNumberFormat).format(Calendar.getInstance().getTime()));
     private HomeViewBinding binding;
     private static NavController homeNavi;
     private static TextView happyBar;
     private static TextView neutralBar;
     private static TextView sadBar;
     private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
+    
+    public void setCurrentMonth(int month){
+        m_currentMonth = month;
+    }
 
     @Override
     public View onCreateView(
@@ -82,6 +87,15 @@ public class HomeView extends Fragment {
                 // update month above calendar
                 DateFormat formatter = new SimpleDateFormat(Globals.monthFormat);
                 binding.month.setText(formatter.format(firstDayOfNewMonth));
+                // load month data for analysis
+                DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat);
+                m_currentMonth  =   Integer.parseInt(monthFormatter.format(firstDayOfNewMonth));
+                try {
+                    updateAnalysis();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -116,10 +130,7 @@ public class HomeView extends Fragment {
             Date date = formatter.parse(dateString);
             int monthNumber  =   Integer.parseInt(monthFormatter.format(date));
 
-            Calendar calendar = Calendar.getInstance();
-            int currentMonth = Integer.parseInt(monthFormatter.format(calendar.getTime()));
-
-            if(monthNumber == currentMonth) {
+            if(monthNumber == m_currentMonth) {
                 String emotion = m_emotionData.get(dateString).get(Globals.emotion);
                 switch (emotion) {
                     case Globals.happy:

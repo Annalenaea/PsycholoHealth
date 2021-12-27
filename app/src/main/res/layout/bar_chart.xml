@@ -13,6 +13,7 @@
         android:layout_height="23dp"
         android:layout_marginBottom="15dp"
         android:text="30"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/axis20"
         app:layout_constraintEnd_toStartOf="@+id/yAxis" />
 
@@ -24,12 +25,14 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Analysis"
+        android:textColor="#111C5A"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/yAxis"
-        android:layout_width="3dp"
+        android:layout_width="1dp"
         android:layout_height="114dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
@@ -76,6 +79,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="Happy"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/happyBar"
         app:layout_constraintTop_toBottomOf="@+id/happyBar" />
 
@@ -87,6 +91,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginTop="8dp"
         android:text="Neutral"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/neutralBar"
         app:layout_constraintTop_toBottomOf="@+id/neutralBar" />
 
@@ -98,6 +103,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Sad"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/sadBar"
         app:layout_constraintTop_toBottomOf="@+id/sadBar" />
 
@@ -107,6 +113,7 @@
         android:layout_height="23dp"
         android:layout_marginBottom="15dp"
         android:text="10"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="@+id/yAxis"
         app:layout_constraintEnd_toStartOf="@+id/yAxis" />
 
@@ -116,6 +123,7 @@
         android:layout_height="23dp"
         android:layout_marginBottom="15dp"
         android:text="20"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/axis10"
         app:layout_constraintEnd_toStartOf="@+id/yAxis" />
 
