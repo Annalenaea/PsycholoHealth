@@ -32,7 +32,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
 
         //display the popup window
         // @todo: add animation
-        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos, yPos);
+        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos - 50, yPos + 70);
 
         Handler handler = new Handler();
         handler.postDelayed(() -> popupWindow.dismiss(), 5000);   //5 seconds

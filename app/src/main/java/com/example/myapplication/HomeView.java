@@ -39,10 +39,7 @@ public class HomeView extends Fragment {
     private static int colorYellow;
     private static int colorGreen;
     private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
-    
-    public void setCurrentMonth(int month){
-        m_currentMonth = month;
-    }
+
 
     @Override
     public View onCreateView(

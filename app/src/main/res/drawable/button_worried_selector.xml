@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/ic_worried_selected"/> <!-- pressed -->
-    <item android:drawable="@drawable/ic_worried_svgrepo_com"/> <!-- default -->
+        android:drawable="@drawable/ic_worried_svgrepo_com"/> <!-- pressed -->
+    <item android:drawable="@drawable/ic_worried_selected"/> <!-- default -->
 </selector>
