@@ -35,6 +35,9 @@ public class HomeView extends Fragment {
     private static TextView happyBar;
     private static TextView neutralBar;
     private static TextView sadBar;
+    private static int colorRed;
+    private static int colorYellow;
+    private static int colorGreen;
     private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
     
     public void setCurrentMonth(int month){
@@ -56,6 +59,10 @@ public class HomeView extends Fragment {
                 homeNavi.navigate(R.id.action_HomeFragment_to_ActivityFragment);
             }
         });
+
+         colorRed = getResources().getColor(R.color.red);
+         colorGreen = getResources().getColor(R.color.green);
+         colorYellow = getResources().getColor(R.color.yellow);
 
         // open add emotion popup
         binding.addEmotion.setOnClickListener(view -> {
@@ -191,13 +198,14 @@ public class HomeView extends Fragment {
         int color = 0;
         switch(emotion){
             case Globals.happy:
-                color = Color.GREEN;
+                color = colorGreen;
                 break;
             case Globals.neutral:
-                color = Color.YELLOW;
+                color = colorYellow;
                 break;
             case Globals.sad:
-                color = Color.RED;
+                Log.d("hi","@color/red");
+                color =  colorRed;
                 break;
             default :
                 color= Color.WHITE;
