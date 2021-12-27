@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="University Work"
-        android:textColor="#009688"
+        android:textColor="@color/blue"
         android:textSize="20sp" />
 
 # Eingabe Dauer
@@ -84,7 +84,7 @@
         android:layout_below="@id/seekBar2"
         android:layout_marginTop="25dp"
         android:text="Sport"
-        android:textColor="#009688"
+        android:textColor="@color/blue"
         android:textSize="20sp" />
 
     # Eingabe Dauer Sport
@@ -144,7 +144,7 @@
         android:layout_below="@id/seekBar5"
         android:layout_marginTop="25dp"
         android:text="Sozial Contacts"
-        android:textColor="#009688"
+        android:textColor="@color/blue"
         android:textSize="20sp" />
     <RadioGroup
         android:id="@+id/radiogroup1"
@@ -180,11 +180,9 @@
     </RadioGroup>
     <Button
         android:id="@+id/addActivity"
-        android:layout_width="20mm"
-        android:layout_height="15mm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/radiogroup1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:text="Finish" />
 
     </RelativeLayout>
