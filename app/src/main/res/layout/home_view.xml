@@ -7,56 +7,91 @@
     android:layout_height="match_parent"
     tools:context=".HomeView">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/calendarGroup"
-        android:layout_width="389dp"
-        android:layout_height="282dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_rectangle"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/month"
-            android:layout_width="251dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="12dp"
-            android:text=""
-            android:textColor="@color/blue"
-            android:textSize="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/calendar"
-            app:layout_constraintStart_toStartOf="@+id/calendar" />
-        <!--       This is the calendar which shows the mental health on each tracked day. -->
-        <com.github.sundeepk.compactcalendarview.CompactCalendarView
-            android:id="@+id/calendar"
-            android:layout_width="382dp"
-            android:layout_height="216dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="60dp"
-            android:importantForAccessibility="auto"
-            android:isScrollContainer="false"
-            android:keepScreenOn="true"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            app:compactCalendarBackgroundColor="@color/blue_light"
-            app:compactCalendarCurrentDayIndicatorStyle="no_fill_large_indicator"
-            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue_dark"
-            app:compactCalendarCurrentSelectedDayIndicatorStyle="no_fill_large_indicator"
-            app:compactCalendarDisplayOtherMonthDays="true"
-            app:compactCalendarEventIndicatorStyle="fill_large_indicator"
-            app:compactCalendarOtherMonthDaysTextColor="@color/black"
-            app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
-            app:compactCalendarTargetHeight="250dp"
-            app:compactCalendarTextColor="@color/black"
-            app:compactCalendarTextSize="12sp"
-            app:layout_constraintBaseline_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/calendarGroup"
+                android:layout_width="@dimen/container_width"
+                android:layout_height="282dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_rectangle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/month"
+                    android:layout_width="251dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="12dp"
+                    android:text=""
+                    android:textColor="@color/blue"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toTopOf="@+id/calendar"
+                    app:layout_constraintStart_toStartOf="@+id/calendar" />
+                <!--       This is the calendar which shows the mental health on each tracked day. -->
+                <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                    android:id="@+id/calendar"
+                    android:layout_width="@dimen/calendar_width"
+                    android:layout_height="216dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="60dp"
+                    android:importantForAccessibility="auto"
+                    android:isScrollContainer="false"
+                    android:keepScreenOn="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    app:compactCalendarBackgroundColor="@color/blue_light"
+                    app:compactCalendarCurrentDayIndicatorStyle="no_fill_large_indicator"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue_dark"
+                    app:compactCalendarCurrentSelectedDayIndicatorStyle="no_fill_large_indicator"
+                    app:compactCalendarDisplayOtherMonthDays="true"
+                    app:compactCalendarEventIndicatorStyle="fill_large_indicator"
+                    app:compactCalendarOtherMonthDaysTextColor="@color/black"
+                    app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
+                    app:compactCalendarTargetHeight="250dp"
+                    app:compactCalendarTextColor="@color/black"
+                    app:compactCalendarTextSize="12sp"
+                    app:layout_constraintBaseline_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/barchart"
+                layout="@layout/bar_chart"
+                android:layout_width="@dimen/container_width"
+                android:layout_height="215dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendarGroup" />
+
+            <include
+                android:id="@+id/development"
+                layout="@layout/development"
+                android:layout_width="@dimen/container_width"
+                android:layout_height="215dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/barchart" />
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/addActivity"
@@ -88,19 +123,5 @@
         app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <!--       Analysis view -->
-
-    <!--    display month -->
-    <include
-        android:id="@+id/barchart"
-        layout="@layout/bar_chart"
-        android:layout_width="390dp"
-        android:layout_height="215dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
