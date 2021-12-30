@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     // set the emotion of today
     public void setDateEmotion(String emotion) throws IOException, ParseException {
         Calendar calendar = Calendar.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat(Globals.dateFormat);
+        DateFormat dateFormat = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
         String date = dateFormat.format(calendar.getTime());
 
         HashMap<String,String> dayEmotion = new HashMap<>();

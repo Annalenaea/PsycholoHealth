@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import java.util.Locale;
+
 public class Globals {
     //Home View Globals
     public static final String happy = "Happy";
@@ -12,4 +14,6 @@ public class Globals {
     public static final String monthNumberFormat = "MM";
 
     public static final String backup ="backup";
+
+    public static final Locale myLocal = Locale.US;
 }

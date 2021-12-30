@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +30,7 @@ public class HomeView extends Fragment {
 
     private static final String TAG = "Home View Activity";
     private static CompactCalendarView m_calendarView = null;
-    private static int m_currentMonth = Integer.parseInt(new SimpleDateFormat(Globals.monthNumberFormat).format(Calendar.getInstance().getTime()));
+    private static int m_currentMonth = Integer.parseInt(new SimpleDateFormat(Globals.monthNumberFormat, Globals.myLocal).format(Calendar.getInstance().getTime()));
     private HomeViewBinding binding;
     private NavController homeNavi;
     private TextView happyBar;
@@ -75,7 +74,7 @@ public class HomeView extends Fragment {
 
 
         // display current month at the top of the calendar
-        DateFormat formatter = new SimpleDateFormat(Globals.monthFormat);
+        DateFormat formatter = new SimpleDateFormat(Globals.monthFormat,Globals.myLocal);
         Calendar calendar = Calendar.getInstance();
         binding.month.setText(formatter.format(calendar.getTime()));
 
@@ -91,10 +90,10 @@ public class HomeView extends Fragment {
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 Log.d(TAG, "Month was scrolled to: " + firstDayOfNewMonth);
                 // update month above calendar
-                DateFormat formatter = new SimpleDateFormat(Globals.monthFormat);
+                DateFormat formatter = new SimpleDateFormat(Globals.monthFormat,Globals.myLocal);
                 binding.month.setText(formatter.format(firstDayOfNewMonth));
                 // load month data for analysis
-                DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat);
+                DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat,Globals.myLocal);
                 m_currentMonth  =   Integer.parseInt(monthFormatter.format(firstDayOfNewMonth));
                 try {
                     updateAnalysis();
@@ -130,8 +129,8 @@ public class HomeView extends Fragment {
         int numberOfSad=0;
         for(int i=0;i<m_emotionData.keySet().size();i++){
             String dateString = (String) m_emotionData.keySet().toArray()[i];
-            DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
-            DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat);
+            DateFormat formatter = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
+            DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat,Globals.myLocal);
 
             Date date = formatter.parse(dateString);
             assert date != null;
@@ -179,12 +178,12 @@ public class HomeView extends Fragment {
         String dateString;
         Date date = null;
 
-        DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
+        DateFormat formatter = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
         for(int i=0;i<emotionData.keySet().size();i++){
             dateString = (String) emotionData.keySet().toArray()[i];
             Log.d(TAG,dateString);
             try {
-                date = (Date)formatter.parse(dateString);
+                date = formatter.parse(dateString);
                 assert date != null;
                 Log.d(TAG, String.valueOf(date.getTime()));
             } catch (ParseException e) {
