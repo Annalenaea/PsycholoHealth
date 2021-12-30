@@ -8,17 +8,15 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.json.JSONException;
 
 import java.io.IOException;
 import java.text.ParseException;
 
 public class EmotionSelectionPopup extends AppCompatActivity {
-    private static String TAG = "Emotion Selection Popup Activity";
+    private static final String TAG = "Emotion Selection";
+    private final MainActivity mainActivity = new MainActivity();
 
 
     //PopupWindow display method
@@ -35,14 +33,14 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos - 50, yPos + 70);
 
         Handler handler = new Handler();
-        handler.postDelayed(() -> popupWindow.dismiss(), 5000);   //5 seconds
+        handler.postDelayed(popupWindow::dismiss, 5000);   //5 seconds
 
         // onClickListener for all 3 buttons:
         ImageButton btnHappy = emotionPopup.findViewById(R.id.btnHappy);
         btnHappy.setOnClickListener(view1 -> {
             Log.d(TAG,"happy button clicked");
             try {
-                MainActivity.setDateEmotion(Globals.happy);
+                mainActivity.setDateEmotion(Globals.happy);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
@@ -50,21 +48,21 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             }
 
             // wait some secs until close popup
-            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
+            handler.postDelayed(popupWindow::dismiss, 1000);   //5 seconds
         });
 
         // onLongClickListener for opening questionaire page
         btnHappy.setOnLongClickListener(view1 -> {
             Log.d(TAG,"happy button long clicked");
             try {
-                MainActivity.setDateEmotion(Globals.happy);
+                mainActivity.setDateEmotion(Globals.happy);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             // emotion questionnaire page
-            HomeView.openEmotionQuestionnaire();
+            HomeView.homeView.openEmotionQuestionnaire();
             popupWindow.dismiss();
             return true;
         });
@@ -73,27 +71,27 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         btnNeutral.setOnClickListener(view1 -> {
             Log.d(TAG,"neutral button clicked");
             try {
-                MainActivity.setDateEmotion(Globals.neutral);
+                mainActivity.setDateEmotion(Globals.neutral);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             // wait short time until popup window closes
-            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
+            handler.postDelayed(popupWindow::dismiss, 1000);   //5 seconds
         });
 
         btnNeutral.setOnLongClickListener(view1 -> {
             Log.d(TAG,"neutral button long clicked");
             try {
-                MainActivity.setDateEmotion(Globals.neutral);
+                mainActivity.setDateEmotion(Globals.neutral);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             // emotion questionnaire page
-            HomeView.openEmotionQuestionnaire();
+            HomeView.homeView.openEmotionQuestionnaire();
             popupWindow.dismiss();
             return true;
         });
@@ -102,26 +100,26 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         btnWorried.setOnClickListener(view1 -> {
             Log.d(TAG,"worried button clicked");
             try {
-                MainActivity.setDateEmotion(Globals.sad);
+                mainActivity.setDateEmotion(Globals.sad);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            handler.postDelayed(() -> popupWindow.dismiss(), 1000);   //5 seconds
+            handler.postDelayed(popupWindow::dismiss, 1000);   //5 seconds
         });
 
         btnWorried.setOnLongClickListener(view1 -> {
             Log.d(TAG,"worried button long clicked");
             try {
-                MainActivity.setDateEmotion(Globals.sad);
+                mainActivity.setDateEmotion(Globals.sad);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             // emotion questionnaire page
-            HomeView.openEmotionQuestionnaire();
+            HomeView.homeView.openEmotionQuestionnaire();
             popupWindow.dismiss();
             return true;
         });

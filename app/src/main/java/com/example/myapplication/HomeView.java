@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,38 +25,37 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class HomeView extends Fragment {
 
-    private static String TAG = "Home View Activity";
+    private static final String TAG = "Home View Activity";
     private static CompactCalendarView m_calendarView = null;
     private static int m_currentMonth = Integer.parseInt(new SimpleDateFormat(Globals.monthNumberFormat).format(Calendar.getInstance().getTime()));
     private HomeViewBinding binding;
-    private static NavController homeNavi;
-    private static TextView happyBar;
-    private static TextView neutralBar;
-    private static TextView sadBar;
+    private NavController homeNavi;
+    private TextView happyBar;
+    private TextView neutralBar;
+    private TextView sadBar;
     private static int colorRed;
     private static int colorYellow;
+    public static HomeView homeView = new HomeView();
     private static int colorGreen;
     private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
 
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        Log.d("debug","onCreateView");
         homeNavi = NavHostFragment.findNavController(HomeView.this);
+        homeView = HomeView.this;
 
         binding = HomeViewBinding.inflate(inflater, container, false);
         // open activity questionnaire if addActivityButton is clicked
-        binding.addActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeNavi.navigate(R.id.action_HomeFragment_to_ActivityFragment);
-            }
-        });
+        binding.addActivity.setOnClickListener(view -> homeNavi.navigate(R.id.action_HomeFragment_to_ActivityFragment));
 
          colorRed = getResources().getColor(R.color.red);
          colorGreen = getResources().getColor(R.color.green);
@@ -64,7 +64,9 @@ public class HomeView extends Fragment {
         // open add emotion popup
         binding.addEmotion.setOnClickListener(view -> {
             EmotionSelectionPopup emotionSelectionPopup= new EmotionSelectionPopup();
-            emotionSelectionPopup.showPopupWindow(getView().findViewById(R.id.homeView),binding.addEmotion.getLeft(),binding.addEmotion.getTop());
+            emotionSelectionPopup.showPopupWindow(requireView().findViewById(R.id.homeView),
+                    binding.addEmotion.getLeft(),
+                    binding.addEmotion.getTop());
         });
 
         m_calendarView = binding.calendar;
@@ -122,7 +124,7 @@ public class HomeView extends Fragment {
     }
 
     // update the analysis view
-    public static void updateAnalysis() throws ParseException {
+    public void updateAnalysis() throws ParseException {
         int numberOfHappy=0;
         int numberOfNeutral=0;
         int numberOfSad=0;
@@ -132,11 +134,12 @@ public class HomeView extends Fragment {
             DateFormat monthFormatter = new SimpleDateFormat(Globals.monthNumberFormat);
 
             Date date = formatter.parse(dateString);
+            assert date != null;
             int monthNumber  =   Integer.parseInt(monthFormatter.format(date));
 
             if(monthNumber == m_currentMonth) {
-                String emotion = m_emotionData.get(dateString).get(Globals.emotion);
-                switch (emotion) {
+                String emotion = Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion);
+                switch (Objects.requireNonNull(emotion)) {
                     case Globals.happy:
                         numberOfHappy++;
                         break;
@@ -173,7 +176,7 @@ public class HomeView extends Fragment {
     // set the data of the calendar
     private void setCalenderData(){
         HashMap<String, Map<String,String>> emotionData = MainActivity.getEmotionData();
-        String dateString = null;
+        String dateString;
         Date date = null;
 
         DateFormat formatter = new SimpleDateFormat(Globals.dateFormat);
@@ -182,17 +185,19 @@ public class HomeView extends Fragment {
             Log.d(TAG,dateString);
             try {
                 date = (Date)formatter.parse(dateString);
+                assert date != null;
                 Log.d(TAG, String.valueOf(date.getTime()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            setCalendarColor(emotionData.get(dateString).get(Globals.emotion),date.getTime());
+            assert date != null;
+            setCalendarColor(Objects.requireNonNull(Objects.requireNonNull(emotionData.get(dateString)).get(Globals.emotion)),date.getTime());
         }
     }
 
     // set the color of the corresponding day in the calendar
-    public static void setCalendarColor(String emotion, long date) {
-        int color = 0;
+    public void setCalendarColor(String emotion, long date) {
+        int color;
         switch(emotion){
             case Globals.happy:
                 color = colorGreen;
@@ -215,12 +220,13 @@ public class HomeView extends Fragment {
     }
 
     // opens the emotion questionnaire page
-    public static void openEmotionQuestionnaire(){
+    public void openEmotionQuestionnaire(){
         homeNavi.navigate(R.id.action_HomeFragment_to_EmotionFragment);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d("debug","onViewCreated");
     }
 
     @Override

@@ -15,10 +15,6 @@ import com.google.gson.Gson;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,23 +25,19 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
     private static final String TAG = "MainActivity";
     private static File filesDir;
     private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
 
     // set the emotion of today
-    public static void setDateEmotion(String emotion) throws IOException, ParseException {
+    public void setDateEmotion(String emotion) throws IOException, ParseException {
         Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat(Globals.dateFormat);
         String date = dateFormat.format(calendar.getTime());
@@ -54,21 +46,18 @@ public class MainActivity extends AppCompatActivity {
         dayEmotion.put(Globals.emotion,emotion);
         m_emotionData.put(date, dayEmotion);
         saveData();
-        HomeView.updateAnalysis();
+        HomeView.homeView.updateAnalysis();
 
         Date currentDate = null;
         try {
             currentDate = (Date)dateFormat.parse(date);
+            assert currentDate != null;
             Log.d(TAG, String.valueOf(currentDate.getTime()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        HomeView.setCalendarColor(emotion,currentDate.getTime());
-    }
-
-    // get the emotion of the corresponding date
-    public static String getDateEmotion(String date) throws IOException, JSONException {
-        return Objects.requireNonNull(m_emotionData.get(date)).get(Globals.emotion);
+        assert currentDate != null;
+        HomeView.homeView.setCalendarColor(emotion,currentDate.getTime());
     }
 
     public static HashMap<String,Map<String,String>> getEmotionData(){
@@ -124,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.example.myapplication.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
