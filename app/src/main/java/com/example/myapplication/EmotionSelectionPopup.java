@@ -33,7 +33,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos - 50, yPos + 70);
 
         Handler handler = new Handler();
-        handler.postDelayed(popupWindow::dismiss, 5000);   //5 seconds
+        handler.postDelayed(popupWindow::dismiss, Globals.dismissDelayNotClicked);   //5 seconds
 
         // onClickListener for all 3 buttons:
         ImageButton btnHappy = emotionPopup.findViewById(R.id.btnHappy);
@@ -48,7 +48,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             }
 
             // wait some secs until close popup
-            handler.postDelayed(popupWindow::dismiss, 1000);   //5 seconds
+            handler.postDelayed(popupWindow::dismiss, Globals.dismissDelay);   //5 seconds
         });
 
         // onLongClickListener for opening questionaire page
@@ -78,7 +78,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
                 e.printStackTrace();
             }
             // wait short time until popup window closes
-            handler.postDelayed(popupWindow::dismiss, 1000);   //5 seconds
+            handler.postDelayed(popupWindow::dismiss, Globals.dismissDelay);   //5 seconds
         });
 
         btnNeutral.setOnLongClickListener(view1 -> {
@@ -106,7 +106,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            handler.postDelayed(popupWindow::dismiss, 1000);   //5 seconds
+            handler.postDelayed(popupWindow::dismiss, Globals.dismissDelay);   //5 seconds
         });
 
         btnWorried.setOnLongClickListener(view1 -> {

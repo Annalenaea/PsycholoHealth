@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         Date currentDate = null;
         try {
-            currentDate = (Date)dateFormat.parse(date);
+            currentDate = dateFormat.parse(date);
             assert currentDate != null;
             Log.d(TAG, String.valueOf(currentDate.getTime()));
         } catch (ParseException e) {

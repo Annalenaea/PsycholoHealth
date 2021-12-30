@@ -16,4 +16,7 @@ public class Globals {
     public static final String backup ="backup";
 
     public static final Locale myLocal = Locale.US;
+
+    public static final int dismissDelay = 500;
+    public static final int dismissDelayNotClicked = 2000;
 }

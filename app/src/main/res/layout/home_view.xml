@@ -20,10 +20,9 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/calendarGroup"
-                android:layout_width="@dimen/container_width"
+                android:layout_width="match_parent"
                 android:layout_height="282dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_margin="@dimen/container_margin"
                 android:background="@drawable/round_rectangle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -43,11 +42,11 @@
                 <!--       This is the calendar which shows the mental health on each tracked day. -->
                 <com.github.sundeepk.compactcalendarview.CompactCalendarView
                     android:id="@+id/calendar"
-                    android:layout_width="@dimen/calendar_width"
+                    android:layout_width="match_parent"
                     android:layout_height="216dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginLeft="@dimen/container_margin"
+                    android:layout_marginRight="@dimen/container_margin"
+                    android:layout_marginTop="@dimen/container_margin_top"
                     android:importantForAccessibility="auto"
                     android:isScrollContainer="false"
                     android:keepScreenOn="true"
@@ -55,7 +54,7 @@
                     android:paddingRight="10dp"
                     app:compactCalendarBackgroundColor="@color/blue_light"
                     app:compactCalendarCurrentDayIndicatorStyle="no_fill_large_indicator"
-                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue_dark"
+                    app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue"
                     app:compactCalendarCurrentSelectedDayIndicatorStyle="no_fill_large_indicator"
                     app:compactCalendarDisplayOtherMonthDays="true"
                     app:compactCalendarEventIndicatorStyle="fill_large_indicator"
@@ -72,10 +71,9 @@
             <include
                 android:id="@+id/barchart"
                 layout="@layout/bar_chart"
-                android:layout_width="@dimen/container_width"
+                android:layout_width="match_parent"
                 android:layout_height="215dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginLeft="2dp"
+                android:layout_margin="@dimen/container_margin"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/calendarGroup" />
@@ -83,10 +81,9 @@
             <include
                 android:id="@+id/development"
                 layout="@layout/development"
-                android:layout_width="@dimen/container_width"
+                android:layout_width="match_parent"
                 android:layout_height="215dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginLeft="2dp"
+                android:layout_margin="@dimen/container_margin"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/barchart" />
