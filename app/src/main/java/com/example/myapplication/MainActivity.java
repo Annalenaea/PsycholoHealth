@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         m_emotionData.put(date, dayEmotion);
         saveData();
         HomeView.homeView.updateAnalysis();
+        HomeView.homeView.drawGraph();
 
         Date currentDate = null;
         try {

@@ -17,12 +17,14 @@ import com.example.myapplication.databinding.HomeViewBinding;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -123,7 +125,11 @@ public class HomeView extends Fragment {
         }
 
         // graph indicates mental Health development
-        drawGraph();
+        try {
+            drawGraph();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return binding.getRoot();
 
@@ -241,35 +247,43 @@ public class HomeView extends Fragment {
         binding = null;
     }
 
-    private void drawGraph(){
+    public void drawGraph() throws ParseException {
         GraphView graph = binding.development.graph;
+        graph.removeAllSeries();
+
         DataPoint[] dataSeries = new DataPoint[m_emotionData.keySet().size()];
-        Log.d("m_emotionData", String.valueOf(m_emotionData.keySet().size()));
         DateFormat formatter = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
+
         String dateString;
         Date date = null;
-        int preValue = 0;
         int value;
+
+        long [] dates = new long[m_emotionData.keySet().size()];
         for(int i=0;i<m_emotionData.keySet().size();i++){
             dateString = (String) m_emotionData.keySet().toArray()[i];
-            try {
-                date = formatter.parse(dateString);
-                assert date != null;
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            assert date != null;
-            value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)),date.getTime());
-            if(value == -1){
-                value = preValue;
-            }else{
-                preValue=value;
-            }
-            Log.d("iteration", String.valueOf(i)+" "+String.valueOf(value));
-            dataSeries[i]=new DataPoint(i, value);
+            date = formatter.parse(dateString);
+            dates[i] = date.getTime();
+        }
+        Arrays.sort(dates);
+
+        for(int i=0;i<dates.length;i++){
+            dateString = formatter.format(dates[i]);
+            value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)),dates[i]);
+            dataSeries[i]=new DataPoint(dates[i], value);
         }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries);
         graph.addSeries(series);
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+        // set manual x bounds to have nice steps
+        graph.getViewport().setMinX(dates[0]);
+        graph.getViewport().setMaxX(dates[dates.length-1]);
+        graph.getViewport().setXAxisBoundsManual(true);
+
+        // as we use dates as labels, the human rounding to nice readable numbers
+        // is not necessary
+        graph.getGridLabelRenderer().setHumanRounding(false);
+
     }
 
     // set the color of the corresponding day in the calendar
@@ -282,11 +296,8 @@ public class HomeView extends Fragment {
             case Globals.neutral:
                 value = 5;
                 break;
-            case Globals.sad:
+            default:
                 value = 0;
-                break;
-            default :
-                value = -1;
                 break;
         }
         return value;
