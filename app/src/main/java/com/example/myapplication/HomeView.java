@@ -71,16 +71,6 @@ public class HomeView extends Fragment {
                     binding.addEmotion.getTop());
         });
 
-        // graph indicates mental Health development
-        GraphView graph = binding.development.graph;
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
-        graph.addSeries(series);
 
         m_calendarView = binding.calendar;
         binding.calendar.setUseThreeLetterAbbreviation(true);
@@ -131,6 +121,9 @@ public class HomeView extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        // graph indicates mental Health development
+        drawGraph();
 
         return binding.getRoot();
 
@@ -246,6 +239,57 @@ public class HomeView extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void drawGraph(){
+        GraphView graph = binding.development.graph;
+        DataPoint[] dataSeries = new DataPoint[m_emotionData.keySet().size()];
+        Log.d("m_emotionData", String.valueOf(m_emotionData.keySet().size()));
+        DateFormat formatter = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
+        String dateString;
+        Date date = null;
+        int preValue = 0;
+        int value;
+        for(int i=0;i<m_emotionData.keySet().size();i++){
+            dateString = (String) m_emotionData.keySet().toArray()[i];
+            try {
+                date = formatter.parse(dateString);
+                assert date != null;
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            assert date != null;
+            value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)),date.getTime());
+            if(value == -1){
+                value = preValue;
+            }else{
+                preValue=value;
+            }
+            Log.d("iteration", String.valueOf(i)+" "+String.valueOf(value));
+            dataSeries[i]=new DataPoint(i, value);
+        }
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries);
+        graph.addSeries(series);
+    }
+
+    // set the color of the corresponding day in the calendar
+    private int setYvalue(String emotion, long date) {
+        int value = -1;
+        switch(emotion){
+            case Globals.happy:
+                value = 10;
+                break;
+            case Globals.neutral:
+                value = 5;
+                break;
+            case Globals.sad:
+                value = 0;
+                break;
+            default :
+                value = -1;
+                break;
+        }
+        return value;
     }
 
 }
