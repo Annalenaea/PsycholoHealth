@@ -18,14 +18,12 @@
 
     <TextView
         android:id="@+id/analysis"
-        android:layout_width="79dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
         android:text="Analysis"
         android:textColor="@color/blue"
-        android:textSize="18dp"
+        android:textSize="@dimen/headline_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -16,6 +16,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.myapplication.databinding.HomeViewBinding;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -67,6 +70,17 @@ public class HomeView extends Fragment {
                     binding.addEmotion.getLeft(),
                     binding.addEmotion.getTop());
         });
+
+        // graph indicates mental Health development
+        GraphView graph = binding.development.graph;
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graph.addSeries(series);
 
         m_calendarView = binding.calendar;
         binding.calendar.setUseThreeLetterAbbreviation(true);
