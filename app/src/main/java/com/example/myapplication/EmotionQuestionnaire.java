@@ -1,40 +1,1 @@
-package com.example.myapplication;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
-import com.example.myapplication.databinding.EmotionQuestionnaireBinding;
-
-public class EmotionQuestionnaire extends Fragment {
-
-    private EmotionQuestionnaireBinding binding;
-
-    @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-
-        binding = EmotionQuestionnaireBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-}
+package com.example.myapplication;import android.os.Bundle;import android.view.LayoutInflater;import android.view.View;import android.view.ViewGroup;import android.widget.AdapterView;import android.widget.ArrayAdapter;import android.widget.Spinner;import android.widget.Toast;import androidx.annotation.NonNull;import androidx.fragment.app.Fragment;import androidx.navigation.fragment.NavHostFragment;import com.example.myapplication.databinding.EmotionQuestionnaireBinding;public class EmotionQuestionnaire extends Fragment implements AdapterView.OnItemSelectedListener {    private EmotionQuestionnaireBinding binding;    @Override    public View onCreateView(            LayoutInflater inflater, ViewGroup container,            Bundle savedInstanceState    ) {        binding = EmotionQuestionnaireBinding.inflate(inflater, container, false);        return binding.getRoot();    }    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {        super.onViewCreated(view, savedInstanceState);        //Create first spinner        Spinner spinner_feeling = view.findViewById(R.id.spinner_feeling);        //Create adapter for first spinner        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(((EmotionQuestionnaire) this).getContext(), R.array.feeling, android.R.layout.simple_spinner_item);        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);        spinner_feeling.setAdapter(adapter);        spinner_feeling.setOnItemSelectedListener(this);        //Create second spinner        Spinner spinner_sleep_quality = view.findViewById(R.id.spinner_sleep_quality);        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(((EmotionQuestionnaire) this).getContext(), R.array.sleep_quality, android.R.layout.simple_spinner_item);        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);        spinner_sleep_quality.setAdapter(adapter2);        spinner_sleep_quality.setOnItemSelectedListener(this);        //Create third spinner        Spinner spinner_feeling_phys = view.findViewById(R.id.spinner_feeling_phys);        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(((EmotionQuestionnaire) this).getContext(), R.array.feeling_phys, android.R.layout.simple_spinner_item);        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);        spinner_feeling_phys.setAdapter(adapter3);        spinner_feeling_phys.setOnItemSelectedListener(this);    }    @Override    public void onDestroyView() {        super.onDestroyView();        binding = null;    }    @Override    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {        // String text = adapterView.getItemAtPosition(i).toString();        //Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();    }    @Override    public void onNothingSelected(AdapterView<?> adapterView) {    }}

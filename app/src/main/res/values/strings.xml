@@ -11,4 +11,69 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    
+    //arrays for spinner
+    <string-array name="feeling">
+        <item>
+            Happy
+        </item>
+        <item>
+            Gloomy
+        </item>
+        <item>
+            Anxious
+        </item>
+        <item>
+            Angry
+        </item>
+        <item>
+            Stressed
+        </item>
+        <item>
+            Neutral
+        </item>
+        <item>
+            Exhausted
+        </item>
+        <item>
+            Calm and peaceful
+        </item>
+    </string-array>
+    <string-array name="sleep_quality">
+        <item>
+            Very good
+        </item>
+        <item>
+            Good
+        </item>
+        <item>
+            Normal
+        </item>
+        <item>
+            Bad
+        </item>
+        <item>
+            Very bad
+        </item>
+
+    </string-array>
+    <string-array name="feeling_phys">
+        <item>
+            Very good, I am very healthy
+        </item>
+        <item>
+            Normal
+        </item>
+        <item>
+            A bit sickly
+        </item>
+        <item>
+            I am sick
+        </item>
+
+    </string-array>
+
+
+
+
 </resources>
