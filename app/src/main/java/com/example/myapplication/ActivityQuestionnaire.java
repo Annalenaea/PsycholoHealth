@@ -1,11 +1,16 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,6 +25,9 @@ public class ActivityQuestionnaire extends Fragment {
     private CheckBox CBDomesticWork, CBSelfCare, CBParty, CBHobby;
     private Button Finish;
     private ArrayList<String> CBResult;
+    private SeekBar SBSport, SBUniversity;
+    private TextView SportProgress;
+    private TextView UniversityProgress;
 
 
     @Override
@@ -37,6 +45,8 @@ public class ActivityQuestionnaire extends Fragment {
         CBHobby = binding.checkboxHobbies;
         Finish = binding.ButtonFinish;
         CBResult = new ArrayList<>();
+        SBSport = binding.seekBar5;
+        SBUniversity = binding.seekBar2;
 
         CBDomesticWork.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +88,50 @@ public class ActivityQuestionnaire extends Fragment {
             @Override
             public void onClick(View v) {
                 // GO BACK TO MAIN
+            }
+        });
+
+        SBSport.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+                SportProgress = binding.textViewIntensitySport;
+                SportProgress.setText("   " + SBSport.getProgress()*10 + "%");
+                seekBar.setMax(10);
+            }
+        });
+
+        SBUniversity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,
+                                          boolean fromUser) {
+                // TODO Auto-generated method stub
+                UniversityProgress = binding.textViewIntensityUniversity;
+                UniversityProgress.setText("   " + SBUniversity.getProgress()*10 + "%");
+                seekBar.setMax(10);
             }
         });
 
