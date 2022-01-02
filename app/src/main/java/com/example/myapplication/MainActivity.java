@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,6 +16,7 @@ import com.google.gson.Gson;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -140,9 +142,22 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_lightTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             return true;
         }
+        if (id == R.id.action_darkTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            return true;
+        }
+        if (id == R.id.action_share) {
+            // add new page where entering mail of psychologist and send + TOAST "sending"
+            SendingPopup sendingPopup= new SendingPopup();
+            sendingPopup.showPopupWindow(findViewById(R.id.homeView), findViewById(R.id.toolbar).getLeft(),
+                    findViewById(R.id.toolbar).getBottom());
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

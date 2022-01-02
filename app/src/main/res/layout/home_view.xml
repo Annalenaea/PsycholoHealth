@@ -48,16 +48,16 @@
                     android:keepScreenOn="true"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    app:compactCalendarBackgroundColor="@color/blue_light"
+                    app:compactCalendarBackgroundColor="?attr/colorPrimaryVariant"
                     app:compactCalendarCurrentDayIndicatorStyle="no_fill_large_indicator"
                     app:compactCalendarCurrentSelectedDayBackgroundColor="@color/blue"
                     app:compactCalendarCurrentSelectedDayIndicatorStyle="no_fill_large_indicator"
                     app:compactCalendarDisplayOtherMonthDays="true"
                     app:compactCalendarEventIndicatorStyle="fill_large_indicator"
-                    app:compactCalendarOtherMonthDaysTextColor="@color/black"
+                    app:compactCalendarOtherMonthDaysTextColor="?attr/colorSecondary"
                     app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="false"
                     app:compactCalendarTargetHeight="250dp"
-                    app:compactCalendarTextColor="@color/black"
+                    app:compactCalendarTextColor="?attr/colorSecondary"
                     app:compactCalendarTextSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/month" />
@@ -82,6 +82,10 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/barchart" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="?attr/colorOnSecondary"/>
         </LinearLayout>
     </ScrollView>
 
@@ -94,6 +98,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginBottom="16dp"
         android:text="Activity"
+        android:textColor="?attr/colorOnSecondary"
         app:backgroundTint="@color/blue"
         app:icon="@android:drawable/ic_menu_edit"
         app:layout_constraintBaseline_toBottomOf="parent"
@@ -111,6 +116,7 @@
         android:layout_marginBottom="16dp"
         app:backgroundTint="@color/blue"
         android:text="Emotion"
+        android:textColor="?attr/colorOnSecondary"
         app:icon="@android:drawable/ic_input_add"
         app:layout_constraintBaseline_toBottomOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
