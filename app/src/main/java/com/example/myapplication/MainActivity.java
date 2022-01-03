@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +38,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private static final String TAG = "MainActivity";
-    private static File filesDir;
+    public static File filesDir;
     private static Map<String,Map<String,String>> m_emotionData = new HashMap<>();
     public static Map<String,String> m_todaysData = new HashMap<>();
     public static String m_today;

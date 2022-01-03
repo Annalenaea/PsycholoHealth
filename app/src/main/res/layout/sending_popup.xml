@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -45,5 +45,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.415"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/mail" />
 </androidx.constraintlayout.widget.ConstraintLayout>
