@@ -29,7 +29,7 @@ public class EmotionSelectionPopup extends AppCompatActivity {
         PopupWindow popupWindow = new PopupWindow(emotionPopup, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         //display the popup window
-        // @todo: add animation
+        popupWindow.setFocusable(true);
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos - 50, yPos + 70);
 
         Handler handler = new Handler();

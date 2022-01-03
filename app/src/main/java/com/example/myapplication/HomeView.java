@@ -258,31 +258,34 @@ public class HomeView extends Fragment {
         Date date = null;
         int value;
 
-        long [] dates = new long[m_emotionData.keySet().size()];
-        for(int i=0;i<m_emotionData.keySet().size();i++){
-            dateString = (String) m_emotionData.keySet().toArray()[i];
-            date = formatter.parse(dateString);
-            dates[i] = date.getTime();
-        }
-        Arrays.sort(dates);
+        if(m_emotionData.keySet().size()>0) {
+            long[] dates = new long[m_emotionData.keySet().size()];
+            for (int i = 0; i < m_emotionData.keySet().size(); i++) {
+                dateString = (String) m_emotionData.keySet().toArray()[i];
+                date = formatter.parse(dateString);
+                dates[i] = date.getTime();
+            }
+            Arrays.sort(dates);
 
-        for(int i=0;i<dates.length;i++){
-            dateString = formatter.format(dates[i]);
-            value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)),dates[i]);
-            dataSeries[i]=new DataPoint(dates[i], value);
-        }
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries);
-        graph.addSeries(series);
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
-        // set manual x bounds to have nice steps
-        graph.getViewport().setMinX(dates[0]);
-        graph.getViewport().setMaxX(dates[dates.length-1]);
-        graph.getViewport().setXAxisBoundsManual(true);
+            for (int i = 0; i < dates.length; i++) {
+                dateString = formatter.format(dates[i]);
+                value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)), dates[i]);
+                dataSeries[i] = new DataPoint(dates[i], value);
+            }
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries);
+            graph.addSeries(series);
+            graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
+            graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+            // set manual x bounds to have nice steps
+            graph.getViewport().setMinX(dates[0]);
 
-        // as we use dates as labels, the human rounding to nice readable numbers
-        // is not necessary
-        graph.getGridLabelRenderer().setHumanRounding(false);
+            graph.getViewport().setMaxX(dates[dates.length - 1]);
+            graph.getViewport().setXAxisBoundsManual(true);
+
+            // as we use dates as labels, the human rounding to nice readable numbers
+            // is not necessary
+            graph.getGridLabelRenderer().setHumanRounding(false);
+        }
 
     }
 
