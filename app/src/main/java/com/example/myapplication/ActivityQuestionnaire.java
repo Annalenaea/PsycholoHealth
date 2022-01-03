@@ -15,9 +15,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.example.myapplication.databinding.ActivityQuestionnaireBinding;
+import com.example.myapplication.databinding.HomeViewBinding;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -36,6 +39,8 @@ public class ActivityQuestionnaire extends Fragment {
     private TextView SportProgress;
     private TextView UniversityProgress;
     public static Integer m_universityIntensity = 0;
+    private NavController homeNavi;
+    public static ActivityQuestionnaire activityQuestionnaire = new ActivityQuestionnaire();
 
 
     @Override
@@ -51,7 +56,7 @@ public class ActivityQuestionnaire extends Fragment {
         CBSelfCare = binding.checkboxSelfCare;
         CBParty= binding.checkboxParty;
         CBHobby = binding.checkboxHobbies;
-        Finish = binding.ButtonFinish;
+        Finish = binding.buttonFinish;
         CBResult = new ArrayList<>();
         SBSport = binding.seekBar5;
         SBUniversity = binding.seekBar2;
@@ -159,6 +164,11 @@ public class ActivityQuestionnaire extends Fragment {
                 }
             }
         });
+
+        // go back to homeview if finish button is clicked
+        homeNavi = NavHostFragment.findNavController(ActivityQuestionnaire.this);
+        activityQuestionnaire = ActivityQuestionnaire.this;
+        Finish.setOnClickListener(view -> homeNavi.navigate(R.id.action_ActivityFragment_to_HomeFragment));
 
         return binding.getRoot();
     }
