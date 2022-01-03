@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.databinding.ActivityMainBinding;
 import com.example.myapplication.databinding.ActivityQuestionnaireBinding;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Objects;
 
 public class ActivityQuestionnaire extends Fragment {
 
@@ -28,6 +35,7 @@ public class ActivityQuestionnaire extends Fragment {
     private SeekBar SBSport, SBUniversity;
     private TextView SportProgress;
     private TextView UniversityProgress;
+    public static Integer m_universityIntensity = 0;
 
 
     @Override
@@ -36,8 +44,8 @@ public class ActivityQuestionnaire extends Fragment {
             Bundle savedInstanceState
     ) {
 
+        //bindings
         binding = ActivityQuestionnaireBinding.inflate(inflater, container, false);
-
 
         CBDomesticWork = binding.checkboxDomesticWork;
         CBSelfCare = binding.checkboxSelfCare;
@@ -47,7 +55,18 @@ public class ActivityQuestionnaire extends Fragment {
         CBResult = new ArrayList<>();
         SBSport = binding.seekBar5;
         SBUniversity = binding.seekBar2;
+        UniversityProgress = binding.textViewIntensityUniversity;
 
+        // set initial university intensity
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityIntensity)){
+            m_universityIntensity=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityIntensity)));
+            SBUniversity.setProgress(m_universityIntensity);
+            if(m_universityIntensity>0) {
+                UniversityProgress.setText("   " + m_universityIntensity * 10 + "%");
+            }
+        }
+
+        //on Click Listeners
         CBDomesticWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,9 +148,15 @@ public class ActivityQuestionnaire extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
-                UniversityProgress = binding.textViewIntensityUniversity;
-                UniversityProgress.setText("   " + SBUniversity.getProgress()*10 + "%");
+                m_universityIntensity = SBUniversity.getProgress();
+                UniversityProgress.setText("   " + m_universityIntensity*10 + "%");
                 seekBar.setMax(10);
+                MainActivity.m_todaysData.put(Globals.universityIntensity, String.valueOf(m_universityIntensity));
+                try {
+                    MainActivity.saveData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

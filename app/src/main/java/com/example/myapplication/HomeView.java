@@ -45,7 +45,7 @@ public class HomeView extends Fragment {
     private static int colorYellow;
     public static HomeView homeView = new HomeView();
     private static int colorGreen;
-    private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
+    private static Map<String,Map<String,String>> m_emotionData = new HashMap<>();
 
 
     @Override
@@ -110,13 +110,13 @@ public class HomeView extends Fragment {
             }
         });
 
-        setCalenderData();
-
         happyBar = binding.barchart.happyBar;
         neutralBar = binding.barchart.neutralBar;
         sadBar = binding.barchart.sadBar;
 
         m_emotionData = MainActivity.getEmotionData();
+
+        setCalenderData();
 
         try {
             updateAnalysis();
@@ -149,7 +149,7 @@ public class HomeView extends Fragment {
             assert date != null;
             int monthNumber  =   Integer.parseInt(monthFormatter.format(date));
 
-            if(monthNumber == m_currentMonth) {
+            if(monthNumber == m_currentMonth &&  m_emotionData.get(dateString).containsKey(Globals.emotion)) {
                 String emotion = Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion);
                 switch (Objects.requireNonNull(emotion)) {
                     case Globals.happy:
@@ -187,7 +187,7 @@ public class HomeView extends Fragment {
 
     // set the data of the calendar
     private void setCalenderData(){
-        HashMap<String, Map<String,String>> emotionData = MainActivity.getEmotionData();
+        Map<String, Map<String,String>> emotionData = MainActivity.getEmotionData();
         String dateString;
         Date date = null;
 
@@ -198,12 +198,13 @@ public class HomeView extends Fragment {
             try {
                 date = formatter.parse(dateString);
                 assert date != null;
-                Log.d(TAG, String.valueOf(date.getTime()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             assert date != null;
-            setCalendarColor(Objects.requireNonNull(Objects.requireNonNull(emotionData.get(dateString)).get(Globals.emotion)),date.getTime());
+            if(emotionData.get(dateString).containsKey(Globals.emotion)) {
+                setCalendarColor(Objects.requireNonNull(Objects.requireNonNull(emotionData.get(dateString)).get(Globals.emotion)), date.getTime());
+            }
         }
     }
 
@@ -257,6 +258,7 @@ public class HomeView extends Fragment {
         String dateString;
         Date date = null;
         int value;
+        boolean containsKey = false;
 
         if(m_emotionData.keySet().size()>0) {
             long[] dates = new long[m_emotionData.keySet().size()];
@@ -269,22 +271,27 @@ public class HomeView extends Fragment {
 
             for (int i = 0; i < dates.length; i++) {
                 dateString = formatter.format(dates[i]);
-                value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)), dates[i]);
-                dataSeries[i] = new DataPoint(dates[i], value);
+                if(m_emotionData.get(dateString).containsKey(Globals.emotion)) {
+                    value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)), dates[i]);
+                    dataSeries[i] = new DataPoint(dates[i], value);
+                    containsKey = true;
+                }
             }
-            LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries);
-            graph.addSeries(series);
-            graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
-            graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
-            // set manual x bounds to have nice steps
-            graph.getViewport().setMinX(dates[0]);
+            if(containsKey) {
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries);
+                graph.addSeries(series);
+                graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
+                graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+                // set manual x bounds to have nice steps
+                graph.getViewport().setMinX(dates[0]);
 
-            graph.getViewport().setMaxX(dates[dates.length - 1]);
-            graph.getViewport().setXAxisBoundsManual(true);
+                graph.getViewport().setMaxX(dates[dates.length - 1]);
+                graph.getViewport().setXAxisBoundsManual(true);
 
-            // as we use dates as labels, the human rounding to nice readable numbers
-            // is not necessary
-            graph.getGridLabelRenderer().setHumanRounding(false);
+                // as we use dates as labels, the human rounding to nice readable numbers
+                // is not necessary
+                graph.getGridLabelRenderer().setHumanRounding(false);
+            }
         }
 
     }

@@ -31,29 +31,27 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private static final String TAG = "MainActivity";
     private static File filesDir;
-    private static HashMap<String,Map<String,String>> m_emotionData = new HashMap<>();
+    private static Map<String,Map<String,String>> m_emotionData = new HashMap<>();
+    public static Map<String,String> m_todaysData = new HashMap<>();
+    public static String m_today;
+    private static final DateFormat m_dateFormat = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
 
     // set the emotion of today
     public void setDateEmotion(String emotion) throws IOException, ParseException {
-        Calendar calendar = Calendar.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
-        String date = dateFormat.format(calendar.getTime());
-
-        HashMap<String,String> dayEmotion = new HashMap<>();
-        dayEmotion.put(Globals.emotion,emotion);
-        m_emotionData.put(date, dayEmotion);
+        m_todaysData.put(Globals.emotion,emotion);
         saveData();
         HomeView.homeView.updateAnalysis();
         HomeView.homeView.drawGraph();
 
         Date currentDate = null;
         try {
-            currentDate = dateFormat.parse(date);
+            currentDate = m_dateFormat.parse(m_today);
             assert currentDate != null;
             Log.d(TAG, String.valueOf(currentDate.getTime()));
         } catch (ParseException e) {
@@ -63,12 +61,16 @@ public class MainActivity extends AppCompatActivity {
         HomeView.homeView.setCalendarColor(emotion,currentDate.getTime());
     }
 
-    public static HashMap<String,Map<String,String>> getEmotionData(){
+    public static Map<String,Map<String,String>> getEmotionData(){
         return m_emotionData;
     }
 
     // save data in a json file
     public static void saveData() throws IOException {
+        //save data in m_emotionData map
+        m_emotionData.put(m_today, m_todaysData);
+
+        // create Gson
         Gson gson = new Gson();
         String userString = gson.toJson(m_emotionData);
 
@@ -99,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
             Gson gson = new Gson();
             m_emotionData = gson.fromJson(response, m_emotionData.getClass());
 
-            Log.d(TAG, String.valueOf(m_emotionData));
+            if(m_emotionData.containsKey(m_today)){
+                m_todaysData = m_emotionData.get(m_today);
+            }
         }
     }
 
@@ -107,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Calendar calendar = Calendar.getInstance();
+        m_today = m_dateFormat.format(calendar.getTime());
 
         filesDir = getFilesDir();
         // load data from backup
