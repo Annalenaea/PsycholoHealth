@@ -1,106 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+  <!--  <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true" >-->
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+      <TextView
+          android:id="@+id/textView_feeling"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="How are you feeling today?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <Spinner
+          android:id="@+id/spinner_feeling"
+          android:layout_width="330dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="40dp" />
 
 
-    <TextView
-        android:id="@+id/textView_sleep_quality"
-        android:layout_width="331dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="40dp"
-        android:text="How was the quality of your sleep last night?"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_feeling" />
-
-    <TextView
-        android:id="@+id/textView_feeling"
-        android:layout_width="250dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="40dp"
-        android:text="How are you feeling today?"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.167"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-        <Spinner
-            android:id="@+id/spinner_feeling"
-            android:layout_width="330dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.333"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_feeling" />
-
-    <Spinner
-        android:id="@+id/spinner_sleep_quality"
-        android:layout_width="346dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_sleep_quality" />
-
-    <TextView
-        android:id="@+id/textView_sleep_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="How long was your sleep?"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_sleep_quality" />
-
-    <EditText
-        android:id="@+id/editTextNumber_sleep_duration"
-        android:layout_width="59dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="Hours"
-        android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_sleep_duration" />
-
-    <TextView
-        android:id="@+id/textView_feeling_phys"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="How do you feel physically?"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.117"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber_sleep_duration" />
-
-    <Spinner
-        android:id="@+id/spinner_feeling_phys"
-        android:layout_width="330dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_feeling_phys" />
+      <TextView
+          android:id="@+id/textView_sleep_quality"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="How was the quality of your sleep last night?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+      <Spinner
+          android:id="@+id/spinner_sleep_quality"
+          android:layout_width="346dp"
+          android:layout_height="49dp"
+          android:layout_marginTop="40dp" />
+
+      <TextView
+          android:id="@+id/textView_sleep_duration"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="How long was your sleep?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <EditText
+          android:id="@+id/editTextNumber_sleep_duration"
+          android:layout_width="59dp"
+          android:layout_height="64dp"
+          android:layout_marginTop="40dp"
+          android:ems="10"
+          android:hint="Hours"
+          android:inputType="number"
+          android:textColor="@color/blue" />
+
+      <TextView
+          android:id="@+id/textView_feeling_phys"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="How do you feel physically?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <Spinner
+          android:id="@+id/spinner_feeling_phys"
+          android:layout_width="330dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="40dp" />
+
+      <TextView
+          android:id="@+id/textView_stress_level"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="How stressed are you today?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <SeekBar
+          android:id="@+id/seekBar_stress"
+          style="@style/Widget.AppCompat.SeekBar.Discrete"
+          android:layout_width="match_parent"
+          android:layout_height="41dp"
+          android:layout_marginTop="40dp"
+          android:max="10"
+          android:visibility="visible"
+          app:tickMarkTint="@color/blue" />
+
+      <TextView
+          android:id="@+id/textView_alcohol_consumption"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="Did you consumed alcohol today/last night?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <Spinner
+          android:id="@+id/spinner_alcohol"
+          android:layout_width="330dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="40dp" />
+
+      <TextView
+          android:id="@+id/textView_smoking"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="Have you smoked today?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <Spinner
+          android:id="@+id/spinner_smoking"
+          android:layout_width="330dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="40dp" />
+
+      <TextView
+          android:id="@+id/textView_medication"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="Do you take any medication on a regular basis?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <Spinner
+          android:id="@+id/spinner_medication"
+          android:layout_width="330dp"
+          android:layout_height="30dp"
+          android:layout_marginTop="40dp" />
+
+      <TextView
+          android:id="@+id/textView_period"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:text="Are you currently having your period?"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <RadioGroup
+          android:id="@+id/radioGroup_period"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@id/textView6"
+          android:orientation="vertical">
+
+      <RadioButton
+          android:id="@+id/radioButton_yes"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Yes" />
+
+      <RadioButton
+          android:id="@+id/radioButton_no"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="No" />
+      </RadioGroup>
+
+
+
+
+
+    </LinearLayout>
+  </ScrollView>
+
+
+</LinearLayout>
