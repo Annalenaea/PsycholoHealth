@@ -72,6 +72,41 @@
         </item>
 
     </string-array>
+    <string-array name="alcohol">
+    <item>
+        No
+    </item>
+    <item>
+        Yes, but only a little
+    </item>
+    <item>
+        Yes, a lot
+    </item>
+    </string-array>
+    <string-array name="smoking">
+        <item>
+            No
+        </item>
+        <item>
+            Yes, but only few
+        </item>
+        <item>
+            Yes, a lot
+        </item>
+
+    </string-array>
+    <string-array name="medication">
+        <item>
+            No
+        </item>
+        <item>
+            Yes, have already taken today
+        </item>
+        <item>
+            Yes, but have not yet taken today
+        </item>
+
+    </string-array>
 
 
 
