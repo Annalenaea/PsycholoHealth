@@ -166,6 +166,13 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.toolbar).getBottom());
             return true;
         }
+        if (id == R.id.action_help) {
+            // add new page where to call psychologist
+            HelpPopup helpPopup= new HelpPopup();
+            helpPopup.showPopupWindow(findViewById(R.id.homeView), findViewById(R.id.toolbar).getLeft(),
+                    findViewById(R.id.toolbar).getBottom());
+            return true;
+        }
 
 
         return super.onOptionsItemSelected(item);

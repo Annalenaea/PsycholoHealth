@@ -3,25 +3,18 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Toast;
-import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 

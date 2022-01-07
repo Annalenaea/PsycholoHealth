@@ -20,4 +20,10 @@
         android:textColor="?attr/colorSecondary"
         android:title="Share"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="100"
+        android:textColor="?attr/colorSecondary"
+        android:title="Help"
+        app:showAsAction="never" />
 </menu>
