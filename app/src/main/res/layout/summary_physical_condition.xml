@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/summaryPhysicalCondition"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/round_rectangle">
+
+    <TextView
+        android:id="@+id/summaryPhysicalConditionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Physical Conditions"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/headline_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summaryPhysicalConditionTodayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toEndOf="@id/summaryPhysicalConditionText"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionValue"/>
+
+    <TextView
+        android:id="@+id/summaryPhysicalConditionDayOneText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="1 day ago"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toEndOf="@id/summaryPhysicalConditionTodayText"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionValue"/>
+
+    <TextView
+        android:id="@+id/summaryPhysicalConditionDayTwoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="2 days ago"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toEndOf="@id/summaryPhysicalConditionDayOneText"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionValue"/>
+
+
+    <TextView
+        android:id="@+id/summaryPhysicalConditionValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Physical value"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionText" />
+
+    <TextView
+        android:id="@+id/summarySmoking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Smoking"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
+
+    <TextView
+        android:id="@+id/summaryAlcohol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Alcohol"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summarySmoking"/>
+
+    <TextView
+        android:id="@+id/summaryMedication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Medication"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summaryAlcohol"/>
+
+    <TextView
+        android:id="@+id/summaryPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Period"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summaryMedication"/>
+
+    <!-- Values Smoking -->
+    <TextView
+        android:id="@+id/summarySmokingToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
+
+    <TextView
+        android:id="@+id/summarySmokingDayOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
+
+    <TextView
+        android:id="@+id/summarySmokingDayTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
+
+    <!-- Values Alcohol -->
+    <TextView
+        android:id="@+id/summaryAlcoholToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
+        app:layout_constraintTop_toBottomOf="@id/summarySmokingToday"/>
+
+    <TextView
+        android:id="@+id/summaryAlcoholDayOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
+        app:layout_constraintTop_toBottomOf="@id/summarySmokingToday"/>
+
+    <TextView
+        android:id="@+id/summaryAlcoholDayTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
+        app:layout_constraintTop_toBottomOf="@id/summarySmokingToday"/>
+
+    <!-- Values Medication -->
+    <TextView
+        android:id="@+id/summaryMedicationToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
+        app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"/>
+
+    <TextView
+        android:id="@+id/summaryMedicationDayOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
+        app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"/>
+
+    <TextView
+        android:id="@+id/summaryMedicationDayTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
+        app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"/>
+
+
+    <!-- Values Period -->
+    <TextView
+        android:id="@+id/summaryPeriodToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
+        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
+
+    <TextView
+        android:id="@+id/summaryPeriodDayOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
+        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
+
+    <TextView
+        android:id="@+id/summaryPeriodDayTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="4dp"
+        android:text="x"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
+        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
