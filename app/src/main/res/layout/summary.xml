@@ -55,9 +55,10 @@
                 android:id="@+id/summaryPhysicalCondition"
                 layout="@layout/summary_physical_condition"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:layout_margin="@dimen/container_margin"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/summaryFeeling" />
 
@@ -82,6 +83,28 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/summaryStress" />
+
+            <!-- University work -->
+            <include
+                android:id="@+id/summaryUniversity"
+                layout="@layout/summary_university"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/summarysleep" />
+
+            <!-- Sport -->
+            <include
+                android:id="@+id/summarySport"
+                layout="@layout/summary_sport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/summaryUniversity" />
 
         </LinearLayout>
     </ScrollView>
