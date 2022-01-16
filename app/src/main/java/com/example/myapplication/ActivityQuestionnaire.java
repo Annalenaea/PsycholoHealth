@@ -168,7 +168,7 @@ public class ActivityQuestionnaire extends Fragment {
         // go back to homeview if finish button is clicked
         homeNavi = NavHostFragment.findNavController(ActivityQuestionnaire.this);
         activityQuestionnaire = ActivityQuestionnaire.this;
-        Finish.setOnClickListener(view -> homeNavi.navigate(R.id.action_ActivityFragment_to_HomeFragment));
+        Finish.setOnClickListener(View -> homeNavi.navigate(R.id.action_ActivityFragment_to_HomeFragment));
 
         return binding.getRoot();
     }

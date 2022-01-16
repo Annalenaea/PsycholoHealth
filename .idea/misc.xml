@@ -4,8 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/activity_main.xml" value="0.16168478260869565" />
-        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/activity_questionnaire.xml" value="0.1" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/activity_questionnaire.xml" value="0.399052693901717" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/bar_chart.xml" value="0.19427083333333334" />
         <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/emotion_questionnaire.xml" value="0.2" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/emotion_selection_popup.xml" value="0.20520833333333333" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/summary.xml" value="0.19427083333333334" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/summary_emotions.xml" value="0.19427083333333334" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/summary_physical_condition.xml" value="0.19427083333333334" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/summary_sleep.xml" value="0.19427083333333334" />
+        <entry key="..\:/PsycholoHealth/PsycholoHealth/app/src/main/res/layout/summary_stress.xml" value="0.19427083333333334" />
         <entry key="..\:/Thea/Thea/Uni/Master_02/SDME/PsycholoHealth/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Thea/Thea/Uni/Master_02/SDME/PsycholoHealth/app/src/main/res/layout/activity_questionnaire.xml" value="0.209375" />
         <entry key="..\:/Thea/Thea/Uni/Master_02/SDME/PsycholoHealth/app/src/main/res/layout/bar_chart.xml" value="0.13949275362318841" />

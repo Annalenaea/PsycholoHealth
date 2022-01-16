@@ -22,7 +22,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="How are you feeling today?"
+          android:text="Todays feeling"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -38,7 +38,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="How was the quality of your sleep last night?"
+          android:text="Quality of your sleep"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -54,7 +54,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="How long was your sleep?"
+          android:text="Sleep duration"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -73,7 +73,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="How do you feel physically?"
+          android:text="Physical feeling"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -84,11 +84,19 @@
           android:layout_marginTop="40dp" />
 
       <TextView
-          android:id="@+id/textView_stress_level"
+          android:id="@+id/textViewStressLevel"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="How stressed are you today?"
+          android:text="Your stress level today:"
+          android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+          android:textColor="@color/blue" />
+
+      <TextView
+          android:id="@+id/textViewStressLevel2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -107,7 +115,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="Did you consumed alcohol today/last night?"
+          android:text="Alcohol consumption"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -122,7 +130,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="Have you smoked today?"
+          android:text="Cigarettes consumption"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -137,7 +145,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="Do you take any medication on a regular basis?"
+          android:text="Are you on medication?"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -152,7 +160,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="40dp"
-          android:text="Are you currently having your period?"
+          android:text="Are you on your period?"
           android:textAppearance="@style/TextAppearance.AppCompat.Medium"
           android:textColor="@color/blue" />
 
@@ -175,7 +183,11 @@
           android:layout_height="wrap_content"
           android:text="No" />
       </RadioGroup>
-
+      <Button
+          android:id="@+id/Button_Finish2"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Finish" />
 
 
 
