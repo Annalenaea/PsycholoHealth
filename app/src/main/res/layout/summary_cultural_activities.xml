@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/summaryCulturalActivities"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/round_rectangle">
+
+    <TextView
+        android:id="@+id/summaryCulturalActivitiesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Cultural Activities"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/headline_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/summarySocialContactsValues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of Cultural Activities"
+        android:layout_margin="@dimen/container_margin"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summaryCulturalActivitiesText" />
+
+    <TextView
+        android:id="@+id/summaryOtherActivitiesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/container_margin"
+        android:text="Other Activities"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/headline_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summarySocialContactsValues"/>
+
+    <TextView
+        android:id="@+id/summaryOtherActivitiesValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of Other Activities"
+        android:layout_margin="@dimen/container_margin"
+        android:textColor="?attr/colorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/summaryOtherActivitiesText" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
