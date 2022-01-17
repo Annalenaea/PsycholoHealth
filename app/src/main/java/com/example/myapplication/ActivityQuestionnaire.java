@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -36,9 +37,17 @@ public class ActivityQuestionnaire extends Fragment {
     private Button Finish;
     private ArrayList<String> CBResult;
     private SeekBar SBSport, SBUniversity;
+    private EditText HourUni, MinUni, HourSport, MinSport;
     private TextView SportProgress;
     private TextView UniversityProgress;
     public static Integer m_universityIntensity = 0;
+    public static Integer m_uniDurHour = 0;
+    public static Integer m_uniDurMin = 0;
+    public static Integer m_sportDurHour = 0;
+    public static Integer m_sportDurMin = 0;
+    public static Integer m_sportIntensity = 0;
+    public static String  m_DataOther;
+
     private NavController homeNavi;
     public static ActivityQuestionnaire activityQuestionnaire = new ActivityQuestionnaire();
 
@@ -61,14 +70,51 @@ public class ActivityQuestionnaire extends Fragment {
         SBSport = binding.seekBar5;
         SBUniversity = binding.seekBar2;
         UniversityProgress = binding.textViewIntensityUniversity;
+        SportProgress = binding.textViewIntensitySport;
+        HourUni = (EditText) binding.EditTextHours1;
+        MinUni = (EditText) binding.EditTextMinutes1;
+        HourSport = (EditText) binding.EditTextHours2;
+        MinSport = (EditText) binding.EditTextMinutes2;
 
-        // set initial university intensity
+
+// set initial university intensity
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityIntensity)){
             m_universityIntensity=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityIntensity)));
             SBUniversity.setProgress(m_universityIntensity);
             if(m_universityIntensity>0) {
                 UniversityProgress.setText("   " + m_universityIntensity * 10 + "%");
             }
+        }
+
+    // set initial university duration -> hours
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityHours)){
+            m_uniDurHour=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityHours)));
+            m_uniDurHour = Integer.valueOf(HourUni.getText().toString());
+        }
+    // set initial university duration -> minutes
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityMinutes)){
+            m_uniDurMin=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityMinutes)));
+            m_uniDurMin = Integer.valueOf(HourUni.getText().toString());
+        }
+
+// set initial sport intensity
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportIntensity)){
+            m_sportIntensity=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportIntensity)));
+            SBSport.setProgress(m_sportIntensity);
+            if(m_sportIntensity>0) {
+                SportProgress.setText("   " + m_sportIntensity * 10 + "%");
+            }
+        }
+
+    // set initial sport duration -> hours
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportHours)){
+            m_sportDurHour=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportHours)));
+            m_sportDurHour = Integer.valueOf(HourUni.getText().toString());
+        }
+    // set initial sport duration -> minutes
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportMinutes)){
+            m_sportDurMin=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportMinutes)));
+            m_sportDurMin = Integer.valueOf(MinUni.getText().toString());
         }
 
         //on Click Listeners
@@ -115,6 +161,16 @@ public class ActivityQuestionnaire extends Fragment {
             }
         });
 
+
+        m_DataOther = CBResult.toString();
+
+        MainActivity.m_todaysData.put(Globals.DataOther, String.valueOf(m_DataOther));
+        try {
+            MainActivity.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         SBSport.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -131,9 +187,15 @@ public class ActivityQuestionnaire extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress,
                                           boolean fromUser) {
                 // TODO Auto-generated method stub
-                SportProgress = binding.textViewIntensitySport;
-                SportProgress.setText("   " + SBSport.getProgress()*10 + "%");
+                m_sportIntensity = SBSport.getProgress();
+                SportProgress.setText("   " + m_sportIntensity*10 + "%");
                 seekBar.setMax(10);
+                MainActivity.m_todaysData.put(Globals.sportIntensity, String.valueOf(m_sportIntensity));
+                try {
+                    MainActivity.saveData();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

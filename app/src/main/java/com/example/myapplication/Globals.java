@@ -9,6 +9,13 @@ public class Globals {
     public static final String sad = "Sad";
     public static final String emotion = "Emotion";
     public static final String universityIntensity = "universityIntensity";
+    public static final String universityHours = "universityHours";
+    public static final String universityMinutes = "universityMinutes";
+    public static final String sportIntensity = "sportIntensity";
+    public static final String sportHours = "sportHours";
+    public static final String sportMinutes = "sportMinutes";
+    public static final String DataOther = "DataOther";
+
     public static final String stressLevel = "stressLevel";
     public static final String sleepDuration = "sleepDuration";
     public static final String period = "period";
