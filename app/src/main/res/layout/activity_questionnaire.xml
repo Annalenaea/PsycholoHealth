@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="University Work"
-                android:textColor="@color/blue"
+                android:textColor="@color/design_default_color_primary"
                 android:textSize="20sp" />
 
             # Eingabe Dauer
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView0"
                 android:text="Duration:"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="16sp" />
 
             <EditText
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes1"
                 android:text="Intensity:"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textViewIntensityUniversity"
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes1"
                 android:layout_toRightOf="@id/textView2"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="16sp" />
 
             <SeekBar
@@ -89,7 +89,7 @@
                 android:layout_marginTop="0dp"
                 android:max="10"
                 android:visibility="visible"
-                app:tickMarkTint="@color/blue" />
+                app:tickMarkTint="@color/design_default_color_primary" />
 
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_below="@id/seekBar2"
                 android:layout_marginTop="25dp"
                 android:text="Sport"
-                android:textColor="@color/blue"
+                android:textColor="@color/design_default_color_primary"
                 android:textSize="20sp" />
 
             # Eingabe Dauer Sport
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView3"
                 android:text="Duration:"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="16sp" />
 
             <EditText
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes2"
                 android:text="Intensity:"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textViewIntensitySport"
@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes2"
                 android:layout_toRightOf="@id/textView5"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="16sp" />
 
             <SeekBar
@@ -162,7 +162,7 @@
                 android:layout_marginTop="0dp"
                 android:max="10"
                 android:visibility="visible"
-                app:tickMarkTint="@color/blue" />
+                app:tickMarkTint="@color/design_default_color_primary" />
 
 
             <TextView
@@ -172,87 +172,44 @@
                 android:layout_below="@id/seekBar5"
                 android:layout_marginTop="25dp"
                 android:text="Sozial Contacts"
-                android:textColor="@color/blue"
+                android:textColor="@color/design_default_color_primary"
                 android:textSize="20sp" />
 
-            <RadioGroup
-                android:id="@+id/radiogroup1"
+            <CheckBox
+                android:id="@+id/checkboxFamily"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView6"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/radioButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Family" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Friends" />
-
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Partner" />
-
-                <RadioButton
-                    android:id="@+id/radioButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Children" />
-
-                <RadioButton
-                    android:id="@+id/radioButton5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rommates" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/textViewOthers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/radiogroup1"
-                android:text="Other Activities:"
-                android:textColor="@color/blue"
-                android:textSize="16sp" />
-
-            <CheckBox
-                android:id="@+id/checkboxDomesticWork"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textViewOthers"
                 android:onClick="onCheckboxClicked"
-                android:text="Domestic Work" />
-
+                android:text="Family" />
             <CheckBox
-                android:id="@+id/checkboxSelfCare"
+                android:id="@+id/checkboxFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/checkboxDomesticWork"
+                android:layout_below="@id/checkboxFamily"
                 android:onClick="onCheckboxClicked"
-                android:text="Self Care" />
-
+                android:text="Friends" />
             <CheckBox
-                android:id="@+id/checkboxParty"
+                android:id="@+id/checkboxPartner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/checkboxSelfCare"
+                android:layout_below="@id/checkboxFriends"
                 android:onClick="onCheckboxClicked"
-                android:text="Party" />
-
+                android:text="Partner" />
             <CheckBox
-                android:id="@+id/checkboxHobbies"
+                android:id="@+id/checkboxChildren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/checkboxParty"
+                android:layout_below="@id/checkboxPartner"
                 android:onClick="onCheckboxClicked"
-                android:text="Hobbies" />
+                android:text="Children" />
+            <CheckBox
+                android:id="@+id/checkboxRoommates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxChildren"
+                android:onClick="onCheckboxClicked"
+                android:text="Roommates" />
 
             # Duration Hobbies
 
@@ -260,9 +217,9 @@
                 android:id="@+id/textViewHobby"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/checkboxHobbies"
+                android:layout_below="@id/checkboxRoommates"
                 android:text="Duration:"
-                android:textColor="@color/black"
+                android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="16sp" />
 
             <EditText
@@ -300,7 +257,7 @@
                 android:layout_below="@id/EditTextHobbyHours1"
                 android:layout_marginTop="25dp"
                 android:text="Cultural Activities"
-                android:textColor="@color/blue"
+                android:textColor="@color/design_default_color_primary"
                 android:textSize="20sp" />
 
             <RadioGroup
@@ -348,11 +305,54 @@
             </RadioGroup>
 
 
+            # Other Activities
+
+            <TextView
+                android:id="@+id/textViewOthers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/radiogroupCulture"
+                android:text="Other Activities:"
+                android:textColor="@color/design_default_color_primary"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/checkboxDomesticWork"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewOthers"
+                android:onClick="onCheckboxClicked"
+                android:text="Domestic Work" />
+
+            <CheckBox
+                android:id="@+id/checkboxSelfCare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxDomesticWork"
+                android:onClick="onCheckboxClicked"
+                android:text="Self Care" />
+
+            <CheckBox
+                android:id="@+id/checkboxParty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxSelfCare"
+                android:onClick="onCheckboxClicked"
+                android:text="Party" />
+
+            <CheckBox
+                android:id="@+id/checkboxHobbies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxParty"
+                android:onClick="onCheckboxClicked"
+                android:text="Hobbies" />
+
             <Button
                 android:id="@+id/buttonFinish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/radiogroupCulture"
+                android:layout_below="@id/checkboxHobbies"
                 android:text="Finish" />
 
         </RelativeLayout>

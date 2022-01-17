@@ -34,8 +34,9 @@ public class ActivityQuestionnaire extends Fragment {
 
     private ActivityQuestionnaireBinding binding;
     private CheckBox CBDomesticWork, CBSelfCare, CBParty, CBHobby;
+    private CheckBox CBFamily, CBFriends, CBPartner, CBChildren, CBRoommates;
     private Button Finish;
-    private ArrayList<String> CBResult;
+    private ArrayList<String> CBResult, CBSocial;
     private SeekBar SBSport, SBUniversity;
     private EditText HourUni, MinUni, HourSport, MinSport;
     private TextView SportProgress;
@@ -46,7 +47,7 @@ public class ActivityQuestionnaire extends Fragment {
     public static Integer m_sportDurHour = 0;
     public static Integer m_sportDurMin = 0;
     public static Integer m_sportIntensity = 0;
-    public static String  m_DataOther;
+    public static String  m_DataOther, m_DataSocial;
 
     private NavController homeNavi;
     public static ActivityQuestionnaire activityQuestionnaire = new ActivityQuestionnaire();
@@ -65,6 +66,12 @@ public class ActivityQuestionnaire extends Fragment {
         CBSelfCare = binding.checkboxSelfCare;
         CBParty= binding.checkboxParty;
         CBHobby = binding.checkboxHobbies;
+        CBFriends = binding.checkboxFriends;
+        CBFamily = binding.checkboxFamily;
+        CBPartner = binding.checkboxPartner;
+        CBChildren = binding.checkboxChildren;
+        CBRoommates = binding.checkboxRoommates;
+        CBSocial = new ArrayList<>();
         Finish = binding.buttonFinish;
         CBResult = new ArrayList<>();
         SBSport = binding.seekBar5;
@@ -117,6 +124,7 @@ public class ActivityQuestionnaire extends Fragment {
             m_sportDurMin = Integer.valueOf(MinUni.getText().toString());
         }
 
+// Other Activities
         //on Click Listeners
         CBDomesticWork.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,10 +169,64 @@ public class ActivityQuestionnaire extends Fragment {
             }
         });
 
+// Social Contact
+        CBFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBFriends.isChecked())
+                    CBSocial.add("Friends");
+                else
+                    CBSocial.remove("Friends");
+            }
+        });
+        CBFamily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBFamily.isChecked())
+                    CBSocial.add("Family");
+                else
+                    CBSocial.remove("Family");
+            }
+        });
+        CBPartner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBPartner.isChecked())
+                    CBSocial.add("Partner");
+                else
+                    CBSocial.remove("Partner");
+            }
+        });
+        CBChildren.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBChildren.isChecked())
+                    CBSocial.add("Children");
+                else
+                    CBSocial.remove("Children");
+            }
+        });
+        CBRoommates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBRoommates.isChecked())
+                    CBSocial.add("Roommates");
+                else
+                    CBSocial.remove("Roommates");
+            }
+        });
+
 
         m_DataOther = CBResult.toString();
-
         MainActivity.m_todaysData.put(Globals.DataOther, String.valueOf(m_DataOther));
+        try {
+            MainActivity.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        m_DataSocial = CBSocial.toString();
+        MainActivity.m_todaysData.put(Globals.DataSocial, String.valueOf(m_DataSocial));
         try {
             MainActivity.saveData();
         } catch (IOException e) {

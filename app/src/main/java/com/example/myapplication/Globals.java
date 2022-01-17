@@ -15,6 +15,7 @@ public class Globals {
     public static final String sportHours = "sportHours";
     public static final String sportMinutes = "sportMinutes";
     public static final String DataOther = "DataOther";
+    public static final String DataSocial = "DataSocial";
 
     public static final String stressLevel = "stressLevel";
     public static final String sleepDuration = "sleepDuration";
