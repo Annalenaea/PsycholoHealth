@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/seekBar2"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:text="Sport"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="20sp" />
@@ -170,8 +170,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/seekBar5"
-                android:layout_marginTop="25dp"
-                android:text="Sozial Contacts"
+                android:layout_marginTop="20dp"
+                android:text="Social Contacts"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="20sp" />
 
@@ -255,54 +255,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextHobbyHours1"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:text="Cultural Activities"
                 android:textColor="@color/design_default_color_primary"
                 android:textSize="20sp" />
 
-            <RadioGroup
-                android:id="@+id/radiogroupCulture"
+            <CheckBox
+                android:id="@+id/checkboxMuseum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewCulture"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/radioButtonC1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Museum / Exhibition" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonC2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Theatre / Opera / Poetry Slam" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonC3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Concert / Festival" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonC4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Children" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonC5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cinema" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonC6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Restaurant" />
-            </RadioGroup>
+                android:onClick="onCheckboxClicked"
+                android:text="Museum / Exhibition" />
+            <CheckBox
+                android:id="@+id/checkboxTheatre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxMuseum"
+                android:onClick="onCheckboxClicked"
+                android:text="Theatre / Opera / Poetry Slam" />
+            <CheckBox
+                android:id="@+id/checkboxConcert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxTheatre"
+                android:onClick="onCheckboxClicked"
+                android:text="Concert / Festival" />
+            <CheckBox
+                android:id="@+id/checkboxCinema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxConcert"
+                android:onClick="onCheckboxClicked"
+                android:text="Cinema" />
+            <CheckBox
+                android:id="@+id/checkboxRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkboxCinema"
+                android:onClick="onCheckboxClicked"
+                android:text="Restaurant" />
 
 
             # Other Activities
@@ -311,10 +303,11 @@
                 android:id="@+id/textViewOthers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/radiogroupCulture"
+                android:layout_below="@id/checkboxRestaurant"
+                android:layout_marginTop="20dp"
                 android:text="Other Activities:"
                 android:textColor="@color/design_default_color_primary"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <CheckBox
                 android:id="@+id/checkboxDomesticWork"

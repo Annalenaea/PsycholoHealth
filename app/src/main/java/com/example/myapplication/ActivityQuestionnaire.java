@@ -35,8 +35,9 @@ public class ActivityQuestionnaire extends Fragment {
     private ActivityQuestionnaireBinding binding;
     private CheckBox CBDomesticWork, CBSelfCare, CBParty, CBHobby;
     private CheckBox CBFamily, CBFriends, CBPartner, CBChildren, CBRoommates;
+    private CheckBox CBMuseum, CBTheatre,CBConcert, CBCinema, CBRestaurant;
     private Button Finish;
-    private ArrayList<String> CBResult, CBSocial;
+    private ArrayList<String> CBResult, CBSocial, CBCulture;
     private SeekBar SBSport, SBUniversity;
     private EditText HourUni, MinUni, HourSport, MinSport;
     private TextView SportProgress;
@@ -71,8 +72,13 @@ public class ActivityQuestionnaire extends Fragment {
         CBPartner = binding.checkboxPartner;
         CBChildren = binding.checkboxChildren;
         CBRoommates = binding.checkboxRoommates;
+        CBMuseum = binding.checkboxMuseum;
+        CBTheatre = binding.checkboxTheatre;
+        CBConcert = binding.checkboxConcert;
+        CBCinema = binding.checkboxCinema;
+        CBRestaurant = binding.checkboxRestaurant;
         CBSocial = new ArrayList<>();
-        Finish = binding.buttonFinish;
+        CBCulture = new ArrayList<>();
         CBResult = new ArrayList<>();
         SBSport = binding.seekBar5;
         SBUniversity = binding.seekBar2;
@@ -82,6 +88,7 @@ public class ActivityQuestionnaire extends Fragment {
         MinUni = (EditText) binding.EditTextMinutes1;
         HourSport = (EditText) binding.EditTextHours2;
         MinSport = (EditText) binding.EditTextMinutes2;
+        Finish = binding.buttonFinish;
 
 
 // set initial university intensity
@@ -216,7 +223,54 @@ public class ActivityQuestionnaire extends Fragment {
             }
         });
 
+// Cultural Activities
+        CBMuseum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBMuseum.isChecked())
+                    CBCulture.add("Museum");
+                else
+                    CBCulture.remove("Museum");
+            }
+        });
+        CBTheatre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBTheatre.isChecked())
+                    CBCulture.add("Theatre");
+                else
+                    CBCulture.remove("Theatre");
+            }
+        });
+        CBConcert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBConcert.isChecked())
+                    CBCulture.add("Concert");
+                else
+                    CBCulture.remove("Concert");
+            }
+        });
+        CBCinema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBCinema.isChecked())
+                    CBCulture.add("Cinema");
+                else
+                    CBCulture.remove("Cinema");
+            }
+        });
+        CBRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CBRestaurant.isChecked())
+                    CBCulture.add("Restaurant");
+                else
+                    CBCulture.remove("Restaurant");
+            }
+        });
 
+// SAVE all Activities
         m_DataOther = CBResult.toString();
         MainActivity.m_todaysData.put(Globals.DataOther, String.valueOf(m_DataOther));
         try {
