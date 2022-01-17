@@ -39,7 +39,7 @@ public class ActivityQuestionnaire extends Fragment {
     private Button Finish;
     private ArrayList<String> CBResult, CBSocial, CBCulture;
     private SeekBar SBSport, SBUniversity;
-    private EditText HourUni, MinUni, HourSport, MinSport;
+    private EditText HourUni, MinUni, HourSport, MinSport, MinSocial, HourSocial;
     private TextView SportProgress;
     private TextView UniversityProgress;
     public static Integer m_universityIntensity = 0;
@@ -48,7 +48,7 @@ public class ActivityQuestionnaire extends Fragment {
     public static Integer m_sportDurHour = 0;
     public static Integer m_sportDurMin = 0;
     public static Integer m_sportIntensity = 0;
-    public static String  m_DataOther, m_DataSocial;
+    public static String  m_DataOther, m_DataSocial, m_DataCultural, m_MinSocial, m_HourSocial;
 
     private NavController homeNavi;
     public static ActivityQuestionnaire activityQuestionnaire = new ActivityQuestionnaire();
@@ -88,6 +88,8 @@ public class ActivityQuestionnaire extends Fragment {
         MinUni = (EditText) binding.EditTextMinutes1;
         HourSport = (EditText) binding.EditTextHours2;
         MinSport = (EditText) binding.EditTextMinutes2;
+        HourSocial = binding.EditTextHobbyHours1;
+        MinSocial = binding.EditTextHobbyMinutes1;
         Finish = binding.buttonFinish;
 
 
@@ -108,7 +110,7 @@ public class ActivityQuestionnaire extends Fragment {
     // set initial university duration -> minutes
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityMinutes)){
             m_uniDurMin=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityMinutes)));
-            m_uniDurMin = Integer.valueOf(HourUni.getText().toString());
+            m_uniDurMin = Integer.valueOf(MinUni.getText().toString());
         }
 
 // set initial sport intensity
@@ -122,13 +124,13 @@ public class ActivityQuestionnaire extends Fragment {
 
     // set initial sport duration -> hours
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportHours)){
-            m_sportDurHour=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportHours)));
-            m_sportDurHour = Integer.valueOf(HourUni.getText().toString());
+            m_sportDurHour = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportHours)));
+            m_sportDurHour = Integer.valueOf(HourSport.getText().toString());
         }
     // set initial sport duration -> minutes
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportMinutes)){
-            m_sportDurMin=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportMinutes)));
-            m_sportDurMin = Integer.valueOf(MinUni.getText().toString());
+            m_sportDurMin = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportMinutes)));
+            m_sportDurMin = Integer.valueOf(MinSport.getText().toString());
         }
 
 // Other Activities
@@ -287,6 +289,14 @@ public class ActivityQuestionnaire extends Fragment {
             e.printStackTrace();
         }
 
+        m_DataCultural = CBCulture.toString();
+        MainActivity.m_todaysData.put(Globals.CBCulture, String.valueOf(m_DataCultural));
+        try {
+            MainActivity.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         SBSport.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -342,6 +352,19 @@ public class ActivityQuestionnaire extends Fragment {
                 }
             }
         });
+// Social Activities Duration
+        m_MinSocial = MinSocial.getText().toString();
+        m_HourSocial = HourSocial.getText().toString();
+        MainActivity.m_todaysData.put(Globals.MinSocial, String.valueOf(m_MinSocial));
+        MainActivity.m_todaysData.put(Globals.HourSocial, String.valueOf(m_HourSocial));
+        try {
+            MainActivity.saveData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
 
         // go back to homeview if finish button is clicked
         homeNavi = NavHostFragment.findNavController(ActivityQuestionnaire.this);
