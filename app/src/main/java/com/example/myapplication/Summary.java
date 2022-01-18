@@ -56,10 +56,12 @@ public class Summary extends Fragment {
         String dateDayTwoStr = formatter.format(m_dayTwo);
         String[] dateArray = {dateStr, dateDayOneStr, dateDayTwoStr};
 
-        // Write Emotion
+        // Display Emotion
         emotionToday = HomeView.m_emotionData.get(dateStr).get(Globals.emotion);   //get emotion from Map
         TextView tv_emotion = binding.summaryEmotionValue;
-        tv_emotion.setText(emotionToday+": "); //+date_str only for control
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).containsKey(Globals.emotion)) {
+            tv_emotion.setText(emotionToday + ": "); //+date_str only for control
+        }
 
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).containsKey(Globals.feeling)){
             String feeling = MainActivity.getEmotionData().get(dateStr).get(Globals.feeling);
@@ -70,51 +72,64 @@ public class Summary extends Fragment {
 
         // Display Physical Condition
         // Smoking
-        for (String i: dateArray){
-            if(Objects.requireNonNull(MainActivity.getEmotionData().get(i)).containsKey(Globals.cigarettes)){
-                String smokingToday = MainActivity.getEmotionData().get(i).get(Globals.cigarettes);
-                TextView tv_smoking = binding.summaryPhysicalCondition.summarySmokingToday;
+        TextView tv_smokingToday = binding.summaryPhysicalCondition.summarySmokingToday;
+        TextView tv_smokingDayOne = binding.summaryPhysicalCondition.summarySmokingDayOne;
+        TextView tv_smokingDayTwo = binding.summaryPhysicalCondition.summarySmokingDayTwo;
+        TextView[] smokingArray = {tv_smokingToday, tv_smokingDayOne, tv_smokingDayTwo};
+        for (int i = 0; i <= 2; i++){
+            if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).containsKey(Globals.cigarettes)){
+                String smokingToday = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.cigarettes);
                 if (smokingToday.contains("No")){
-                    tv_smoking.setText(Globals.no);
+                    smokingArray[i].setText(Globals.no);
                 } else if (smokingToday.contains("few")){
-                    tv_smoking.setText(Globals.little);
+                    smokingArray[i].setText(Globals.little);
                 } else {
-                    tv_smoking.setText(Globals.lot);
+                    smokingArray[i].setText(Globals.lot);
                 }
             }
         }
         //Alcohol
-        for (String i: dateArray){
-            if(Objects.requireNonNull(MainActivity.getEmotionData().get(i)).containsKey(Globals.alcohol)){
-                String alcoholToday = MainActivity.getEmotionData().get(i).get(Globals.alcohol);
-                TextView tv_alcohol = binding.summaryPhysicalCondition.summaryAlcoholToday;
+        TextView tv_alcoholToday = binding.summaryPhysicalCondition.summaryAlcoholToday;
+        TextView tv_alcoholDayOne = binding.summaryPhysicalCondition.summaryAlcoholDayOne;
+        TextView tv_alcoholDayTwo = binding.summaryPhysicalCondition.summaryAlcoholDayTwo;
+        TextView[] alcoholArray = {tv_alcoholToday, tv_alcoholDayOne, tv_alcoholDayTwo};
+        for (int i = 0; i <= 2; i++){
+            if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).containsKey(Globals.alcohol)){
+                String alcoholToday = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.alcohol);
                 if (alcoholToday.contains("No")){
-                    tv_alcohol.setText(Globals.no);
+                    alcoholArray[i].setText(Globals.no);
                 } else if (alcoholToday.contains("little")){
-                    tv_alcohol.setText(Globals.little);
+                    alcoholArray[i].setText(Globals.little);
                 } else {
-                    tv_alcohol.setText(Globals.lot);
+                    alcoholArray[i].setText(Globals.lot);
                 }
             }
         }
         // Medicine
-        for (String i: dateArray){
-            if(Objects.requireNonNull(MainActivity.getEmotionData().get(i)).containsKey(Globals.medication)){
-                String medicineToday = MainActivity.getEmotionData().get(i).get(Globals.medication);
-                TextView tv_medicineToday = binding.summaryPhysicalCondition.summaryMedicationToday;
+        TextView tv_medicineToday = binding.summaryPhysicalCondition.summaryMedicationToday;
+        TextView tv_medicineDayOne = binding.summaryPhysicalCondition.summaryMedicationDayOne;
+        TextView tv_medicineDayTwo = binding.summaryPhysicalCondition.summaryMedicationDayTwo;
+        TextView[] medicineArray = {tv_medicineToday, tv_medicineDayOne, tv_medicineDayTwo};
+        for (int i = 0; i <= 2; i++){
+            if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).containsKey(Globals.medication)){
+                String medicineToday = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.medication);
                 if (medicineToday.contains("No")){
-                    tv_medicineToday.setText(Globals.no);
+                    medicineArray[i].setText(Globals.no);
                 } else if (medicineToday.contains("already")){
-                    tv_medicineToday.setText(Globals.taken);
+                    medicineArray[i].setText(Globals.taken);
                 } else {
-                    tv_medicineToday.setText(Globals.notTaken);
+                    medicineArray[i].setText(Globals.notTaken);
                 }
             }
         }
         // Period
-        for (String i: dateArray){
-            if(Objects.requireNonNull(MainActivity.getEmotionData().get(i)).containsKey(Globals.period)){
-                String medicineToday = MainActivity.getEmotionData().get(i).get(Globals.period);
+        TextView tv_periodToday = binding.summaryPhysicalCondition.summaryPeriodToday;
+        TextView tv_periodDayOne = binding.summaryPhysicalCondition.summaryPeriodDayOne;
+        TextView tv_periodDayTwo = binding.summaryPhysicalCondition.summaryPeriodDayTwo;
+        TextView[] periodArray = {tv_periodToday, tv_periodDayOne, tv_periodDayTwo};
+        for (int i = 0; i <= 2; i++){
+            if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).containsKey(Globals.period)){
+                String medicineToday = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.period);
                 TextView tv_medicineToday = binding.summaryPhysicalCondition.summaryPeriodToday;
                 if (medicineToday.contains("No")){
                     tv_medicineToday.setText(Globals.no);
@@ -196,6 +211,9 @@ public class Summary extends Fragment {
             paramsSleepDayTwo.height = (SleepDayTwoInt+1) * 18;
             SleepDayTwoBar.setLayoutParams(paramsSleepDayTwo);
         }
+
+        // Display University Work
+
 
 
         return binding.getRoot();
