@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -163,6 +164,21 @@ public class Summary extends Fragment {
             ViewGroup.LayoutParams paramsSleepToday = SleepTodayBar.getLayoutParams();
             paramsSleepToday.height = (SleepInt+1) * 18;
             SleepTodayBar.setLayoutParams(paramsSleepToday);
+            // Color depending on quality
+            String QualityToday = MainActivity.getEmotionData().get(dateStr).get(Globals.sleepQuality);
+            if (QualityToday.contains("Very bad")) {
+                SleepTodayBar.setBackgroundColor(Color.RED);
+            } else if (QualityToday.contains("Bad")) {
+                SleepTodayBar.setBackgroundColor(Color.parseColor("#FF8800"));
+            } else if (QualityToday.contains("Normal")) {
+                SleepTodayBar.setBackgroundColor(Color.YELLOW);
+            } else if (QualityToday.contains("Very good")) {
+                SleepTodayBar.setBackgroundColor(Color.parseColor("#228B22"));
+            } else {
+                SleepTodayBar.setBackgroundColor(Color.parseColor("#DFFF00"));
+            }
+
+
         }
         // Day One
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateDayOneStr)).containsKey(Globals.sleepDuration)){
