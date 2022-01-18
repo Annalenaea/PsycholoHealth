@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -48,7 +49,23 @@ public class ActivityQuestionnaire extends Fragment {
     public static Integer m_sportDurHour = 0;
     public static Integer m_sportDurMin = 0;
     public static Integer m_sportIntensity = 0;
-    public static String  m_DataOther, m_DataSocial, m_DataCultural, m_MinSocial, m_HourSocial;
+    public static boolean  m_DomWork = false;
+    public static boolean  m_SelfCare = false;
+    public static boolean  m_Party = false;
+    public static boolean  m_Hobbies = false;
+    public static boolean  m_Museum = false;
+    public static boolean  m_Theatre = false;
+    public static boolean  m_Concert = false;
+    public static boolean  m_Cinema = false;
+    public static boolean  m_Restaurant = false;
+    public static boolean  m_Family = false;
+    public static boolean  m_Friends = false;
+    public static boolean  m_Partner = false;
+    public static boolean  m_Children = false;
+    public static boolean  m_Roomates = false;
+
+    public static String m_MinSocial;
+    public static String m_HourSocial;
 
     private NavController homeNavi;
     public static ActivityQuestionnaire activityQuestionnaire = new ActivityQuestionnaire();
@@ -93,7 +110,7 @@ public class ActivityQuestionnaire extends Fragment {
         Finish = binding.buttonFinish;
 
 
-// set initial university intensity
+    // set initial university intensity
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityIntensity)){
             m_universityIntensity=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityIntensity)));
             SBUniversity.setProgress(m_universityIntensity);
@@ -105,15 +122,15 @@ public class ActivityQuestionnaire extends Fragment {
     // set initial university duration -> hours
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityHours)){
             m_uniDurHour=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityHours)));
-            m_uniDurHour = Integer.valueOf(HourUni.getText().toString());
+            HourUni.setText(String.valueOf(m_uniDurHour));
         }
     // set initial university duration -> minutes
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityMinutes)){
             m_uniDurMin=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityMinutes)));
-            m_uniDurMin = Integer.valueOf(MinUni.getText().toString());
+            MinUni.setText(String.valueOf(m_uniDurMin));
         }
 
-// set initial sport intensity
+    // set initial sport intensity
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportIntensity)){
             m_sportIntensity=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportIntensity)));
             SBSport.setProgress(m_sportIntensity);
@@ -125,151 +142,172 @@ public class ActivityQuestionnaire extends Fragment {
     // set initial sport duration -> hours
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportHours)){
             m_sportDurHour = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportHours)));
-            m_sportDurHour = Integer.valueOf(HourSport.getText().toString());
+            HourSport.setText(String.valueOf(m_sportDurHour));
         }
     // set initial sport duration -> minutes
         if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportMinutes)){
             m_sportDurMin = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportMinutes)));
-            m_sportDurMin = Integer.valueOf(MinSport.getText().toString());
+            MinSport.setText(String.valueOf(m_sportDurMin));
         }
 
-// Other Activities
+        // set initial social duration -> hours
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.HourSocial)){
+            m_HourSocial = Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.HourSocial));
+            HourSocial.setText(String.valueOf(m_HourSocial));
+        }
+        // set initial social duration -> minutes
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.MinSocial)){
+            m_MinSocial = Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.MinSocial));
+            MinSocial.setText(m_MinSocial);
+        }
+
+        // set initial other activities
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.DomWork)){
+            m_DomWork = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.DomWork)));
+            CBDomesticWork.setChecked(m_DomWork);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.SelfCare)){
+            m_SelfCare = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.SelfCare)));
+            CBSelfCare.setChecked(m_SelfCare);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Party)){
+            m_Party= Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Party)));
+            CBParty.setChecked(m_Party);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Hobbies)){
+            m_Hobbies = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Hobbies)));
+            CBHobby.setChecked(m_Hobbies);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Friends)){
+            m_Friends = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Friends)));
+            CBFriends.setChecked(m_Friends);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Family)){
+            m_Family = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Family)));
+            CBFamily.setChecked(m_Family);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Partner)){
+            m_Partner = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Partner)));
+            CBPartner.setChecked(m_Partner);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Children)){
+            m_Children = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Children)));
+            CBChildren.setChecked(m_Children);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Roommates)){
+            m_Roomates = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Roommates)));
+            CBRoommates.setChecked(m_Roomates);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Museum)){
+            m_Museum = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Museum)));
+            CBMuseum.setChecked(m_Museum);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Theatre)){
+            m_Theatre = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Theatre)));
+            CBTheatre.setChecked(m_Theatre);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Concert)){
+            m_Concert = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Concert)));
+            CBConcert.setChecked(m_Concert);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Cinema)){
+            m_Cinema = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Cinema)));
+            CBCinema.setChecked(m_Cinema);
+        }
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Restaurant)){
+            m_Restaurant = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Restaurant)));
+            CBRestaurant.setChecked(m_Restaurant);
+        }
+
+    // Other Activities
         //on Click Listeners
-        CBDomesticWork.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBDomesticWork.isChecked())
-                    CBResult.add("DomesticWork");
-                else
-                    CBResult.remove("DomesticWork");
-            }
+        CBDomesticWork.setOnClickListener(v -> {
+            if (CBDomesticWork.isChecked())
+                m_DomWork = true;
+            else
+                m_DomWork = false;
         });
-        CBSelfCare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBSelfCare.isChecked())
-                    CBResult.add("SelfCare");
-                else
-                    CBResult.remove("SelfCare");
-            }
+        CBSelfCare.setOnClickListener(v -> {
+            if (CBSelfCare.isChecked())
+                m_SelfCare = true;
+            else
+                m_SelfCare = false;
         });
-        CBParty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBParty.isChecked())
-                    CBResult.add("Party");
-                else
-                    CBResult.remove("Party");
-            }
+        CBParty.setOnClickListener(v -> {
+            if (CBParty.isChecked())
+                m_Party = true;
+            else
+                m_Party = false;
         });
-        CBHobby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBHobby.isChecked())
-                    CBResult.add("Hobby");
-                else
-                    CBResult.remove("Hobby");
-            }
-        });
-        Finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // GO BACK TO MAIN
-            }
+        CBHobby.setOnClickListener(v -> {
+            if (CBHobby.isChecked())
+                m_Hobbies = true;
+            else
+                m_Hobbies = false;
         });
 
 // Social Contact
-        CBFriends.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBFriends.isChecked())
-                    CBSocial.add("Friends");
-                else
-                    CBSocial.remove("Friends");
-            }
+        CBFriends.setOnClickListener(v -> {
+            if (CBFriends.isChecked())
+                m_Friends = true;
+            else
+                m_Friends = false;
         });
-        CBFamily.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBFamily.isChecked())
-                    CBSocial.add("Family");
-                else
-                    CBSocial.remove("Family");
-            }
+        CBFamily.setOnClickListener(v -> {
+            if (CBFamily.isChecked())
+                m_Family = true;
+            else
+                m_Family = false;
         });
-        CBPartner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBPartner.isChecked())
-                    CBSocial.add("Partner");
-                else
-                    CBSocial.remove("Partner");
-            }
+        CBPartner.setOnClickListener(v -> {
+            if (CBPartner.isChecked())
+                m_Partner = true;
+            else
+                m_Partner = false;
         });
-        CBChildren.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBChildren.isChecked())
-                    CBSocial.add("Children");
-                else
-                    CBSocial.remove("Children");
-            }
+        CBChildren.setOnClickListener(v -> {
+            if (CBChildren.isChecked())
+                m_Children = true;
+            else
+                m_Children = false;
         });
-        CBRoommates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBRoommates.isChecked())
-                    CBSocial.add("Roommates");
-                else
-                    CBSocial.remove("Roommates");
-            }
+        CBRoommates.setOnClickListener(v -> {
+            if (CBRoommates.isChecked())
+                m_Roomates = true;
+            else
+                m_Roomates = false;
         });
 
 // Cultural Activities
-        CBMuseum.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBMuseum.isChecked())
-                    CBCulture.add("Museum");
-                else
-                    CBCulture.remove("Museum");
-            }
+        CBMuseum.setOnClickListener(v -> {
+            if (CBMuseum.isChecked())
+                m_Museum = true;
+            else
+                m_Museum = false;
         });
-        CBTheatre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBTheatre.isChecked())
-                    CBCulture.add("Theatre");
-                else
-                    CBCulture.remove("Theatre");
-            }
+        CBTheatre.setOnClickListener(v -> {
+            if (CBTheatre.isChecked())
+                m_Theatre = true;
+            else
+                m_Theatre = false;
         });
-        CBConcert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBConcert.isChecked())
-                    CBCulture.add("Concert");
-                else
-                    CBCulture.remove("Concert");
-            }
+        CBConcert.setOnClickListener(v -> {
+            if (CBConcert.isChecked())
+                m_Concert = true;
+            else
+                m_Concert = false;
         });
-        CBCinema.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBCinema.isChecked())
-                    CBCulture.add("Cinema");
-                else
-                    CBCulture.remove("Cinema");
-            }
+        CBCinema.setOnClickListener(v -> {
+            if (CBCinema.isChecked())
+                m_Cinema = true;
+            else
+                m_Cinema = false;
         });
-        CBRestaurant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CBRestaurant.isChecked())
-                    CBCulture.add("Restaurant");
-                else
-                    CBCulture.remove("Restaurant");
-            }
+        CBRestaurant.setOnClickListener(v -> {
+            if (CBRestaurant.isChecked())
+                m_Restaurant = true;
+            else
+                m_Restaurant = false;
         });
 
         SBSport.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -324,15 +362,24 @@ public class ActivityQuestionnaire extends Fragment {
             MainActivity.m_todaysData.put(Globals.sportIntensity, String.valueOf(m_sportIntensity));
             MainActivity.m_todaysData.put(Globals.universityIntensity, String.valueOf(m_universityIntensity));
 
-            // SAVE all Activities
-            m_DataOther = CBResult.toString();
-            MainActivity.m_todaysData.put(Globals.DataOther, String.valueOf(m_DataOther));
+            // save checkboxes
+            MainActivity.m_todaysData.put(Globals.DomWork, String.valueOf(m_DomWork));
+            MainActivity.m_todaysData.put(Globals.SelfCare, String.valueOf(m_SelfCare));
+            MainActivity.m_todaysData.put(Globals.Party, String.valueOf(m_Party));
+            MainActivity.m_todaysData.put(Globals.Hobbies, String.valueOf(m_Hobbies));
 
-            m_DataSocial = CBSocial.toString();
-            MainActivity.m_todaysData.put(Globals.DataSocial, String.valueOf(m_DataSocial));
+            MainActivity.m_todaysData.put(Globals.Museum, String.valueOf(m_Museum));
+            MainActivity.m_todaysData.put(Globals.Theatre, String.valueOf(m_Theatre));
+            MainActivity.m_todaysData.put(Globals.Concert, String.valueOf(m_Concert));
+            MainActivity.m_todaysData.put(Globals.Cinema, String.valueOf(m_Cinema));
+            MainActivity.m_todaysData.put(Globals.Restaurant, String.valueOf(m_Restaurant));
 
-            m_DataCultural = CBCulture.toString();
-            MainActivity.m_todaysData.put(Globals.CBCulture, String.valueOf(m_DataCultural));
+            MainActivity.m_todaysData.put(Globals.Family, String.valueOf(m_Family));
+            MainActivity.m_todaysData.put(Globals.Friends, String.valueOf(m_Friends));
+            MainActivity.m_todaysData.put(Globals.Partner, String.valueOf(m_Partner));
+            MainActivity.m_todaysData.put(Globals.Children, String.valueOf(m_Children));
+            MainActivity.m_todaysData.put(Globals.Roommates, String.valueOf(m_Roomates));
+
 
             // Social Activities Duration
             m_MinSocial = MinSocial.getText().toString();
@@ -350,7 +397,7 @@ public class ActivityQuestionnaire extends Fragment {
             m_uniDurMin = Integer.parseInt(MinUni.getText().toString());
             m_uniDurHour = Integer.parseInt(HourUni.getText().toString());
             MainActivity.m_todaysData.put(Globals.universityMinutes, String.valueOf(m_uniDurMin));
-            MainActivity.m_todaysData.put(Globals.universityMinutes, String.valueOf(m_uniDurHour));
+            MainActivity.m_todaysData.put(Globals.universityHours, String.valueOf(m_uniDurHour));
 
             try {
                 MainActivity.saveData();

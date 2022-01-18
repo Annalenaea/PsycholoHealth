@@ -16,9 +16,21 @@ public class Globals {
     public static final String sportMinutes = "sportMinutes";
     public static final String MinSocial = "MinSocial";
     public static final String HourSocial = "HourSocial";
-    public static final String DataOther = "DataOther";
-    public static final String DataSocial = "DataSocial";
-    public static final String CBCulture = "CBCulture";
+
+    public static final String DomWork = "DomesticWork";
+    public static final String SelfCare = "SelfCare";
+    public static final String Party = "Party";
+    public static final String Hobbies = "Hobbies";
+    public static final String Museum = "Museum";
+    public static final String Theatre = "Theatre";
+    public static final String Concert = "Concert";
+    public static final String Cinema = "Cinema";
+    public static final String Restaurant = "Restaurant";
+    public static final String Family = "Family";
+    public static final String Friends = "Friends";
+    public static final String Partner = "Partner";
+    public static final String Children = "Children";
+    public static final String Roommates = "Roommates";
 
     public static final String stressLevel = "stressLevel";
     public static final String sleepDuration = "sleepDuration";
