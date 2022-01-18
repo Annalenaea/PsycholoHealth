@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private static final String TAG = "MainActivity";
     public static File filesDir;
-    private static Map<String,Map<String,String>> m_emotionData = new HashMap<>();
+    public static Map<String,Map<String,String>> m_emotionData = new HashMap<>();
     public static Map<String,String> m_todaysData = new HashMap<>();
     public static String m_today;
     private static final DateFormat m_dateFormat = new SimpleDateFormat(Globals.dateFormat,Globals.myLocal);
