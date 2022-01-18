@@ -41,7 +41,7 @@
     <TextView
         android:id="@+id/yAxisStress"
         android:layout_width="1dp"
-        android:layout_height="114dp"
+        android:layout_height="76dp"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="12dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/stress" />
 
     <TextView
-        android:id="@+id/SleepTodayBar"
+        android:id="@+id/StressTodayBar"
         android:layout_width="60dp"
         android:layout_height="2dp"
         android:layout_marginStart="12dp"
@@ -60,27 +60,27 @@
         app:layout_constraintStart_toEndOf="@+id/yAxisStress" />
 
     <TextView
-        android:id="@+id/SleepDayOneBar"
+        android:id="@+id/StressDayOneBar"
         android:layout_width="60dp"
         android:layout_height="2dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:background="?attr/colorSecondary"
         app:layout_constraintBottom_toBottomOf="@id/yAxisStress"
-        app:layout_constraintStart_toEndOf="@+id/SleepTodayBar" />
+        app:layout_constraintStart_toEndOf="@+id/StressTodayBar" />
 
     <TextView
-        android:id="@+id/SleepDayTwoBar"
+        android:id="@+id/StressDayTwoBar"
         android:layout_width="60dp"
         android:layout_height="2dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:background="?attr/colorSecondary"
         app:layout_constraintBottom_toBottomOf="@id/yAxisStress"
-        app:layout_constraintStart_toEndOf="@+id/SleepDayOneBar" />
+        app:layout_constraintStart_toEndOf="@+id/StressDayOneBar" />
 
     <TextView
-        android:id="@+id/SleepTodayBarText"
+        android:id="@+id/StressTodayBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -88,28 +88,28 @@
         android:layout_marginTop="8dp"
         android:text="today"
         android:textColor="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="@+id/SleepTodayBar"
-        app:layout_constraintTop_toBottomOf="@+id/SleepTodayBar" />
+        app:layout_constraintStart_toStartOf="@+id/StressTodayBar"
+        app:layout_constraintTop_toBottomOf="@+id/StressTodayBar" />
 
     <TextView
-        android:id="@+id/SleepDayOneBarText"
+        android:id="@+id/StressDayOneBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="1 day ago"
         android:textColor="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="@+id/SleepDayOneBar"
-        app:layout_constraintTop_toBottomOf="@+id/SleepDayOneBar" />
+        app:layout_constraintStart_toStartOf="@+id/StressDayOneBar"
+        app:layout_constraintTop_toBottomOf="@+id/StressDayOneBar" />
 
     <TextView
-        android:id="@+id/SleepDayTwoBarText"
+        android:id="@+id/StressDayTwoBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="2 days ago"
         android:textColor="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="@+id/SleepDayTwoBar"
-        app:layout_constraintTop_toBottomOf="@+id/SleepDayTwoBar" />
+        app:layout_constraintStart_toStartOf="@+id/StressDayTwoBar"
+        app:layout_constraintTop_toBottomOf="@+id/StressDayTwoBar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

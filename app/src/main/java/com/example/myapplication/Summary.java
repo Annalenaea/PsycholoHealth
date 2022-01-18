@@ -67,7 +67,7 @@ public class Summary extends Fragment {
         }
 
 
-        // Write Physical Condition
+        // Display Physical Condition
         // Smoking
         for (String i: dateArray){
             if(Objects.requireNonNull(MainActivity.getEmotionData().get(i)).containsKey(Globals.cigarettes)){
@@ -112,8 +112,8 @@ public class Summary extends Fragment {
         }
         // Period
         for (String i: dateArray){
-            if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).containsKey(Globals.period)){
-                String medicineToday = MainActivity.getEmotionData().get(dateStr).get(Globals.period);
+            if(Objects.requireNonNull(MainActivity.getEmotionData().get(i)).containsKey(Globals.period)){
+                String medicineToday = MainActivity.getEmotionData().get(i).get(Globals.period);
                 TextView tv_medicineToday = binding.summaryPhysicalCondition.summaryPeriodToday;
                 if (medicineToday.contains("No")){
                     tv_medicineToday.setText(Globals.no);
@@ -123,6 +123,34 @@ public class Summary extends Fragment {
             }
         }
 
+        // Display Stress Level
+        TextView StressTodayBar = binding.summaryStress.StressTodayBar;
+        TextView StressDayOneBar = binding.summaryStress.StressDayOneBar;
+        TextView StressDayTwoBar = binding.summaryStress.StressDayTwoBar;
+        // Today
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).containsKey(Globals.stressLevel)){
+            String StressStr = MainActivity.getEmotionData().get(dateStr).get(Globals.stressLevel);
+            int StressInt = Integer.parseInt(StressStr);
+            ViewGroup.LayoutParams paramsStressToday = StressTodayBar.getLayoutParams();
+            paramsStressToday.height = (StressInt) * 16;
+            StressTodayBar.setLayoutParams(paramsStressToday);
+        }
+        // Day One
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateDayOneStr)).containsKey(Globals.stressLevel)) {
+            String StressDayOneStr = MainActivity.getEmotionData().get(dateDayOneStr).get(Globals.stressLevel);
+            int StressDayOneInt = Integer.parseInt(StressDayOneStr);
+            ViewGroup.LayoutParams paramsStressDayOne = StressDayOneBar.getLayoutParams();
+            paramsStressDayOne.height = (StressDayOneInt) * 16;
+            StressDayOneBar.setLayoutParams(paramsStressDayOne);
+        }
+        // Day Two
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateDayOneStr)).containsKey(Globals.stressLevel)) {
+            String StressDayTwoStr = MainActivity.getEmotionData().get(dateDayTwoStr).get(Globals.stressLevel);
+            int StressDayTwoInt = Integer.parseInt(StressDayTwoStr);
+            ViewGroup.LayoutParams paramsStressDayTwo = StressDayTwoBar.getLayoutParams();
+            paramsStressDayTwo.height = (StressDayTwoInt) * 16;
+            StressDayTwoBar.setLayoutParams(paramsStressDayTwo);
+        }
 
 
         return binding.getRoot();

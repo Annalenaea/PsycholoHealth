@@ -81,7 +81,7 @@
                 android:id="@+id/summaryStress"
                 layout="@layout/summary_stress"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="160dp"
                 android:layout_margin="@dimen/container_margin"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
