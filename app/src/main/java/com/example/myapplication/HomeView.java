@@ -128,8 +128,13 @@ public class HomeView extends Fragment {
 
         // graph indicates mental Health development
         try {
-            drawGraph(Globals.emotion);
             drawGraph(Globals.stressLevel);
+            drawGraph(Globals.sleepDuration);
+            drawGraph(Globals.universityHours);
+            drawGraph(Globals.universityIntensity);
+            drawGraph(Globals.sportHours);
+            drawGraph(Globals.sportIntensity);
+
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -253,12 +258,18 @@ public class HomeView extends Fragment {
 
     public void drawGraph(String data) throws ParseException {
         GraphView graph;
-        if(data == Globals.emotion) {
+        if(data == Globals.sportHours) {
             graph = binding.development.graph;
         }else if (data == Globals.sleepDuration) {
             graph = binding.developmentsleep.graph;
         }else if(data == Globals.stressLevel) {
             graph = binding.developmentstress.graph;
+        }else if(data == Globals.universityIntensity) {
+            graph = binding.developmentuniintensity.graph;
+        }else if(data == Globals.universityHours) {
+            graph = binding.developmentuniduration.graph;
+        }else if(data == Globals.sportIntensity) {
+            graph = binding.developmentsportintensity.graph;
         }else{
             graph = binding.development.graph;
         }
@@ -286,16 +297,14 @@ public class HomeView extends Fragment {
             for (int i = 0; i < dates.length; i++) {
                 dateString = formatter.format(dates[i]);
                 if(m_emotionData.get(dateString).containsKey(data)) {
-                    if(data == Globals.emotion) {
-                        value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
-                    }else{
+                    if(!Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)).isEmpty()) {
+                        Log.d("hallo",Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
                         value = Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
-                        Log.d(data, String.valueOf(value));
+                        dataSeries[k] = new DataPoint(dates[i], value);
+                        usedDates[k] = dates[i];
+                        containsKey = true;
+                        k++;
                     }
-                    dataSeries[k]= new DataPoint(dates[i], value);
-                    usedDates[k] = dates[i];
-                    containsKey = true;
-                    k++;
                 }
             }
             if(containsKey) { ;

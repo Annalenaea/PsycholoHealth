@@ -74,16 +74,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/calendarGroup" />
 
             <include
-                android:id="@+id/development"
-                layout="@layout/development"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_margin="@dimen/container_margin"
-                android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barchart" />
-
-            <include
                 android:id="@+id/developmentsleep"
                 layout="@layout/developmentsleep"
                 android:layout_width="match_parent"
@@ -91,7 +81,7 @@
                 android:layout_margin="@dimen/container_margin"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/development" />
+                app:layout_constraintTop_toBottomOf="@+id/barchart" />
 
             <include
                 android:id="@+id/developmentstress"
@@ -102,6 +92,46 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/developmentsleep" />
+
+            <include
+                android:id="@+id/developmentuniintensity"
+                layout="@layout/developmentuniintensity"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/developmentstress" />
+
+            <include
+                android:id="@+id/developmentuniduration"
+                layout="@layout/developmentuniduration"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/developmentuniintensity" />
+
+            <include
+                android:id="@+id/developmentsportintensity"
+                layout="@layout/developmentsportintensity"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/developmentuniintensity" />
+
+            <include
+                android:id="@+id/development"
+                layout="@layout/development"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/developmentsportintensity" />
 
             <TextView
                 android:layout_width="match_parent"
