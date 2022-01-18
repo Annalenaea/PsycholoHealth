@@ -144,12 +144,41 @@ public class Summary extends Fragment {
             StressDayOneBar.setLayoutParams(paramsStressDayOne);
         }
         // Day Two
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateDayOneStr)).containsKey(Globals.stressLevel)) {
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateDayTwoStr)).containsKey(Globals.stressLevel)) {
             String StressDayTwoStr = MainActivity.getEmotionData().get(dateDayTwoStr).get(Globals.stressLevel);
             int StressDayTwoInt = Integer.parseInt(StressDayTwoStr);
             ViewGroup.LayoutParams paramsStressDayTwo = StressDayTwoBar.getLayoutParams();
             paramsStressDayTwo.height = (StressDayTwoInt) * 16;
             StressDayTwoBar.setLayoutParams(paramsStressDayTwo);
+        }
+
+        // Display Sleep
+        TextView SleepTodayBar = binding.summarysleep.SleepTodayBar;
+        TextView SleepDayOneBar = binding.summarysleep.SleepDayOneBar;
+        TextView SleepDayTwoBar = binding.summarysleep.SleepDayTwoBar;
+        // Today
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).containsKey(Globals.sleepDuration)){
+            String SleepStr = MainActivity.getEmotionData().get(dateStr).get(Globals.sleepDuration);
+            int SleepInt = Integer.parseInt(SleepStr);
+            ViewGroup.LayoutParams paramsSleepToday = SleepTodayBar.getLayoutParams();
+            paramsSleepToday.height = (SleepInt+1) * 18;
+            SleepTodayBar.setLayoutParams(paramsSleepToday);
+        }
+        // Day One
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateDayOneStr)).containsKey(Globals.sleepDuration)){
+            String SleepDayOneStr = MainActivity.getEmotionData().get(dateDayOneStr).get(Globals.sleepDuration);
+            int SleepDayOneInt = Integer.parseInt(SleepDayOneStr);
+            ViewGroup.LayoutParams paramsSleepDayOne = SleepDayOneBar.getLayoutParams();
+            paramsSleepDayOne.height = (SleepDayOneInt+1) * 18;
+            SleepDayOneBar.setLayoutParams(paramsSleepDayOne);
+        }
+        // Day Two
+        if(Objects.requireNonNull(MainActivity.getEmotionData().get(dateDayTwoStr)).containsKey(Globals.sleepDuration)){
+            String SleepDayTwoStr = MainActivity.getEmotionData().get(dateDayTwoStr).get(Globals.sleepDuration);
+            int SleepDayTwoInt = Integer.parseInt(SleepDayTwoStr);
+            ViewGroup.LayoutParams paramsSleepDayTwo = SleepDayTwoBar.getLayoutParams();
+            paramsSleepDayTwo.height = (SleepDayTwoInt+1) * 18;
+            SleepDayTwoBar.setLayoutParams(paramsSleepDayTwo);
         }
 
 
