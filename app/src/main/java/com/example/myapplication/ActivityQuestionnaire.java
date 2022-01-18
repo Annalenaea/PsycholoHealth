@@ -272,31 +272,6 @@ public class ActivityQuestionnaire extends Fragment {
             }
         });
 
-// SAVE all Activities
-        m_DataOther = CBResult.toString();
-        MainActivity.m_todaysData.put(Globals.DataOther, String.valueOf(m_DataOther));
-        try {
-            MainActivity.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        m_DataSocial = CBSocial.toString();
-        MainActivity.m_todaysData.put(Globals.DataSocial, String.valueOf(m_DataSocial));
-        try {
-            MainActivity.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        m_DataCultural = CBCulture.toString();
-        MainActivity.m_todaysData.put(Globals.CBCulture, String.valueOf(m_DataCultural));
-        try {
-            MainActivity.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         SBSport.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -316,12 +291,6 @@ public class ActivityQuestionnaire extends Fragment {
                 m_sportIntensity = SBSport.getProgress();
                 SportProgress.setText("   " + m_sportIntensity*10 + "%");
                 seekBar.setMax(10);
-                MainActivity.m_todaysData.put(Globals.sportIntensity, String.valueOf(m_sportIntensity));
-                try {
-                    MainActivity.saveData();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
 
@@ -344,32 +313,52 @@ public class ActivityQuestionnaire extends Fragment {
                 m_universityIntensity = SBUniversity.getProgress();
                 UniversityProgress.setText("   " + m_universityIntensity*10 + "%");
                 seekBar.setMax(10);
-                MainActivity.m_todaysData.put(Globals.universityIntensity, String.valueOf(m_universityIntensity));
-                try {
-                    MainActivity.saveData();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
-// Social Activities Duration
-        m_MinSocial = MinSocial.getText().toString();
-        m_HourSocial = HourSocial.getText().toString();
-        MainActivity.m_todaysData.put(Globals.MinSocial, String.valueOf(m_MinSocial));
-        MainActivity.m_todaysData.put(Globals.HourSocial, String.valueOf(m_HourSocial));
-        try {
-            MainActivity.saveData();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
 
         // go back to homeview if finish button is clicked
         homeNavi = NavHostFragment.findNavController(ActivityQuestionnaire.this);
         activityQuestionnaire = ActivityQuestionnaire.this;
-        Finish.setOnClickListener(View -> homeNavi.navigate(R.id.action_ActivityFragment_to_HomeFragment));
+
+        Finish.setOnClickListener(View -> {
+            MainActivity.m_todaysData.put(Globals.sportIntensity, String.valueOf(m_sportIntensity));
+            MainActivity.m_todaysData.put(Globals.universityIntensity, String.valueOf(m_universityIntensity));
+
+            // SAVE all Activities
+            m_DataOther = CBResult.toString();
+            MainActivity.m_todaysData.put(Globals.DataOther, String.valueOf(m_DataOther));
+
+            m_DataSocial = CBSocial.toString();
+            MainActivity.m_todaysData.put(Globals.DataSocial, String.valueOf(m_DataSocial));
+
+            m_DataCultural = CBCulture.toString();
+            MainActivity.m_todaysData.put(Globals.CBCulture, String.valueOf(m_DataCultural));
+
+            // Social Activities Duration
+            m_MinSocial = MinSocial.getText().toString();
+            m_HourSocial = HourSocial.getText().toString();
+            MainActivity.m_todaysData.put(Globals.MinSocial, String.valueOf(m_MinSocial));
+            MainActivity.m_todaysData.put(Globals.HourSocial, String.valueOf(m_HourSocial));
+
+            // Sport Activities Duration
+            m_sportDurMin = Integer.parseInt(MinSport.getText().toString());
+            m_sportDurHour = Integer.parseInt(HourSport.getText().toString());
+            MainActivity.m_todaysData.put(Globals.sportMinutes, String.valueOf(m_sportDurMin));
+            MainActivity.m_todaysData.put(Globals.sportHours, String.valueOf(m_sportDurHour));
+
+            // Uni Activities Duration
+            m_uniDurMin = Integer.parseInt(MinUni.getText().toString());
+            m_uniDurHour = Integer.parseInt(HourUni.getText().toString());
+            MainActivity.m_todaysData.put(Globals.universityMinutes, String.valueOf(m_uniDurMin));
+            MainActivity.m_todaysData.put(Globals.universityMinutes, String.valueOf(m_uniDurHour));
+
+            try {
+                MainActivity.saveData();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            homeNavi.navigate(R.id.action_ActivityFragment_to_HomeFragment);
+        });
 
         return binding.getRoot();
     }
