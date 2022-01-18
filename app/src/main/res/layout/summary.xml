@@ -39,11 +39,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <TextView
+                    android:id="@+id/summaryEmotionValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@id/summaryFeeling"
+                    app:layout_constraintEnd_toStartOf="@id/summaryEmotionValueTwo"
                     app:layout_constraintTop_toTopOf="parent"
                     android:text="Emotion from today"
+                    android:textColor="?attr/colorSecondary"
+                    android:textSize="@dimen/headline_size"
+                    android:layout_margin="@dimen/container_margin"/>
+
+                <TextView
+                    android:id="@+id/summaryEmotionValueTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="further"
                     android:textColor="?attr/colorSecondary"
                     android:textSize="@dimen/headline_size"
                     android:layout_margin="@dimen/container_margin"/>
@@ -63,6 +75,8 @@
                 app:layout_constraintTop_toBottomOf="@id/summaryFeeling" />
 
             <!-- Stress Level -->
+
+            <!-- Sleep -->
             <include
                 android:id="@+id/summaryStress"
                 layout="@layout/summary_stress"
@@ -73,7 +87,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/summaryPhysicalCondition" />
 
-            <!-- Sleep -->
             <include
                 android:id="@+id/summarysleep"
                 layout="@layout/summary_sleep"

@@ -52,4 +52,12 @@ public class Globals {
 
     public static final int dismissDelay = 500;
     public static final int dismissDelayNotClicked = 3000;
+
+    // options for Physical Conditions
+    public static String no = "no";
+    public static String yes = "yes";
+    public static String little = "x";
+    public static String lot = "xx";
+    public static String taken = "☑";
+    public static String notTaken = "☐";
 }

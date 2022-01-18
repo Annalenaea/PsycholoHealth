@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
         app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
         app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
         app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
         app:layout_constraintTop_toBottomOf="@id/summarySmokingToday"/>
@@ -149,7 +149,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
         app:layout_constraintTop_toBottomOf="@id/summarySmokingToday"/>
@@ -160,7 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
         app:layout_constraintTop_toBottomOf="@id/summarySmokingToday"/>
@@ -172,7 +172,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
         app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"/>
@@ -183,7 +183,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
         app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"/>
@@ -194,7 +194,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
         app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"/>
@@ -207,7 +207,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
         app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
@@ -218,7 +218,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
         app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
@@ -229,7 +229,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="4dp"
-        android:text="x"
+        android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
         app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
