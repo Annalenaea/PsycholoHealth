@@ -83,6 +83,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/barchart" />
 
+            <include
+                android:id="@+id/developmentsleep"
+                layout="@layout/developmentsleep"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/development" />
+
+            <include
+                android:id="@+id/developmentstress"
+                layout="@layout/developmentstress"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_margin="@dimen/container_margin"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/developmentsleep" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"

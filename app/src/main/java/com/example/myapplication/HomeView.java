@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -126,7 +128,8 @@ public class HomeView extends Fragment {
 
         // graph indicates mental Health development
         try {
-            drawGraph();
+            drawGraph(Globals.emotion);
+            drawGraph(Globals.stressLevel);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -248,8 +251,17 @@ public class HomeView extends Fragment {
         binding = null;
     }
 
-    public void drawGraph() throws ParseException {
-        GraphView graph = binding.development.graph;
+    public void drawGraph(String data) throws ParseException {
+        GraphView graph;
+        if(data == Globals.emotion) {
+            graph = binding.development.graph;
+        }else if (data == Globals.sleepDuration) {
+            graph = binding.developmentsleep.graph;
+        }else if(data == Globals.stressLevel) {
+            graph = binding.developmentstress.graph;
+        }else{
+            graph = binding.development.graph;
+        }
         graph.removeAllSeries();
 
         DataPoint[] dataSeries = new DataPoint[m_emotionData.keySet().size()];
@@ -262,6 +274,7 @@ public class HomeView extends Fragment {
 
         if(m_emotionData.keySet().size()>0) {
             long[] dates = new long[m_emotionData.keySet().size()];
+            long[] usedDates = new long[m_emotionData.keySet().size()];
             for (int i = 0; i < m_emotionData.keySet().size(); i++) {
                 dateString = (String) m_emotionData.keySet().toArray()[i];
                 date = formatter.parse(dateString);
@@ -269,24 +282,42 @@ public class HomeView extends Fragment {
             }
             Arrays.sort(dates);
 
+            int k =0;
             for (int i = 0; i < dates.length; i++) {
                 dateString = formatter.format(dates[i]);
-                if(m_emotionData.get(dateString).containsKey(Globals.emotion)) {
-                    value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(Globals.emotion)), dates[i]);
-                    dataSeries[i] = new DataPoint(dates[i], value);
+                if(m_emotionData.get(dateString).containsKey(data)) {
+                    if(data == Globals.emotion) {
+                        value = setYvalue(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
+                    }else{
+                        value = Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
+                        Log.d(data, String.valueOf(value));
+                    }
+                    dataSeries[k]= new DataPoint(dates[i], value);
+                    usedDates[k] = dates[i];
                     containsKey = true;
+                    k++;
                 }
             }
-            if(containsKey) {
-                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries);
+            if(containsKey) { ;
+                DataPoint[] dataSeries1 = Arrays.copyOf(dataSeries, k);
+                long[] usedDates1 = Arrays.copyOf(usedDates, k);
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries1);
                 graph.addSeries(series);
                 graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
-                graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+                if(k>=3) {
+                    graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 3 because of the space
+                }else{
+                    graph.getGridLabelRenderer().setNumHorizontalLabels(k);
+                }
                 // set manual x bounds to have nice steps
-                graph.getViewport().setMinX(dates[0]);
-
-                graph.getViewport().setMaxX(dates[dates.length - 1]);
+                graph.getViewport().setMinX(usedDates1[0]);
+                graph.getViewport().setMaxX(usedDates1[k - 1]);
                 graph.getViewport().setXAxisBoundsManual(true);
+
+                // set manual y bounds to have nice steps
+                graph.getViewport().setMinY(0);
+                graph.getViewport().setMaxY(10);
+                graph.getViewport().setYAxisBoundsManual(true);
 
                 // as we use dates as labels, the human rounding to nice readable numbers
                 // is not necessary
@@ -297,7 +328,7 @@ public class HomeView extends Fragment {
     }
 
     // set the color of the corresponding day in the calendar
-    private int setYvalue(String emotion, long date) {
+    private int setYvalue(String emotion) {
         int value = -1;
         switch(emotion){
             case Globals.happy:
