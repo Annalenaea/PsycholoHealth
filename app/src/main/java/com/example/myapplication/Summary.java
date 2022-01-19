@@ -56,6 +56,29 @@ public class Summary extends Fragment {
         String dateDayTwoStr = formatter.format(m_dayTwo);
         String[] dateArray = {dateStr, dateDayOneStr, dateDayTwoStr};
         Map<String, String> voidData = new HashMap<>(); // void Map
+        //Date for displaying
+        DateFormat formatterDisplay = new SimpleDateFormat(Globals.dayMonthFormat, Globals.myLocal);
+        String dateDisp = formatterDisplay.format(m_today);
+        String dateDayOneDisp = formatterDisplay.format(m_dayOne);
+        String dateDayTwoDisp = formatterDisplay.format(m_dayTwo);
+        //Display right date
+        TextView tv_today1 = binding.summaryPhysicalCondition.summaryPhysicalConditionTodayText;
+        TextView tv_today2 = binding.summaryStress.StressTodayBarText;
+        TextView tv_today3 = binding.summarysleep.SleepTodayBarText;
+        TextView[] tv_today = {tv_today1, tv_today2, tv_today3};
+        TextView tv_dayOne1 = binding.summaryPhysicalCondition.summaryPhysicalConditionDayOneText;
+        TextView tv_dayOne2 = binding.summaryStress.StressDayOneBarText;
+        TextView tv_dayOne3 = binding.summarysleep.SleepDayOneBarText;
+        TextView[] tv_dayOne = {tv_dayOne1, tv_dayOne2, tv_dayOne3};
+        TextView tv_dayTwo1 = binding.summaryPhysicalCondition.summaryPhysicalConditionDayTwoText;
+        TextView tv_dayTwo2 = binding.summaryStress.StressDayTwoBarText;
+        TextView tv_dayTwo3 = binding.summarysleep.SleepDayTwoBarText;
+        TextView[] tv_dayTwo = {tv_dayTwo1, tv_dayTwo2, tv_dayTwo3};
+        for (int i=0; i<=2; i++) {
+            tv_today[i].setText(dateDisp);
+            tv_dayOne[i].setText(dateDayOneDisp);
+            tv_dayTwo[i].setText(dateDayTwoDisp);
+        }
 
         for (int i = 0; i <= 2; i++) {
             if (!MainActivity.getEmotionData().containsKey(dateArray[i])) {
@@ -81,6 +104,12 @@ public class Summary extends Fragment {
         }
 
         // Display Physical Condition
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.physicalFeeling)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.physicalFeeling)).isEmpty()) {
+                TextView tv_physicalFeeling = binding.summaryPhysicalCondition.summaryPhysicalConditionValue;
+                tv_physicalFeeling.setText(MainActivity.getEmotionData().get(dateStr).get(Globals.physicalFeeling));
+            }
+        }
         // Smoking
         TextView tv_smokingToday = binding.summaryPhysicalCondition.summarySmokingToday;
         TextView tv_smokingDayOne = binding.summaryPhysicalCondition.summarySmokingDayOne;
@@ -196,11 +225,11 @@ public class Summary extends Fragment {
                             } else if (Quality.contains("Bad")) {
                                 sleepArray[i].setBackgroundColor(Color.parseColor("#FF8800"));
                             } else if (Quality.contains("Normal")) {
-                                sleepArray[i].setBackgroundColor(Color.YELLOW);
+                                sleepArray[i].setBackgroundColor(Color.parseColor("#FFD700"));
                             } else if (Quality.contains("Very good")) {
                                 sleepArray[i].setBackgroundColor(Color.parseColor("#228B22"));
                             } else {
-                                sleepArray[i].setBackgroundColor(Color.parseColor("#DFFF00"));
+                                sleepArray[i].setBackgroundColor(Color.parseColor("#CAFF70"));
                             }
                         }
                     }
