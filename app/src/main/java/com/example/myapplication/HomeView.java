@@ -136,6 +136,7 @@ public class HomeView extends Fragment {
             drawGraph(Globals.universityIntensity);
             drawGraph(Globals.sportHours);
             drawGraph(Globals.sportIntensity);
+            drawGraph(Globals.HourSocial);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -260,8 +261,10 @@ public class HomeView extends Fragment {
 
     public void drawGraph(String data) throws ParseException {
         GraphView graph;
+        String minutes = "";
         if(data == Globals.sportHours) {
             graph = binding.development.graph;
+            minutes = Globals.sportMinutes;
         }else if (data == Globals.sleepDuration) {
             graph = binding.developmentsleep.graph;
         }else if(data == Globals.stressLevel) {
@@ -270,8 +273,12 @@ public class HomeView extends Fragment {
             graph = binding.developmentuniintensity.graph;
         }else if(data == Globals.universityHours) {
             graph = binding.developmentuniduration.graph;
+            minutes = Globals.universityMinutes;
         }else if(data == Globals.sportIntensity) {
             graph = binding.developmentsportintensity.graph;
+        }else if(data == Globals.HourSocial) {
+            graph = binding.developmentsocial.graph;
+            minutes = Globals.MinSocial;
         }else{
             graph = binding.development.graph;
         }
@@ -282,7 +289,7 @@ public class HomeView extends Fragment {
 
         String dateString;
         Date date = null;
-        int value;
+        double value;
         boolean containsKey = false;
 
         if(m_emotionData.keySet().size()>0) {
@@ -301,7 +308,11 @@ public class HomeView extends Fragment {
                 if(m_emotionData.get(dateString).containsKey(data)) {
                     if(!Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)).isEmpty()) {
                         Log.d("hallo",Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
-                        value = Integer.parseInt(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
+                        if(minutes == "") {
+                            value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
+                        }else{
+                            value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data))+"."+Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)));
+                        }
                         dataSeries[k] = new DataPoint(dates[i], value);
                         usedDates[k] = dates[i];
                         containsKey = true;
