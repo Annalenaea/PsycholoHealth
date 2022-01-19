@@ -256,6 +256,21 @@ public class Summary extends Fragment {
         tv_sportDuration.setText(sportHours + "h " + sportMinutes + "min");
         tv_sportIntensity.setText(sportIntensity + "0%");
 
+        //Social Contacts
+        TextView tv_socialContacts = binding.summarySocialContacts.summarySocialContactsValues;
+        String allContacts = "";
+        String[] contacts = {Globals.Family, Globals.Friends, Globals.Partner, Globals.Children, Globals.Roommates};
+        for (String contact: contacts) {
+            if (MainActivity.getEmotionData().get(dateStr).containsKey(contact)) {
+                if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(contact)).isEmpty()) {
+                    if (MainActivity.getEmotionData().get(dateStr).get(contact).contains("true")){
+                        allContacts = allContacts + "\n" + contact;
+                    }
+                }
+            }
+        }
+        tv_socialContacts.setText(allContacts.substring(1));
+
 
         return binding.getRoot();
     }
