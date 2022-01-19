@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="@id/summaryFeeling"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="Emotion from today"
+                    android:text="not selected"
                     android:textColor="?attr/colorSecondary"
                     android:textSize="@dimen/headline_size"
                     android:layout_margin="@dimen/container_margin"/>
