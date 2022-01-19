@@ -294,6 +294,25 @@ public class Summary extends Fragment {
             tv_culturalActivities.setText("None");
         }
 
+        // Other Activities
+        TextView tv_otherActivities = binding.summaryCulturalActivities.summaryOtherActivitiesValue;
+        String allOtherAct = "";
+        String[] otherAct = {Globals.DomWork, Globals.SelfCare, Globals.Party, Globals.Hobbies};
+        for (String act: otherAct) {
+            if (MainActivity.getEmotionData().get(dateStr).containsKey(act)) {
+                if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(act)).isEmpty()) {
+                    if (MainActivity.getEmotionData().get(dateStr).get(act).contains("true")){
+                        allOtherAct = allOtherAct + "\n" + act;
+                    }
+                }
+            }
+        }
+        if (allOtherAct != "") {
+            tv_otherActivities.setText(allOtherAct.substring(1));
+        }else {
+            tv_otherActivities.setText("None");
+        }
+
 
         return binding.getRoot();
     }
