@@ -10,7 +10,7 @@
         android:id="@+id/summaryUniversityText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="University work"
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
@@ -21,32 +21,35 @@
         android:id="@+id/summaryUniversityDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Duration"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryUniversityText" />
+        app:layout_constraintTop_toBottomOf="@id/summaryUniversityText"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/summaryUniversityIntensityValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Intensity value"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryUniversityText" />
+        app:layout_constraintTop_toBottomOf="@id/summaryUniversityText"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
     <TextView
         android:id="@+id/summaryUniversityIntensity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Intensity: "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toStartOf="@id/summaryUniversityIntensityValue"
-        app:layout_constraintTop_toBottomOf="@id/summaryUniversityText" />
+        app:layout_constraintTop_toBottomOf="@id/summaryUniversityText"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

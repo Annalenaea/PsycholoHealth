@@ -10,7 +10,7 @@
         android:id="@+id/summarySocialContactsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Social Contacts"
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,9 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="List of Persons"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summarySocialContactsText" />
+        app:layout_constraintTop_toBottomOf="@id/summarySocialContactsText"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,22 +32,24 @@
                     android:id="@+id/summaryEmotionText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/container_margin"
+                    android:layout_margin="@dimen/big_container_margin"
                     android:text="Emotion"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/headline_size"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
                 <TextView
                     android:id="@+id/summaryEmotionValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toStartOf="@id/summaryEmotionValueTwo"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text="not selected"
                     android:textColor="?attr/colorSecondary"
                     android:textSize="@dimen/headline_size"
-                    android:layout_margin="@dimen/container_margin"/>
+                    android:layout_margin="@dimen/big_container_margin"/>
 
                 <TextView
                     android:id="@+id/summaryEmotionValueTwo"
@@ -55,10 +57,11 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:text=" "
                     android:textColor="?attr/colorSecondary"
                     android:textSize="@dimen/headline_size"
-                    android:layout_margin="@dimen/container_margin"/>
+                    android:layout_margin="@dimen/big_container_margin"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

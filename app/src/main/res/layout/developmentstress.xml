@@ -10,7 +10,7 @@
         android:id="@+id/developmentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Stress"
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"

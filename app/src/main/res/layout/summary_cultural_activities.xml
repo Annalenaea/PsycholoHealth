@@ -10,7 +10,7 @@
         android:id="@+id/summaryCulturalActivitiesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Cultural Activities"
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" "
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/summaryCulturalActivitiesText" />
@@ -31,7 +31,7 @@
         android:id="@+id/summaryOtherActivitiesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Other Activities"
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
@@ -43,10 +43,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" "
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryOtherActivitiesText" />
+        app:layout_constraintTop_toBottomOf="@id/summaryOtherActivitiesText"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

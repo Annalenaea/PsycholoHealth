@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Physical Conditions"
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
@@ -25,6 +25,7 @@
         android:text="Today"
         android:textColor="?attr/colorSecondary"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         app:layout_constraintEnd_toStartOf="@id/summaryPhysicalConditionDayOneText"
         app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionValue"/>
 
@@ -33,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="40dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="1 day ago"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toStartOf="@id/summaryPhysicalConditionDayTwoText"
@@ -43,6 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
+        android:layout_marginRight="@dimen/big_container_margin"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="2 days ago"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,51 +57,53 @@
         android:id="@+id/summaryPhysicalConditionValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_marginRight="@dimen/big_container_margin"
         android:text="not selected"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/summaryPhysicalConditionText" />
+        app:layout_constraintBottom_toBottomOf="@id/summaryPhysicalConditionText" />
 
     <TextView
         android:id="@+id/summarySmoking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Smoking"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionTodayText" />
 
     <TextView
         android:id="@+id/summaryAlcohol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Alcohol"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summarySmoking"/>
+        app:layout_constraintTop_toBottomOf="@id/summarySmoking" />
 
     <TextView
         android:id="@+id/summaryMedication"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Medication"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryAlcohol"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryAlcohol" />
 
     <TextView
         android:id="@+id/summaryPeriod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/container_margin"
+        android:layout_margin="@dimen/big_container_margin"
         android:text="Period"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryMedication"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryMedication"
+        android:layout_marginBottom="@dimen/big_container_margin"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <!-- Values Smoking -->
     <TextView
@@ -105,7 +111,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
@@ -116,7 +122,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
@@ -127,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
@@ -139,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
@@ -150,7 +156,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
@@ -161,7 +167,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
@@ -173,18 +179,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
-        app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryAlcoholToday"
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:id="@+id/summaryMedicationDayOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
@@ -195,7 +202,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
@@ -208,32 +215,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionTodayText"
-        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="@dimen/big_container_margin"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/summaryPeriodDayOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayOneText"
-        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"
+        android:layout_marginBottom="@dimen/big_container_margin"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/summaryPeriodDayTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/big_container_margin"
         android:text="  "
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="@id/summaryPhysicalConditionDayTwoText"
-        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryMedicationToday"
+        android:layout_marginBottom="@dimen/big_container_margin"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

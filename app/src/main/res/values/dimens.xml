@@ -2,6 +2,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="icon_button_size">60dp</dimen>
     <dimen name="container_margin">4dp</dimen>
+    <dimen name="big_container_margin">10dp</dimen>
     <dimen name="container_margin_top">50dp</dimen>
     <dimen name="headline_size">18dp</dimen>
 </resources>
