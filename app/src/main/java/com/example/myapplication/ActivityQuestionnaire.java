@@ -404,6 +404,8 @@ public class ActivityQuestionnaire extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            String text = "Saved";
+            Toast.makeText(getContext(),text, Toast.LENGTH_LONG).show();
             homeNavi.navigate(R.id.action_ActivityFragment_to_HomeFragment);
         });
 
