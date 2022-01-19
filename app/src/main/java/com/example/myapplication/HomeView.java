@@ -48,6 +48,7 @@ public class HomeView extends Fragment {
     public static HomeView homeView = new HomeView();
     private static int colorGreen;
     public static Map<String,Map<String,String>> m_emotionData = new HashMap<>();
+    public static Date dateClick;
 
 
     @Override
@@ -91,7 +92,7 @@ public class HomeView extends Fragment {
             public void onDayClick(Date dateClicked) {
                 Log.d(TAG, "Day was clicked: " + dateClicked);
                 // open summary of this day
-                GlobalDate.val = dateClicked;
+                dateClick = dateClicked;
                 homeNavi.navigate(R.id.action_HomeFragment_to_SummaryFragment);
             }
 

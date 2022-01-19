@@ -36,10 +36,6 @@ public class Summary extends Fragment {
     }
 
     private SummaryBinding binding;
-    private static Date m_today = GlobalDate.val;       //variable for selected date
-    private static Date m_dayOne = subtractDays(m_today, 1);
-    private static Date m_dayTwo = subtractDays(m_today, 2);
-    private static String emotionToday;
 
     @Override
     public View onCreateView(
@@ -48,6 +44,11 @@ public class Summary extends Fragment {
     ) {
 
         binding = SummaryBinding.inflate(inflater, container, false);
+
+        Date m_today = HomeView.dateClick;       //variable for selected date
+        Date m_dayOne = subtractDays(m_today, 1);
+        Date m_dayTwo = subtractDays(m_today, 2);
+        String emotionToday;
 
         //Get date
         DateFormat formatter = new SimpleDateFormat(Globals.dateFormat, Globals.myLocal);
@@ -74,7 +75,7 @@ public class Summary extends Fragment {
         TextView tv_dayTwo2 = binding.summaryStress.StressDayTwoBarText;
         TextView tv_dayTwo3 = binding.summarysleep.SleepDayTwoBarText;
         TextView[] tv_dayTwo = {tv_dayTwo1, tv_dayTwo2, tv_dayTwo3};
-        for (int i=0; i<=2; i++) {
+        for (int i = 0; i <= 2; i++) {
             tv_today[i].setText(dateDisp);
             tv_dayOne[i].setText(dateDayOneDisp);
             tv_dayTwo[i].setText(dateDayTwoDisp);
@@ -190,7 +191,7 @@ public class Summary extends Fragment {
         TextView StressDayOneBar = binding.summaryStress.StressDayOneBar;
         TextView StressDayTwoBar = binding.summaryStress.StressDayTwoBar;
         TextView[] stressArray = {StressTodayBar, StressDayOneBar, StressDayTwoBar};
-        for (int i=0; i<=2; i++) {
+        for (int i = 0; i <= 2; i++) {
             if (MainActivity.getEmotionData().get(dateArray[i]).containsKey(Globals.stressLevel)) {
                 if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).get(Globals.stressLevel)).isEmpty()) {
                     String StressStr = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.stressLevel);
@@ -208,7 +209,7 @@ public class Summary extends Fragment {
         TextView SleepDayOneBar = binding.summarysleep.SleepDayOneBar;
         TextView SleepDayTwoBar = binding.summarysleep.SleepDayTwoBar;
         TextView[] sleepArray = {SleepTodayBar, SleepDayOneBar, SleepDayTwoBar};
-        for (int i=0; i<=2; i++) {
+        for (int i = 0; i <= 2; i++) {
             if (MainActivity.getEmotionData().get(dateArray[i]).containsKey(Globals.sleepDuration)) {
                 if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).get(Globals.sleepDuration)).isEmpty()) {
                     String SleepStr = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.sleepDuration);
@@ -289,10 +290,10 @@ public class Summary extends Fragment {
         TextView tv_socialContacts = binding.summarySocialContacts.summarySocialContactsValues;
         String allContacts = "";
         String[] contacts = {Globals.Family, Globals.Friends, Globals.Partner, Globals.Children, Globals.Roommates};
-        for (String contact: contacts) {
+        for (String contact : contacts) {
             if (MainActivity.getEmotionData().get(dateStr).containsKey(contact)) {
                 if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(contact)).isEmpty()) {
-                    if (MainActivity.getEmotionData().get(dateStr).get(contact).contains("true")){
+                    if (MainActivity.getEmotionData().get(dateStr).get(contact).contains("true")) {
                         allContacts = allContacts + "\n" + contact;
                     }
                 }
@@ -300,7 +301,7 @@ public class Summary extends Fragment {
         }
         if (allContacts != "") {
             tv_socialContacts.setText(allContacts.substring(1));
-        }else {
+        } else {
             tv_socialContacts.setText("None");
         }
         String socialHours = "0";
@@ -316,16 +317,17 @@ public class Summary extends Fragment {
             }
         }
         TextView tv_socialDuration = binding.summarySocialContacts.summarySocialContactsDuration;
-        tv_socialDuration.setText(socialHours + "h " + socialMinutes + "min");;
+        tv_socialDuration.setText(socialHours + "h " + socialMinutes + "min");
+        ;
 
         // Cultural Activities
         TextView tv_culturalActivities = binding.summaryCulturalActivities.summaryCulturalActivitiesValues;
         String allCultAct = "";
         String[] cultAct = {Globals.Museum, Globals.Theatre, Globals.Concert, Globals.Cinema, Globals.Restaurant};
-        for (String act: cultAct) {
+        for (String act : cultAct) {
             if (MainActivity.getEmotionData().get(dateStr).containsKey(act)) {
                 if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(act)).isEmpty()) {
-                    if (MainActivity.getEmotionData().get(dateStr).get(act).contains("true")){
+                    if (MainActivity.getEmotionData().get(dateStr).get(act).contains("true")) {
                         allCultAct = allCultAct + "\n" + act;
                     }
                 }
@@ -333,7 +335,7 @@ public class Summary extends Fragment {
         }
         if (allCultAct != "") {
             tv_culturalActivities.setText(allCultAct.substring(1));
-        }else {
+        } else {
             tv_culturalActivities.setText("None");
         }
 
@@ -341,10 +343,10 @@ public class Summary extends Fragment {
         TextView tv_otherActivities = binding.summaryCulturalActivities.summaryOtherActivitiesValue;
         String allOtherAct = "";
         String[] otherAct = {Globals.DomWork, Globals.SelfCare, Globals.Party, Globals.Hobbies};
-        for (String act: otherAct) {
+        for (String act : otherAct) {
             if (MainActivity.getEmotionData().get(dateStr).containsKey(act)) {
                 if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(act)).isEmpty()) {
-                    if (MainActivity.getEmotionData().get(dateStr).get(act).contains("true")){
+                    if (MainActivity.getEmotionData().get(dateStr).get(act).contains("true")) {
                         allOtherAct = allOtherAct + "\n" + act;
                     }
                 }
@@ -352,7 +354,7 @@ public class Summary extends Fragment {
         }
         if (allOtherAct != "") {
             tv_otherActivities.setText(allOtherAct.substring(1));
-        }else {
+        } else {
             tv_otherActivities.setText("None");
         }
 
