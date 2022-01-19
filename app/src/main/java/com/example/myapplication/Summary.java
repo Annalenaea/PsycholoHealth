@@ -100,7 +100,6 @@ public class Summary extends Fragment {
                 }
             }
         }
-
         //Alcohol
         TextView tv_alcoholToday = binding.summaryPhysicalCondition.summaryAlcoholToday;
         TextView tv_alcoholDayOne = binding.summaryPhysicalCondition.summaryAlcoholDayOne;
@@ -210,6 +209,52 @@ public class Summary extends Fragment {
         }
 
         // Display University Work
+        TextView tv_universityDuration = binding.summaryUniversity.summaryUniversityDuration;
+        TextView tv_universityIntensity = binding.summaryUniversity.summaryUniversityIntensityValue;
+        String uniHours = "0";
+        String uniMinutes = "0";
+        String uniIntensity = " ";
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.universityHours)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.universityHours)).isEmpty()) {
+                uniHours = MainActivity.getEmotionData().get(dateStr).get(Globals.universityHours);
+            }
+        }
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.universityMinutes)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.universityMinutes)).isEmpty()) {
+                uniMinutes = MainActivity.getEmotionData().get(dateStr).get(Globals.universityMinutes);
+            }
+        }
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.universityIntensity)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.universityIntensity)).isEmpty()) {
+                uniIntensity = MainActivity.getEmotionData().get(dateStr).get(Globals.universityIntensity);
+            }
+        }
+        tv_universityDuration.setText(uniHours + "h " + uniMinutes + "min");
+        tv_universityIntensity.setText(uniIntensity + "0%");
+
+        // Display Sport
+        TextView tv_sportDuration = binding.summarySport.summarySportDuration;
+        TextView tv_sportIntensity = binding.summarySport.summarySportIntensityValue;
+        String sportHours = "0";
+        String sportMinutes = "0";
+        String sportIntensity = " ";
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.sportHours)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.sportHours)).isEmpty()) {
+                sportHours = MainActivity.getEmotionData().get(dateStr).get(Globals.sportHours);
+            }
+        }
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.sportMinutes)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.sportMinutes)).isEmpty()) {
+                sportMinutes = MainActivity.getEmotionData().get(dateStr).get(Globals.sportMinutes);
+            }
+        }
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.sportIntensity)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.sportIntensity)).isEmpty()) {
+                sportIntensity = MainActivity.getEmotionData().get(dateStr).get(Globals.sportIntensity);
+            }
+        }
+        tv_sportDuration.setText(sportHours + "h " + sportMinutes + "min");
+        tv_sportIntensity.setText(sportIntensity + "0%");
 
 
         return binding.getRoot();
