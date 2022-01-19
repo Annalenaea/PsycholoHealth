@@ -256,7 +256,7 @@ public class Summary extends Fragment {
         tv_sportDuration.setText(sportHours + "h " + sportMinutes + "min");
         tv_sportIntensity.setText(sportIntensity + "0%");
 
-        //Social Contacts
+        // Social Contacts
         TextView tv_socialContacts = binding.summarySocialContacts.summarySocialContactsValues;
         String allContacts = "";
         String[] contacts = {Globals.Family, Globals.Friends, Globals.Partner, Globals.Children, Globals.Roommates};
@@ -269,7 +269,30 @@ public class Summary extends Fragment {
                 }
             }
         }
-        tv_socialContacts.setText(allContacts.substring(1));
+        if (allContacts != "") {
+            tv_socialContacts.setText(allContacts.substring(1));
+        }else {
+            tv_socialContacts.setText("None");
+        }
+
+        // Cultural Activities
+        TextView tv_culturalActivities = binding.summaryCulturalActivities.summaryCulturalActivitiesValues;
+        String allCultAct = "";
+        String[] cultAct = {Globals.Museum, Globals.Theatre, Globals.Concert, Globals.Cinema, Globals.Restaurant};
+        for (String act: cultAct) {
+            if (MainActivity.getEmotionData().get(dateStr).containsKey(act)) {
+                if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(act)).isEmpty()) {
+                    if (MainActivity.getEmotionData().get(dateStr).get(act).contains("true")){
+                        allCultAct = allCultAct + "\n" + act;
+                    }
+                }
+            }
+        }
+        if (allCultAct != "") {
+            tv_culturalActivities.setText(allCultAct.substring(1));
+        }else {
+            tv_culturalActivities.setText("None");
+        }
 
 
         return binding.getRoot();

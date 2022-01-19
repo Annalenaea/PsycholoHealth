@@ -18,10 +18,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/summarySocialContactsValues"
+        android:id="@+id/summaryCulturalActivitiesValues"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List of Cultural Activities"
+        android:text=" "
         android:layout_margin="@dimen/container_margin"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +36,13 @@
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summarySocialContactsValues"/>
+        app:layout_constraintTop_toBottomOf="@id/summaryCulturalActivitiesValues"/>
 
     <TextView
         android:id="@+id/summaryOtherActivitiesValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List of Other Activities"
+        android:text=" "
         android:layout_margin="@dimen/container_margin"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
