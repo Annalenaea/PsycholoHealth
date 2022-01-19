@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView0"
                 android:text="Duration:"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp" />
 
             <EditText
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes1"
                 android:text="Intensity:"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textViewIntensityUniversity"
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes1"
                 android:layout_toRightOf="@id/textView2"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp" />
 
             <SeekBar
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView3"
                 android:text="Duration:"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp" />
 
             <EditText
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes2"
                 android:text="Intensity:"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp" />
             <TextView
                 android:id="@+id/textViewIntensitySport"
@@ -150,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/EditTextMinutes2"
                 android:layout_toRightOf="@id/textView5"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp" />
 
             <SeekBar
@@ -219,7 +219,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/checkboxRoommates"
                 android:text="Duration:"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="?attr/colorSecondary"
                 android:textSize="16sp" />
 
             <EditText

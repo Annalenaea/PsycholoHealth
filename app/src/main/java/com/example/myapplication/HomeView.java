@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -63,10 +65,15 @@ public class HomeView extends Fragment {
         binding = HomeViewBinding.inflate(inflater, container, false);
         // open activity questionnaire if addActivityButton is clicked
         binding.addActivity.setOnClickListener(view -> homeNavi.navigate(R.id.action_HomeFragment_to_ActivityFragment));
-
-         colorRed = getResources().getColor(R.color.red);
-         colorGreen = getResources().getColor(R.color.green);
-         colorYellow = getResources().getColor(R.color.yellow);
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+            colorRed = getResources().getColor(R.color.darkred);
+            colorGreen = getResources().getColor(R.color.darkgreen);
+            colorYellow = getResources().getColor(R.color.darkyellow);
+        }else {
+            colorRed = getResources().getColor(R.color.lightred);
+            colorGreen = getResources().getColor(R.color.lightgreen);
+            colorYellow = getResources().getColor(R.color.lightyellow);
+        }
 
         // open add emotion popup
         binding.addEmotion.setOnClickListener(view -> {
