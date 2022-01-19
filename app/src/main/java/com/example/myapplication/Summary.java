@@ -303,6 +303,20 @@ public class Summary extends Fragment {
         }else {
             tv_socialContacts.setText("None");
         }
+        String socialHours = "0";
+        String socialMinutes = "0";
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.HourSocial)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.HourSocial)).isEmpty()) {
+                socialHours = MainActivity.getEmotionData().get(dateStr).get(Globals.HourSocial);
+            }
+        }
+        if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.MinSocial)) {
+            if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.MinSocial)).isEmpty()) {
+                socialMinutes = MainActivity.getEmotionData().get(dateStr).get(Globals.MinSocial);
+            }
+        }
+        TextView tv_socialDuration = binding.summarySocialContacts.summarySocialContactsDuration;
+        tv_socialDuration.setText(socialHours + "h " + socialMinutes + "min");;
 
         // Cultural Activities
         TextView tv_culturalActivities = binding.summaryCulturalActivities.summaryCulturalActivitiesValues;
