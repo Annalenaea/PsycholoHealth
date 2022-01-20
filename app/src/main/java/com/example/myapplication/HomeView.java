@@ -20,7 +20,11 @@ import com.example.myapplication.databinding.HomeViewBinding;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -42,9 +46,7 @@ public class HomeView extends Fragment {
     private static int m_currentMonth = Integer.parseInt(new SimpleDateFormat(Globals.monthNumberFormat, Globals.myLocal).format(Calendar.getInstance().getTime()));
     private HomeViewBinding binding;
     private NavController homeNavi;
-    private TextView happyBar;
-    private TextView neutralBar;
-    private TextView sadBar;
+    private GraphView barchart;
     private static int colorRed;
     private static int colorYellow;
     public static HomeView homeView = new HomeView();
@@ -121,9 +123,7 @@ public class HomeView extends Fragment {
             }
         });
 
-        happyBar = binding.barchart.happyBar;
-        neutralBar = binding.barchart.neutralBar;
-        sadBar = binding.barchart.sadBar;
+        barchart = binding.barchart.bar;
 
         m_emotionData = MainActivity.getEmotionData();
 
@@ -185,20 +185,40 @@ public class HomeView extends Fragment {
             }
         }
 
-        // happy bar
-        ViewGroup.LayoutParams paramsHappy = happyBar.getLayoutParams();
-        paramsHappy.height = (numberOfHappy+1) * 7;
-        happyBar.setLayoutParams(paramsHappy);
+        GraphView graph = barchart;
 
-        // neutral bar
-        ViewGroup.LayoutParams paramsNeutral = neutralBar.getLayoutParams();
-        paramsNeutral.height = (numberOfNeutral+1) * 7;
-        neutralBar.setLayoutParams(paramsNeutral);
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
+                new DataPoint(1, numberOfHappy),
+                new DataPoint(2, numberOfNeutral),
+                new DataPoint(3, numberOfSad),
+        });
+        graph.addSeries(series);
 
-        // sad bar
-        ViewGroup.LayoutParams paramsSad = sadBar.getLayoutParams();
-        paramsSad.height = (numberOfSad+1) * 7;
-        sadBar.setLayoutParams(paramsSad);
+        series.setValueDependentColor(data -> {
+            if(data.getX()==1)
+                return colorGreen;
+            else if (data.getX()==2)
+                return colorYellow;
+            else
+                return colorRed;
+        });
+
+        series.setSpacing(50);
+
+        series.setDrawValuesOnTop(true);
+        series.setValuesOnTopColor(getResources().getColor(R.color.blue));
+
+        graph.getViewport().setMinX(0.5);
+        graph.getViewport().setMaxX(3.5);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
+        graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(31);
+        graph.getViewport().setYAxisBoundsManual(true);
 
     }
 

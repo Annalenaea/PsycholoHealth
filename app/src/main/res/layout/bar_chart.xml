@@ -7,121 +7,22 @@
     android:background="@drawable/round_rectangle">
 
     <TextView
-        android:id="@+id/axis30"
-        android:layout_width="32dp"
-        android:layout_height="23dp"
-        android:layout_marginBottom="15dp"
-        android:text="30"
-        android:textColor="?attr/colorSecondary"
-        app:layout_constraintBottom_toTopOf="@+id/axis20"
-        app:layout_constraintEnd_toStartOf="@+id/yAxis" />
-
-    <TextView
-        android:id="@+id/analysis"
+        android:id="@+id/barText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/big_container_margin"
         android:text="Analysis"
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/bar"
+        android:layout_width="wrap_content"
+        android:layout_height="200dip"
+        android:layout_margin="@dimen/container_margin"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/yAxis"
-        android:layout_width="1dp"
-        android:layout_height="114dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="12dp"
-        android:background="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/analysis" />
-
-    <TextView
-        android:id="@+id/happyBar"
-        android:layout_width="60dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:background="?attr/colorSecondary"
-        app:layout_constraintBottom_toBottomOf="@id/yAxis"
-        app:layout_constraintStart_toEndOf="@+id/yAxis" />
-
-    <TextView
-        android:id="@+id/neutralBar"
-        android:layout_width="60dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:background="?attr/colorSecondary"
-        app:layout_constraintBottom_toBottomOf="@id/yAxis"
-        app:layout_constraintStart_toEndOf="@+id/happyBar" />
-
-    <TextView
-        android:id="@+id/sadBar"
-        android:layout_width="60dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:background="?attr/colorSecondary"
-        app:layout_constraintBottom_toBottomOf="@id/yAxis"
-        app:layout_constraintStart_toEndOf="@+id/neutralBar" />
-
-    <TextView
-        android:id="@+id/happyBarText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Happy"
-        android:textColor="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="@+id/happyBar"
-        app:layout_constraintTop_toBottomOf="@+id/happyBar" />
-
-    <TextView
-        android:id="@+id/neutralBarText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="8dp"
-        android:text="Neutral"
-        android:textColor="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="@+id/neutralBar"
-        app:layout_constraintTop_toBottomOf="@+id/neutralBar" />
-
-    <TextView
-        android:id="@+id/sadBarText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Sad"
-        android:textColor="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="@+id/sadBar"
-        app:layout_constraintTop_toBottomOf="@+id/sadBar" />
-
-    <TextView
-        android:id="@+id/axis10"
-        android:layout_width="32dp"
-        android:layout_height="23dp"
-        android:layout_marginBottom="15dp"
-        android:text="10"
-        android:textColor="?attr/colorSecondary"
-        app:layout_constraintBottom_toBottomOf="@+id/yAxis"
-        app:layout_constraintEnd_toStartOf="@+id/yAxis" />
-
-    <TextView
-        android:id="@+id/axis20"
-        android:layout_width="32dp"
-        android:layout_height="23dp"
-        android:layout_marginBottom="15dp"
-        android:text="20"
-        android:textColor="?attr/colorSecondary"
-        app:layout_constraintBottom_toTopOf="@+id/axis10"
-        app:layout_constraintEnd_toStartOf="@+id/yAxis" />
+        app:layout_constraintTop_toBottomOf="@+id/barText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
