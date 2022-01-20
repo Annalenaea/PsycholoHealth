@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +22,12 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import com.example.myapplication.databinding.SummaryBinding;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.DataPoint;
 
 import org.w3c.dom.Text;
 
@@ -57,29 +64,6 @@ public class Summary extends Fragment {
         String dateDayTwoStr = formatter.format(m_dayTwo);
         String[] dateArray = {dateStr, dateDayOneStr, dateDayTwoStr};
         Map<String, String> voidData = new HashMap<>(); // void Map
-        //Date for displaying
-        DateFormat formatterDisplay = new SimpleDateFormat(Globals.dayMonthFormat, Globals.myLocal);
-        String dateDisp = formatterDisplay.format(m_today);
-        String dateDayOneDisp = formatterDisplay.format(m_dayOne);
-        String dateDayTwoDisp = formatterDisplay.format(m_dayTwo);
-        //Display right date
-        TextView tv_today1 = binding.summaryPhysicalCondition.summaryPhysicalConditionTodayText;
-        TextView tv_today2 = binding.summaryStress.StressTodayBarText;
-        TextView tv_today3 = binding.summarysleep.SleepTodayBarText;
-        TextView[] tv_today = {tv_today1, tv_today2, tv_today3};
-        TextView tv_dayOne1 = binding.summaryPhysicalCondition.summaryPhysicalConditionDayOneText;
-        TextView tv_dayOne2 = binding.summaryStress.StressDayOneBarText;
-        TextView tv_dayOne3 = binding.summarysleep.SleepDayOneBarText;
-        TextView[] tv_dayOne = {tv_dayOne1, tv_dayOne2, tv_dayOne3};
-        TextView tv_dayTwo1 = binding.summaryPhysicalCondition.summaryPhysicalConditionDayTwoText;
-        TextView tv_dayTwo2 = binding.summaryStress.StressDayTwoBarText;
-        TextView tv_dayTwo3 = binding.summarysleep.SleepDayTwoBarText;
-        TextView[] tv_dayTwo = {tv_dayTwo1, tv_dayTwo2, tv_dayTwo3};
-        for (int i = 0; i <= 2; i++) {
-            tv_today[i].setText(dateDisp);
-            tv_dayOne[i].setText(dateDayOneDisp);
-            tv_dayTwo[i].setText(dateDayTwoDisp);
-        }
 
         for (int i = 0; i <= 2; i++) {
             if (!MainActivity.getEmotionData().containsKey(dateArray[i])) {
@@ -187,21 +171,45 @@ public class Summary extends Fragment {
         }
 
         // Display Stress Level
-        TextView StressTodayBar = binding.summaryStress.StressTodayBar;
-        TextView StressDayOneBar = binding.summaryStress.StressDayOneBar;
-        TextView StressDayTwoBar = binding.summaryStress.StressDayTwoBar;
-        TextView[] stressArray = {StressTodayBar, StressDayOneBar, StressDayTwoBar};
+        GraphView graph = binding.summaryStress.bar;
+        int[] stressInt = new int[3];
         for (int i = 0; i <= 2; i++) {
             if (MainActivity.getEmotionData().get(dateArray[i]).containsKey(Globals.stressLevel)) {
                 if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).get(Globals.stressLevel)).isEmpty()) {
                     String StressStr = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.stressLevel);
-                    int StressInt = Integer.parseInt(StressStr);
-                    ViewGroup.LayoutParams paramsStress = stressArray[i].getLayoutParams();
-                    paramsStress.height = (StressInt) * 16;
-                    stressArray[i].setLayoutParams(paramsStress);
+                    stressInt[i] = Integer.parseInt(StressStr);
                 }
             }
         }
+        BarGraphSeries<DataPoint> series;
+        series = new BarGraphSeries<>(new DataPoint[] {
+                new DataPoint(1, stressInt[0]),
+                new DataPoint(2, stressInt[1]),
+                new DataPoint(3, stressInt[2]),
+        });
+        graph.addSeries(series);
+
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(4);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+
+        graph.getGridLabelRenderer().setHumanRounding(false);
+
+        series.setSpacing(30);
+
+        series.setDrawValuesOnTop(true);
+        series.setValuesOnTopColor(getResources().getColor(R.color.blue));
+
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"","today","yesterday", "2 days ago",""});
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(10);
+        graph.getViewport().setYAxisBoundsManual(true);
 
 
         // Display Sleep
