@@ -24,6 +24,7 @@ import java.util.GregorianCalendar;
 import com.example.myapplication.databinding.SummaryBinding;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
@@ -213,38 +214,65 @@ public class Summary extends Fragment {
 
 
         // Display Sleep
-        TextView SleepTodayBar = binding.summarysleep.SleepTodayBar;
-        TextView SleepDayOneBar = binding.summarysleep.SleepDayOneBar;
-        TextView SleepDayTwoBar = binding.summarysleep.SleepDayTwoBar;
-        TextView[] sleepArray = {SleepTodayBar, SleepDayOneBar, SleepDayTwoBar};
+        int[] sleepInt = new int[3];
+        int[] colors = new int[3];
         for (int i = 0; i <= 2; i++) {
             if (MainActivity.getEmotionData().get(dateArray[i]).containsKey(Globals.sleepDuration)) {
                 if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).get(Globals.sleepDuration)).isEmpty()) {
                     String SleepStr = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.sleepDuration);
-                    int SleepInt = Integer.parseInt(SleepStr);
-                    ViewGroup.LayoutParams paramsSleep = sleepArray[i].getLayoutParams();
-                    paramsSleep.height = (SleepInt + 1) * 18;
-                    sleepArray[i].setLayoutParams(paramsSleep);
+                    sleepInt[i] = Integer.parseInt(SleepStr);
                     // Color depending on quality
                     if (MainActivity.getEmotionData().get(dateArray[i]).containsKey(Globals.sleepQuality)) {
                         if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateArray[i])).get(Globals.sleepQuality)).isEmpty()) {
                             String Quality = MainActivity.getEmotionData().get(dateArray[i]).get(Globals.sleepQuality);
                             if (Quality.contains("Very bad")) {
-                                sleepArray[i].setBackgroundColor(Color.RED);
+                                colors[i] =Color.RED;
                             } else if (Quality.contains("Bad")) {
-                                sleepArray[i].setBackgroundColor(Color.parseColor("#FF8800"));
+                                colors[i]=Color.parseColor("#FF8800");
                             } else if (Quality.contains("Normal")) {
-                                sleepArray[i].setBackgroundColor(Color.parseColor("#FFD700"));
+                                colors[i]=Color.parseColor("#FFD700");
                             } else if (Quality.contains("Very good")) {
-                                sleepArray[i].setBackgroundColor(Color.parseColor("#228B22"));
+                                colors[i]=Color.parseColor("#228B22");
                             } else {
-                                sleepArray[i].setBackgroundColor(Color.parseColor("#CAFF70"));
+                                colors[i]=Color.parseColor("#CAFF70");
                             }
                         }
                     }
                 }
             }
         }
+        GraphView graphSleep = binding.summarysleep.bar;
+        BarGraphSeries<DataPoint> seriesSleep;
+        seriesSleep = new BarGraphSeries<>(new DataPoint[] {
+                new DataPoint(1, sleepInt[0]),
+                new DataPoint(2, sleepInt[1]),
+                new DataPoint(3, sleepInt[2]),
+        });
+        graphSleep.addSeries(seriesSleep);
+
+        seriesSleep.setValueDependentColor(data -> colors[(int) (data.getX()-1)]);
+
+        graphSleep.getViewport().setMinX(0);
+        graphSleep.getViewport().setMaxX(4);
+
+        graphSleep.getViewport().setXAxisBoundsManual(true);
+
+        graphSleep.getGridLabelRenderer().setHumanRounding(false);
+
+        seriesSleep.setSpacing(30);
+
+        seriesSleep.setDrawValuesOnTop(true);
+        seriesSleep.setValuesOnTopColor(getResources().getColor(R.color.blue));
+
+        graphSleep.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
+
+        StaticLabelsFormatter staticLabelsFormatterSleep = new StaticLabelsFormatter(graphSleep);
+        staticLabelsFormatterSleep.setHorizontalLabels(new String[] {"","today","yesterday", "2 days ago",""});
+        graphSleep.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatterSleep);
+
+        graphSleep.getViewport().setMinY(0);
+        graphSleep.getViewport().setMaxY(12);
+        graphSleep.getViewport().setYAxisBoundsManual(true);
 
         // Display University Work
         TextView tv_universityDuration = binding.summaryUniversity.summaryUniversityDuration;

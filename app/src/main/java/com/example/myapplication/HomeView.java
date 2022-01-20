@@ -24,6 +24,7 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -203,18 +204,20 @@ public class HomeView extends Fragment {
                 return colorRed;
         });
 
-        series.setSpacing(50);
+        series.setSpacing(30);
 
         series.setDrawValuesOnTop(true);
         series.setValuesOnTopColor(getResources().getColor(R.color.blue));
 
-        graph.getViewport().setMinX(0.5);
-        graph.getViewport().setMaxX(3.5);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(4);
 
         graph.getViewport().setXAxisBoundsManual(true);
 
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
-        graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"","Happy","Neutral", "Sad",""});
+        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(31);
