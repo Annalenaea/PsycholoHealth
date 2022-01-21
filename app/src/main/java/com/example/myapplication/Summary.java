@@ -78,7 +78,12 @@ public class Summary extends Fragment {
             if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.emotion)).isEmpty()) {
                 TextView tv_emotion = binding.summaryEmotionValue;
                 emotionToday = MainActivity.getEmotionData().get(dateStr).get(Globals.emotion);   //get emotion from Map
-                tv_emotion.setText(emotionToday + ": "); //+date_str only for control
+                tv_emotion.setText(emotionToday); //+date_str only for control
+                if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.feeling)) {
+                    if (!Objects.requireNonNull(Objects.requireNonNull(MainActivity.getEmotionData().get(dateStr)).get(Globals.feeling)).isEmpty()) {
+                        tv_emotion.setText(emotionToday + ":");
+                    }
+                }
             }
         }
         if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.feeling)) {

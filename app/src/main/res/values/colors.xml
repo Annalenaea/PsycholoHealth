@@ -13,4 +13,9 @@
     <color name="darkred">#631717</color>
     <color name="darkyellow">#705B1D</color>
     <color name="darkgreen">#145916</color>
+    <color name="veryGood">#228B22</color>
+    <color name="good">#CAFF70</color>
+    <color name="normal">#FFD700</color>
+    <color name="bad">#FF8800</color>
+    <color name="veryBad">#FF0000</color>
 </resources>

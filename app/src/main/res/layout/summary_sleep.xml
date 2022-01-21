@@ -24,5 +24,106 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barSleep" />
+    <TextView
+        android:id="@+id/sleepQuality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="Sleep Quality"
+        app:layout_constraintTop_toBottomOf="@id/bar"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/legend1"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/veryGood"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/legend1Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textSize="13dp"
+        android:text="Very Good"
+        app:layout_constraintStart_toEndOf="@id/legend1"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"/>
+    <TextView
+        android:id="@+id/legend2"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/good"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"
+        app:layout_constraintStart_toEndOf="@id/legend1Text"/>
+    <TextView
+        android:id="@+id/legend2Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textSize="13dp"
+        android:text="Good"
+        app:layout_constraintStart_toEndOf="@id/legend2"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"/>
+    <TextView
+        android:id="@+id/legend3"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/normal"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"
+        app:layout_constraintStart_toEndOf="@id/legend2Text"/>
+    <TextView
+        android:id="@+id/legend3Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textSize="13dp"
+        android:text="Normal"
+        app:layout_constraintStart_toEndOf="@id/legend3"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"/>
+    <TextView
+        android:id="@+id/legend4"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/bad"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"
+        app:layout_constraintStart_toEndOf="@id/legend3Text"/>
+    <TextView
+        android:id="@+id/legend4Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textSize="13dp"
+        android:text="Bad"
+        app:layout_constraintStart_toEndOf="@id/legend4"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"/>
+    <TextView
+        android:id="@+id/legend5"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/veryBad"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"
+        app:layout_constraintStart_toEndOf="@id/legend4Text"/>
+    <TextView
+        android:id="@+id/legend5Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:textSize="13dp"
+        android:text="Very Bad"
+        app:layout_constraintStart_toEndOf="@id/legend5"
+        app:layout_constraintTop_toBottomOf="@id/sleepQuality"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
