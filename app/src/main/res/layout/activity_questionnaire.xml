@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="University Work"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/blue"
                 android:textSize="20sp" />
 
             # Eingabe Dauer
@@ -99,7 +99,7 @@
                 android:layout_below="@id/seekBar2"
                 android:layout_marginTop="20dp"
                 android:text="Sport"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/blue"
                 android:textSize="20sp" />
 
             # Eingabe Dauer Sport
@@ -172,7 +172,7 @@
                 android:layout_below="@id/seekBar5"
                 android:layout_marginTop="20dp"
                 android:text="Social Contacts"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/blue"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -257,7 +257,7 @@
                 android:layout_below="@id/EditTextHobbyHours1"
                 android:layout_marginTop="20dp"
                 android:text="Cultural Activities"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/blue"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -306,7 +306,7 @@
                 android:layout_below="@id/checkboxRestaurant"
                 android:layout_marginTop="20dp"
                 android:text="Other Activities:"
-                android:textColor="@color/design_default_color_primary"
+                android:textColor="@color/blue"
                 android:textSize="20sp" />
 
             <CheckBox
