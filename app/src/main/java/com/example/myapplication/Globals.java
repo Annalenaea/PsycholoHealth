@@ -57,8 +57,8 @@ public class Globals {
     // options for Physical Conditions
     public static String no = "no";
     public static String yes = "yes";
-    public static String little = "x";
-    public static String lot = "xx";
+    public static String little = "some";
+    public static String lot = "a lot";
     public static String taken = "☑";
     public static String notTaken = "☐";
 }
