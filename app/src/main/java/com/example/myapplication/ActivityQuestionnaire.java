@@ -382,22 +382,34 @@ public class ActivityQuestionnaire extends Fragment {
 
 
             // Social Activities Duration
-            m_MinSocial = MinSocial.getText().toString();
-            m_HourSocial = HourSocial.getText().toString();
-            MainActivity.m_todaysData.put(Globals.MinSocial, String.valueOf(m_MinSocial));
-            MainActivity.m_todaysData.put(Globals.HourSocial, String.valueOf(m_HourSocial));
+            if(MinSocial.getText().length()!=0) {
+                m_MinSocial = MinSocial.getText().toString();
+                MainActivity.m_todaysData.put(Globals.MinSocial, m_MinSocial);
+            }
+            if(HourSocial.getText().length()!=0) {
+                m_HourSocial = HourSocial.getText().toString();
+                MainActivity.m_todaysData.put(Globals.HourSocial, m_HourSocial);
+            }
 
             // Sport Activities Duration
-            m_sportDurMin = Integer.parseInt(MinSport.getText().toString());
-            m_sportDurHour = Integer.parseInt(HourSport.getText().toString());
-            MainActivity.m_todaysData.put(Globals.sportMinutes, String.valueOf(m_sportDurMin));
-            MainActivity.m_todaysData.put(Globals.sportHours, String.valueOf(m_sportDurHour));
+            if(MinSport.getText().length()!=0) {
+                m_sportDurMin = Integer.parseInt(MinSport.getText().toString());
+                MainActivity.m_todaysData.put(Globals.sportMinutes, String.valueOf(m_sportDurMin));
+            }
+            if(HourSport.getText().length()!=0) {
+                m_sportDurHour = Integer.parseInt(HourSport.getText().toString());
+                MainActivity.m_todaysData.put(Globals.sportHours, String.valueOf(m_sportDurHour));
+            }
 
             // Uni Activities Duration
-            m_uniDurMin = Integer.parseInt(MinUni.getText().toString());
-            m_uniDurHour = Integer.parseInt(HourUni.getText().toString());
-            MainActivity.m_todaysData.put(Globals.universityMinutes, String.valueOf(m_uniDurMin));
-            MainActivity.m_todaysData.put(Globals.universityHours, String.valueOf(m_uniDurHour));
+            if(MinUni.getText().length()!=0) {
+                m_uniDurMin = Integer.parseInt(MinUni.getText().toString());
+                MainActivity.m_todaysData.put(Globals.universityMinutes, String.valueOf(m_uniDurMin));
+            }
+            if(HourUni.getText().length()!=0) {
+                m_uniDurHour = Integer.parseInt(HourUni.getText().toString());
+                MainActivity.m_todaysData.put(Globals.universityHours, String.valueOf(m_uniDurHour));
+            }
 
             try {
                 MainActivity.saveData();

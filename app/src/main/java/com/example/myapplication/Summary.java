@@ -178,6 +178,7 @@ public class Summary extends Fragment {
 
         // Display Stress Level
         GraphView graph = binding.summaryStress.bar;
+        graph.removeAllSeries();
         int[] stressInt = new int[3];
         for (int i = 0; i <= 2; i++) {
             if (MainActivity.getEmotionData().get(dateArray[i]).containsKey(Globals.stressLevel)) {
@@ -247,6 +248,7 @@ public class Summary extends Fragment {
             }
         }
         GraphView graphSleep = binding.summarysleep.bar;
+        graphSleep.removeAllSeries();
         BarGraphSeries<DataPoint> seriesSleep;
         seriesSleep = new BarGraphSeries<>(new DataPoint[] {
                 new DataPoint(1, sleepInt[0]),

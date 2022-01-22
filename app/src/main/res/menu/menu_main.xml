@@ -24,6 +24,6 @@
         android:id="@+id/action_help"
         android:orderInCategory="100"
         android:textColor="?attr/colorSecondary"
-        android:title="Help"
+        android:title="Get Help"
         app:showAsAction="never" />
 </menu>

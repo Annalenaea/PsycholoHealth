@@ -187,6 +187,7 @@ public class HomeView extends Fragment {
         }
 
         GraphView graph = barchart;
+        graph.removeAllSeries();
 
         BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
                 new DataPoint(1, numberOfHappy),
@@ -292,6 +293,7 @@ public class HomeView extends Fragment {
     public void drawGraph(String data) throws ParseException {
         GraphView graph;
         String minutes = "";
+        boolean procent = false;
         if(data == Globals.sportHours) {
             graph = binding.development.graph;
             minutes = Globals.sportMinutes;
@@ -299,13 +301,16 @@ public class HomeView extends Fragment {
             graph = binding.developmentsleep.graph;
         }else if(data == Globals.stressLevel) {
             graph = binding.developmentstress.graph;
+            procent = true;
         }else if(data == Globals.universityIntensity) {
             graph = binding.developmentuniintensity.graph;
+            procent = true;
         }else if(data == Globals.universityHours) {
             graph = binding.developmentuniduration.graph;
             minutes = Globals.universityMinutes;
         }else if(data == Globals.sportIntensity) {
             graph = binding.developmentsportintensity.graph;
+            procent = true;
         }else if(data == Globals.HourSocial) {
             graph = binding.developmentsocial.graph;
             minutes = Globals.MinSocial;
@@ -337,12 +342,19 @@ public class HomeView extends Fragment {
                 dateString = formatter.format(dates[i]);
                 if(m_emotionData.get(dateString).containsKey(data)) {
                     if(!Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)).isEmpty()) {
-                        Log.d("hallo",Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
                         if(minutes == "") {
                             value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
                         }else{
                             value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data))+"."+Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)));
                         }
+                        dataSeries[k] = new DataPoint(dates[i], value);
+                        usedDates[k] = dates[i];
+                        containsKey = true;
+                        k++;
+                    }
+                }else if(m_emotionData.get(dateString).containsKey(minutes)){
+                    if(!Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)).isEmpty()) {
+                        value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)));
                         dataSeries[k] = new DataPoint(dates[i], value);
                         usedDates[k] = dates[i];
                         containsKey = true;
@@ -355,7 +367,6 @@ public class HomeView extends Fragment {
                 long[] usedDates1 = Arrays.copyOf(usedDates, k);
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataSeries1);
                 graph.addSeries(series);
-                graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
                 if(k>=3) {
                     graph.getGridLabelRenderer().setNumHorizontalLabels(3); // only 3 because of the space
                 }else{
@@ -368,8 +379,17 @@ public class HomeView extends Fragment {
 
                 // set manual y bounds to have nice steps
                 graph.getViewport().setMinY(0);
-                graph.getViewport().setMaxY(10);
+                graph.getViewport().setMaxY(12);
                 graph.getViewport().setYAxisBoundsManual(true);
+
+                StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+                staticLabelsFormatter.setDynamicLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
+                if(procent) {
+                    staticLabelsFormatter.setVerticalLabels(new String[]{"", "25%", "50%", "75%", "100%"});
+                }else{
+                    staticLabelsFormatter.setVerticalLabels(new String[]{"", "3h", "6h", "9h", "12h"});
+                }
+                graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
                 // as we use dates as labels, the human rounding to nice readable numbers
                 // is not necessary

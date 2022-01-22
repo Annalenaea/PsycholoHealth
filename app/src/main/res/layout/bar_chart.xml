@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/big_container_margin"
-        android:text="Analysis"
+        android:text="Monthly Emotion Statistics "
         android:textColor="@color/blue"
         android:textSize="@dimen/headline_size"
         app:layout_constraintTop_toTopOf="parent"
