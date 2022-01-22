@@ -205,13 +205,14 @@ public class Summary extends Fragment {
 
         series.setSpacing(30);
 
-        series.setDrawValuesOnTop(true);
-        series.setValuesOnTopColor(getResources().getColor(R.color.blue));
+//        series.setDrawValuesOnTop(true);
+//        series.setValuesOnTopColor(getResources().getColor(R.color.blue));
 
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
         staticLabelsFormatter.setHorizontalLabels(new String[] {"","today","yesterday", "2 days ago",""});
+        staticLabelsFormatter.setVerticalLabels(new String[]{"", "25%", "50%", "75%", "100%"});
         graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
         graph.getViewport().setMinY(0);
@@ -268,18 +269,19 @@ public class Summary extends Fragment {
 
         seriesSleep.setSpacing(30);
 
-        seriesSleep.setDrawValuesOnTop(true);
-        seriesSleep.setValuesOnTopColor(getResources().getColor(R.color.blue));
+//        seriesSleep.setDrawValuesOnTop(true);
+//        seriesSleep.setValuesOnTopColor(getResources().getColor(R.color.blue));
 
         graphSleep.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
-
-        StaticLabelsFormatter staticLabelsFormatterSleep = new StaticLabelsFormatter(graphSleep);
-        staticLabelsFormatterSleep.setHorizontalLabels(new String[] {"","today","yesterday", "2 days ago",""});
-        graphSleep.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatterSleep);
 
         graphSleep.getViewport().setMinY(0);
         graphSleep.getViewport().setMaxY(12);
         graphSleep.getViewport().setYAxisBoundsManual(true);
+
+        StaticLabelsFormatter staticLabelsFormatterSleep = new StaticLabelsFormatter(graphSleep);
+        staticLabelsFormatterSleep.setHorizontalLabels(new String[] {"","today","yesterday", "2 days ago",""});
+        staticLabelsFormatterSleep.setVerticalLabels(new String[]{"", "3h", "6h", "9h", "12h"});
+        graphSleep.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatterSleep);
 
         // Display University Work
         TextView tv_universityDuration = binding.summaryUniversity.summaryUniversityDuration;
