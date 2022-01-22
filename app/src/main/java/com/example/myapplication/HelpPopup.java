@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -32,6 +33,8 @@ public class HelpPopup extends AppCompatActivity {
 
         //display the popup window
         popupWindow.setFocusable(true);
+        helpPopup.setAnimation(AnimationUtils.loadAnimation(context,R.anim.popup_show));
+//        popupWindow.setAnimationStyle(R.style.Animation);
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos + 70, yPos + 100);
 
         // onClickListener for all 3 buttons:

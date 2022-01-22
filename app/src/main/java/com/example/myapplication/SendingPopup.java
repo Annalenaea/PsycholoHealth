@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -30,6 +32,7 @@ public class SendingPopup extends AppCompatActivity {
 
 
     //PopupWindow display method
+    @SuppressLint("ResourceType")
     public void showPopupWindow(final View view, int xPos, int yPos) {
         Log.d(TAG,"show sendning popup");
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
@@ -40,6 +43,7 @@ public class SendingPopup extends AppCompatActivity {
         PopupWindow popupWindow = new PopupWindow(sendingPopup, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         //display the popup window
+        sendingPopup.setAnimation(AnimationUtils.loadAnimation(context,R.anim.popup_show));
         popupWindow.setFocusable(true);
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos + 70, yPos + 100);
 
@@ -54,6 +58,7 @@ public class SendingPopup extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+//            sendingPopup.startAnimation(AnimationUtils.loadAnimation(context,R.anim.popup_hide));
             popupWindow.dismiss();
         });
 

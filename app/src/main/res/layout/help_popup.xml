@@ -28,7 +28,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="16dp"
-        android:text="Pschological student \n counseling"
+        android:text="Psychological student \n counseling"
         android:textColor="?attr/colorSecondary"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
