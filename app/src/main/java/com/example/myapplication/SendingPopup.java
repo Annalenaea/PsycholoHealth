@@ -15,6 +15,11 @@ import android.widget.PopupWindow;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 
@@ -44,17 +49,24 @@ public class SendingPopup extends AppCompatActivity {
         sendBtn.setOnClickListener(view1 -> {
             EditText textMail = sendingPopup.findViewById(R.id.mail);
             String[] address = {textMail.getText().toString()};
-            composeEmail(address);
+            try {
+                composeEmail(address);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             popupWindow.dismiss();
         });
 
     }
 
-    private void composeEmail(String[] address) {
+    private void composeEmail(String[] address) throws IOException {
         String subject = "PsycholoHealth";
         String text = "Dear Dr. Meyer, \n in the attachement, you can find my mental health data. \n Best regards";
         File newFile = new File(MainActivity.filesDir,Globals.backup);
-        Uri uri = getUriForFile(context, "com.mydomain.fileprovider", newFile);
+        File sendFile = new File(MainActivity.filesDir,"PsycholoHealth Data");
+        copy(newFile,sendFile);
+
+        Uri uri = getUriForFile(context, "com.mydomain.fileprovider", sendFile);
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_EMAIL, address);
@@ -63,6 +75,24 @@ public class SendingPopup extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_STREAM, uri);
 
         context.startActivity(Intent.createChooser(intent, "Choose an email client"));
+    }
+
+    public static void copy(File src, File dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        try {
+            OutputStream out = new FileOutputStream(dst);
+            try {
+                byte[] buf = new byte[1024];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+            } finally {
+                out.close();
+            }
+        } finally {
+            in.close();
+        }
     }
 
 }
