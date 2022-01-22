@@ -383,6 +383,8 @@ public class HomeView extends Fragment {
                 graph.getViewport().setMaxY(12);
                 graph.getViewport().setYAxisBoundsManual(true);
 
+                series.setColor(getResources().getColor(R.color.blue));
+
                 StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
                 staticLabelsFormatter.setDynamicLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
                 if(procent) {

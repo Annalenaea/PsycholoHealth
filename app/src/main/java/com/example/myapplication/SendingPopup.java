@@ -47,7 +47,6 @@ public class SendingPopup extends AppCompatActivity {
         popupWindow.setFocusable(true);
         popupWindow.showAtLocation(view, Gravity.NO_GRAVITY, xPos + 70, yPos + 100);
 
-        // onClickListener for all 3 buttons:
         Button sendBtn = sendingPopup.findViewById(R.id.send);
 
         sendBtn.setOnClickListener(view1 -> {
@@ -68,7 +67,7 @@ public class SendingPopup extends AppCompatActivity {
         String subject = "PsycholoHealth";
         String text = "Dear Dr. Meyer, \n in the attachement, you can find my mental health data. \n Best regards";
         File newFile = new File(MainActivity.filesDir,Globals.backup);
-        File sendFile = new File(MainActivity.filesDir,"PsycholoHealth Data");
+        File sendFile = new File(MainActivity.filesDir,"psycholohealth_data");
         copy(newFile,sendFile);
 
         Uri uri = getUriForFile(context, "com.mydomain.fileprovider", sendFile);

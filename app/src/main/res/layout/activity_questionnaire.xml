@@ -89,7 +89,7 @@
                 android:layout_marginTop="0dp"
                 android:max="10"
                 android:visibility="visible"
-                app:tickMarkTint="@color/design_default_color_primary" />
+                app:tickMarkTint="@color/blue" />
 
 
             <TextView
@@ -162,7 +162,7 @@
                 android:layout_marginTop="0dp"
                 android:max="10"
                 android:visibility="visible"
-                app:tickMarkTint="@color/design_default_color_primary" />
+                app:tickMarkTint="@color/blue" />
 
 
             <TextView

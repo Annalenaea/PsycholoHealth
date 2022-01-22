@@ -204,9 +204,7 @@ public class Summary extends Fragment {
         graph.getGridLabelRenderer().setHumanRounding(false);
 
         series.setSpacing(30);
-
-//        series.setDrawValuesOnTop(true);
-//        series.setValuesOnTopColor(getResources().getColor(R.color.blue));
+        series.setColor(getResources().getColor(R.color.blue));
 
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.HORIZONTAL);
 
