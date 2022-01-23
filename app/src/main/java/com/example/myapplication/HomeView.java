@@ -343,10 +343,10 @@ public class HomeView extends Fragment {
                 dateString = formatter.format(dates[i]);
                 if(m_emotionData.get(dateString).containsKey(data)) {
                     if(!Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)).isEmpty()) {
-                        if(minutes == "") {
-                            value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
-                        }else{
+                        if(!(minutes == "") && m_emotionData.get(dateString).containsKey(minutes) && !Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)).isEmpty()) {
                             value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data))+"."+Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)));
+                        }else{
+                            value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(data)));
                         }
                         dataSeries[k] = new DataPoint(dates[i], value);
                         usedDates[k] = dates[i];
