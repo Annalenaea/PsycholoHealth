@@ -110,113 +110,115 @@ public class ActivityQuestionnaire extends Fragment {
         Finish = binding.buttonFinish;
 
 
-    // set initial university intensity
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityIntensity)){
-            m_universityIntensity=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityIntensity)));
-            SBUniversity.setProgress(m_universityIntensity);
-            if(m_universityIntensity>0) {
-                UniversityProgress.setText("   " + m_universityIntensity * 10 + "%");
+        if(Objects.requireNonNull(MainActivity.getEmotionData().containsKey(MainActivity.m_today))) {
+            // set initial university intensity
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityIntensity)) {
+                m_universityIntensity = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityIntensity)));
+                SBUniversity.setProgress(m_universityIntensity);
+                if (m_universityIntensity > 0) {
+                    UniversityProgress.setText("   " + m_universityIntensity * 10 + "%");
+                }
             }
-        }
 
-    // set initial university duration -> hours
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityHours)){
-            m_uniDurHour=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityHours)));
-            HourUni.setText(String.valueOf(m_uniDurHour));
-        }
-    // set initial university duration -> minutes
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityMinutes)){
-            m_uniDurMin=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityMinutes)));
-            MinUni.setText(String.valueOf(m_uniDurMin));
-        }
-
-    // set initial sport intensity
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportIntensity)){
-            m_sportIntensity=Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportIntensity)));
-            SBSport.setProgress(m_sportIntensity);
-            if(m_sportIntensity>0) {
-                SportProgress.setText("   " + m_sportIntensity * 10 + "%");
+            // set initial university duration -> hours
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityHours)) {
+                m_uniDurHour = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityHours)));
+                HourUni.setText(String.valueOf(m_uniDurHour));
             }
-        }
+            // set initial university duration -> minutes
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.universityMinutes)) {
+                m_uniDurMin = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.universityMinutes)));
+                MinUni.setText(String.valueOf(m_uniDurMin));
+            }
 
-    // set initial sport duration -> hours
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportHours)){
-            m_sportDurHour = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportHours)));
-            HourSport.setText(String.valueOf(m_sportDurHour));
-        }
-    // set initial sport duration -> minutes
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportMinutes)){
-            m_sportDurMin = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportMinutes)));
-            MinSport.setText(String.valueOf(m_sportDurMin));
-        }
+            // set initial sport intensity
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportIntensity)) {
+                m_sportIntensity = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportIntensity)));
+                SBSport.setProgress(m_sportIntensity);
+                if (m_sportIntensity > 0) {
+                    SportProgress.setText("   " + m_sportIntensity * 10 + "%");
+                }
+            }
 
-        // set initial social duration -> hours
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.HourSocial)){
-            m_HourSocial = Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.HourSocial));
-            HourSocial.setText(String.valueOf(m_HourSocial));
-        }
-        // set initial social duration -> minutes
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.MinSocial)){
-            m_MinSocial = Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.MinSocial));
-            MinSocial.setText(m_MinSocial);
-        }
+            // set initial sport duration -> hours
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportHours)) {
+                m_sportDurHour = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportHours)));
+                HourSport.setText(String.valueOf(m_sportDurHour));
+            }
+            // set initial sport duration -> minutes
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.sportMinutes)) {
+                m_sportDurMin = Integer.parseInt(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.sportMinutes)));
+                MinSport.setText(String.valueOf(m_sportDurMin));
+            }
 
-        // set initial other activities
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.DomWork)){
-            m_DomWork = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.DomWork)));
-            CBDomesticWork.setChecked(m_DomWork);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.SelfCare)){
-            m_SelfCare = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.SelfCare)));
-            CBSelfCare.setChecked(m_SelfCare);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Party)){
-            m_Party= Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Party)));
-            CBParty.setChecked(m_Party);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Hobbies)){
-            m_Hobbies = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Hobbies)));
-            CBHobby.setChecked(m_Hobbies);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Friends)){
-            m_Friends = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Friends)));
-            CBFriends.setChecked(m_Friends);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Family)){
-            m_Family = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Family)));
-            CBFamily.setChecked(m_Family);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Partner)){
-            m_Partner = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Partner)));
-            CBPartner.setChecked(m_Partner);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Children)){
-            m_Children = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Children)));
-            CBChildren.setChecked(m_Children);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Roommates)){
-            m_Roomates = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Roommates)));
-            CBRoommates.setChecked(m_Roomates);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Museum)){
-            m_Museum = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Museum)));
-            CBMuseum.setChecked(m_Museum);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Theatre)){
-            m_Theatre = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Theatre)));
-            CBTheatre.setChecked(m_Theatre);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Concert)){
-            m_Concert = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Concert)));
-            CBConcert.setChecked(m_Concert);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Cinema)){
-            m_Cinema = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Cinema)));
-            CBCinema.setChecked(m_Cinema);
-        }
-        if(Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Restaurant)){
-            m_Restaurant = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Restaurant)));
-            CBRestaurant.setChecked(m_Restaurant);
+            // set initial social duration -> hours
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.HourSocial)) {
+                m_HourSocial = Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.HourSocial));
+                HourSocial.setText(String.valueOf(m_HourSocial));
+            }
+            // set initial social duration -> minutes
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.MinSocial)) {
+                m_MinSocial = Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.MinSocial));
+                MinSocial.setText(m_MinSocial);
+            }
+
+            // set initial other activities
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.DomWork)) {
+                m_DomWork = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.DomWork)));
+                CBDomesticWork.setChecked(m_DomWork);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.SelfCare)) {
+                m_SelfCare = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.SelfCare)));
+                CBSelfCare.setChecked(m_SelfCare);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Party)) {
+                m_Party = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Party)));
+                CBParty.setChecked(m_Party);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Hobbies)) {
+                m_Hobbies = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Hobbies)));
+                CBHobby.setChecked(m_Hobbies);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Friends)) {
+                m_Friends = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Friends)));
+                CBFriends.setChecked(m_Friends);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Family)) {
+                m_Family = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Family)));
+                CBFamily.setChecked(m_Family);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Partner)) {
+                m_Partner = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Partner)));
+                CBPartner.setChecked(m_Partner);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Children)) {
+                m_Children = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Children)));
+                CBChildren.setChecked(m_Children);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Roommates)) {
+                m_Roomates = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Roommates)));
+                CBRoommates.setChecked(m_Roomates);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Museum)) {
+                m_Museum = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Museum)));
+                CBMuseum.setChecked(m_Museum);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Theatre)) {
+                m_Theatre = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Theatre)));
+                CBTheatre.setChecked(m_Theatre);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Concert)) {
+                m_Concert = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Concert)));
+                CBConcert.setChecked(m_Concert);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Cinema)) {
+                m_Cinema = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Cinema)));
+                CBCinema.setChecked(m_Cinema);
+            }
+            if (Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today)).containsKey(Globals.Restaurant)) {
+                m_Restaurant = Boolean.parseBoolean(Objects.requireNonNull((Objects.requireNonNull(MainActivity.getEmotionData().get(MainActivity.m_today))).get(Globals.Restaurant)));
+                CBRestaurant.setChecked(m_Restaurant);
+            }
         }
 
     // Other Activities
