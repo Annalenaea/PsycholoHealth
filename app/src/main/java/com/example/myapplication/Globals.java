@@ -45,7 +45,7 @@ public class Globals {
     public static final String dateFormat = "MM/dd/yyyy";
     public static final String monthFormat = "MMMM yyyy";
     public static final String monthNumberFormat = "MM";
-    public static final String dayMonthFormat = "dd.MM.yyyy";
+    public static final String dayMonthFormat = "dd/MM/yyyy";
 
     public static final String backup ="backup";
 
