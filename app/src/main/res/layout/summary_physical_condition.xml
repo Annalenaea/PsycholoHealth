@@ -22,7 +22,7 @@
         android:id="@+id/summaryPhysicalConditionTodayText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Today"
+        android:text="today"
         android:textColor="?attr/colorSecondary"
         android:layout_marginRight="40dp"
         android:layout_marginTop="@dimen/big_container_margin"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="40dp"
         android:layout_marginTop="@dimen/big_container_margin"
-        android:text="1 day ago"
+        android:text="yesterday"
         android:textColor="?attr/colorSecondary"
         app:layout_constraintEnd_toStartOf="@id/summaryPhysicalConditionDayTwoText"
         app:layout_constraintTop_toBottomOf="@id/summaryPhysicalConditionValue"/>

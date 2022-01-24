@@ -72,6 +72,11 @@ public class Summary extends Fragment {
             }
         }
 
+        // Display selected date
+        DateFormat formatterDayMonth = new SimpleDateFormat(Globals.dayMonthFormat, Globals.myLocal);
+        String date = formatterDayMonth.format(m_today);
+        TextView tv_date = binding.summaryDateSelected;
+        tv_date.setText(date);
 
         // Display Emotion
         if (MainActivity.getEmotionData().get(dateStr).containsKey(Globals.emotion)) {

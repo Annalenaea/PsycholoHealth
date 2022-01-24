@@ -6,11 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/summaryDateSelected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="?attr/colorPrimary"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"/>
+
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/summaryDateSelected">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,11 +37,12 @@
                 android:id="@+id/summaryFeeling"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/round_rectangle"
                 android:layout_margin="@dimen/container_margin"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/round_rectangle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent">
+
                 <TextView
                     android:id="@+id/summaryEmotionText"
                     android:layout_width="wrap_content"
@@ -36,31 +51,33 @@
                     android:text="Emotion"
                     android:textColor="@color/blue"
                     android:textSize="@dimen/headline_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/summaryEmotionValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@id/summaryEmotionValueTwo"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_margin="@dimen/big_container_margin"
                     android:text="not selected"
                     android:textColor="?attr/colorSecondary"
                     android:textSize="@dimen/headline_size"
-                    android:layout_margin="@dimen/big_container_margin"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/summaryEmotionValueTwo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/summaryEmotionValueTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_margin="@dimen/big_container_margin"
                     android:text=" "
                     android:textColor="?attr/colorSecondary"
                     android:textSize="@dimen/headline_size"
-                    android:layout_margin="@dimen/big_container_margin"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
