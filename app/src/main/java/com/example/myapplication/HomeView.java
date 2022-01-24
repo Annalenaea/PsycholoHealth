@@ -131,6 +131,7 @@ public class HomeView extends Fragment {
 
         setCalenderData();
 
+        m_currentMonth = Integer.parseInt(new SimpleDateFormat(Globals.monthNumberFormat, Globals.myLocal).format(Calendar.getInstance().getTime()));
         try {
             updateAnalysis();
         } catch (ParseException e) {
