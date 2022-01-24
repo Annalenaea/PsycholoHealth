@@ -356,7 +356,7 @@ public class HomeView extends Fragment {
                     }
                 }else if(m_emotionData.get(dateString).containsKey(minutes)){
                     if(!Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)).isEmpty()) {
-                        value = Double.parseDouble(Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)));
+                        value = Double.parseDouble("0."+Objects.requireNonNull(Objects.requireNonNull(m_emotionData.get(dateString)).get(minutes)));
                         dataSeries[k] = new DataPoint(dates[i], value);
                         usedDates[k] = dates[i];
                         containsKey = true;
@@ -381,7 +381,6 @@ public class HomeView extends Fragment {
 
                 // set manual y bounds to have nice steps
                 graph.getViewport().setMinY(0);
-                graph.getViewport().setMaxY(12);
                 graph.getViewport().setYAxisBoundsManual(true);
 
                 series.setColor(getResources().getColor(R.color.blue));
@@ -389,8 +388,10 @@ public class HomeView extends Fragment {
                 StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
                 staticLabelsFormatter.setDynamicLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
                 if(procent) {
+                    graph.getViewport().setMaxY(10);
                     staticLabelsFormatter.setVerticalLabels(new String[]{"", "25%", "50%", "75%", "100%"});
                 }else{
+                    graph.getViewport().setMaxY(12);
                     staticLabelsFormatter.setVerticalLabels(new String[]{"", "3h", "6h", "9h", "12h"});
                 }
                 graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
